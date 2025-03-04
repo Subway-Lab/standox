@@ -1,0 +1,7 @@
+{
+    "name": "sto-site",
+    "description": "PHP web application",
+    "require": {
+        "php": ">=7.3"
+    }
+}
