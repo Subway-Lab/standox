@@ -1,0 +1,747 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="key words">
+        <meta name="description" content="description of the page SEO">
+        <title>STANDOX</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
+        <header>
+            <h1> STANDOX </h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="registration.php" class="menu_link"> личный кабинет </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="title">
+            <h2> Создание нового заказ-наряда </h2>
+            <h3> Данные о заказчике: </h3>
+        </div>
+
+        <div class="form">
+            <form id="orderForm" action="submit_order.php" method="POST">
+
+                <div class="customer">
+                    <label for="surname" class="sr-only"> Фамилия </label>
+                    <input class="user_input" id="surname" type="text" name="surname" placeholder="Фамилия *" pattern="^[а-яА-ЯёЁ\-]+$" title="Укажите Фамилию" required>
+
+                    <label for="name" class="sr-only"> Имя </label>
+                    <input class="user_input" id="name" type="text" name="name" placeholder="Имя *" pattern="^[а-яА-ЯёЁ\-]+$" title="Укажите Имя" required>
+
+                    <div class="error-message" data-for="surname"> Допустимые символы: буквы кириллицы, знак тире </div>
+                    <div class="error-message" data-for="name"> Допустимые символы: буквы кириллицы, знак тире </div>
+
+                    <label for="patronymic" class="sr-only"> Отчество </label>
+                    <input class="user_input" id="patronymic" type="text" name="patronymic" placeholder="Отчество" pattern="^[а-яА-ЯёЁ\s\-]+$" title="Укажите Отчествo">
+
+                    <label for="phone" class="sr-only"> Контактный телефон </label>
+                    <input class="user_input" id="phone" type="tel" name="phone" placeholder="Номер телефона *" pattern="^[0-9\+\-\s]+$" title="Укажите Номер телефона" required>
+
+                    <div class="error-message" data-for="patronymic"> Допустимые символы: буквы кириллицы, знак тире, пробел </div>
+                    <div class="error-message" data-for="phone"> Допустимые символы: цифры, знак "+", тире, пробел </div>
+
+                    <label for="car_model" class="sr-only"> Марка автомобиля </label>
+                    <input class="user_input" id="car_model" type="text" name="car_model" placeholder="Марка автомобиля *" pattern="^[а-яА-ЯёЁa-zA-Z0-9\-\s]+$" title="Укажите Марку автомобиля" required>
+
+                    <label for="car_number" class="sr-only"> Регистрационный знак </label>
+                    <input class="user_input" id="car_number" type="text" name="car_number" placeholder="Регистрационный знак *" pattern="^[а-яА-ЯёЁa-zA-Z0-9\-\s]+$" title="Укажите Гос. номер" required>
+
+                    <div class="error-message" data-for="car_model"> Допустимые символы: буквы кириллицы, латиницы, знак тире, пробел </div>
+                    <div class="error-message" data-for="car_number"> Допустимые символы: буквы кириллицы, латиницы, знак тире, пробел </div>
+                </div>
+                <p class="asterisk"> * поля обязательные для заполнения </p>
+
+                <div class="title">
+                    <h4> Перечень работ: </h4>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Бампер передний </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service1" data-service-name="Снятие, установка переднего бампера">
+                                <label for="service1" class="checkbox-btn"> Снятие, установка </label>
+                                <input type="number" class="service-cost" id="service1-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service1_name" id="service1-name" value="Снятие, установка переднего бампера">
+                                <input type="hidden" name="service1_section" value="work">
+                                <input type="hidden" name="service1_service_id" value="1">
+                                <input type="hidden" name="service1_price" id="service1-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service2" data-service-name=" Мелкий ремонт переднего бампера">
+                                <label for="service2" class="checkbox-btn"> Мелкий ремонт </label>
+                                <input type="number" class="service-cost" id="service2-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service2_name" id="service2-name" value=" Мелкий ремонт переднего бампера">
+                                <input type="hidden" name="service2_section" value="work">
+                                <input type="hidden" name="service2_service_id" value="2">
+                                <input type="hidden" name="service2_price" id="service2-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service3" data-service-name=" Ремонт бампера переднего без удаления лакокрасочного покрытия">
+                                <label for="service3" class="checkbox-btn"> Ремонт без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service3-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service3_name" id="service3-name" value=" Ремонт бампера переднего без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service3_section" value="work">
+                                <input type="hidden" name="service3_service_id" value="3">
+                                <input type="hidden" name="service3_price" id="service3-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service4" data-service-name=" Ремонт бампера переднего с удалением лакокрасочного покрытия">
+                                <label for="service4" class="checkbox-btn"> Ремонт с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service4-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service4_name" id="service4-name" value=" Ремонт бампера переднего с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service4_section" value="work">
+                                <input type="hidden" name="service4_service_id" value="4">
+                                <input type="hidden" name="service4_price" id="service4-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service5" data-service-name=" Изготовление отверстий в переднем бампере под сонары или омыватели фар">
+                                <label for="service5" class="checkbox-btn"> Изготовление отверстий под сонары или омыватели фар </label>
+                                <input type="number" class="service-cost" id="service5-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service5_name" id="service5-name" value=" Изготовление отверстий в переднем бампере под сонары или омыватели фар">
+                                <input type="hidden" name="service5_section" value="work">
+                                <input type="hidden" name="service5_service_id" value="5">
+                                <input type="hidden" name="service5_price" id="service5-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Решетка радиатора </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service6" data-service-name=" Замена решетки радиатора">
+                                <label for="service6" class="checkbox-btn"> Замена </label>
+                                <input type="number" class="service-cost" id="service6-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service6_name" id="service6-name" value=" Замена решетки радиатора ">
+                                <input type="hidden" name="service6_section" value="work">
+                                <input type="hidden" name="service6_service_id" value="6">
+                                <input type="hidden" name="service6_price" id="service6-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service7" data-service-name="Ремонт решетки радиатора">
+                                <label for="service7" class="checkbox-btn"> Ремонт </label>
+                                <input type="number" class="service-cost" id="service7-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service7_name" id="service7-name" value=" Ремонт решетки радиатора">
+                                <input type="hidden" name="service7_section" value="work">
+                                <input type="hidden" name="service7_service_id" value="7">
+                                <input type="hidden" name="service7_price" id="service7-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Капот </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service8" data-service-name="Снятие, установка капота">
+                                <label for="service8" class="checkbox-btn"> Снятие, установка </label>
+                                <input type="number" class="service-cost" id="service8-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service8_name" id="service8-name" value="Снятие, установка капота">
+                                <input type="hidden" name="service8_section" value="work">
+                                <input type="hidden" name="service8_service_id" value="8">
+                                <input type="hidden" name="service8_price" id="service8-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service9" data-service-name="Замена капота">
+                                <label for="service9" class="checkbox-btn"> Замена </label>
+                                <input type="number" class="service-cost" id="service9-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service9_name" id="service9-name" value="Замена капота">
+                                <input type="hidden" name="service9_section" value="work">
+                                <input type="hidden" name="service9_service_id" value="9">
+                                <input type="hidden" name="service9_price" id="service9-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service10" data-service-name="Ремонт капота без удаления лакокрасочного покрытия">
+                                <label for="service10" class="checkbox-btn"> Ремонт без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service10-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service10_name" id="service10-name" value="Ремонт капота без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service10_section" value="work">
+                                <input type="hidden" name="service10_service_id" value="10">
+                                <input type="hidden" name="service10_price" id="service10-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service11" data-service-name=" Ремонт капота с удалением лакокрасочного покрытия">
+                                <label for="service11" class="checkbox-btn"> Ремонт с удалением лакокрасочного покрытия</label>
+                                <input type="number" class="service-cost" id="service11-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service11_name" id="service11-name" value=" Ремонт капота с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service11_section" value="work">
+                                <input type="hidden" name="service11_service_id" value="11">
+                                <input type="hidden" name="service11_price" id="service11-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Крылья передние </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service12" data-service-name="Замена крыла переднего левого">
+                                <label for="service12" class="checkbox-btn"> Замена левого </label>
+                                <input type="number" class="service-cost" id="service12-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service12_name" id="service12-name" value="Замена крыла переднего левого">
+                                <input type="hidden" name="service12_section" value="work">
+                                <input type="hidden" name="service12_service_id" value="12">
+                                <input type="hidden" name="service12_price" id="service12-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service13" data-service-name="Замена крыла переднего правого">
+                                <label for="service13" class="checkbox-btn"> Замена правого </label>
+                                <input type="number" class="service-cost" id="service13-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service13_name" id="service13-name" value="Замена крыла переднего правого">
+                                <input type="hidden" name="service13_section" value="work">
+                                <input type="hidden" name="service13_service_id" value="13">
+                                <input type="hidden" name="service13_price" id="service13-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service14" data-service-name="Ремонт крыла переднего левого">
+                                <label for="service14" class="checkbox-btn"> Ремонт левого </label>
+                                <input type="number" class="service-cost" id="service14-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service14_name" id="service14-name" value="Ремонт крыла переднего левого">
+                                <input type="hidden" name="service14_section" value="work">
+                                <input type="hidden" name="service14_service_id" value="14">
+                                <input type="hidden" name="service14_price" id="service14-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service15" data-service-name="Ремонт крыла переднего правого">
+                                <label for="service15" class="checkbox-btn"> Ремонт правого </label>
+                                <input type="number" class="service-cost" id="service15-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service15_name" id="service15-name" value="Ремонт крыла переднего правого">
+                                <input type="hidden" name="service15_section" value="work">
+                                <input type="hidden" name="service15_service_id" value="15">
+                                <input type="hidden" name="service15_price" id="service15-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service16" data-service-name="Ремонт крыла переднего левого без удаления лакокрасочного покрытия">
+                                <label for="service16" class="checkbox-btn"> Ремонт левого без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service16-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service16_name" id="service16-name" value="Ремонт крыла переднего левого без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service16_section" value="work">
+                                <input type="hidden" name="service16_service_id" value="16">
+                                <input type="hidden" name="service16_price" id="service16-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service17" data-service-name="Ремонт крыла переднего правого без удаления лакокрасочного покрытия">
+                                <label for="service17" class="checkbox-btn"> Ремонт правого без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service17-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service17_name" id="service17-name" value="Ремонт крыла переднего правого без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service17_section" value="work">
+                                <input type="hidden" name="service17_service_id" value="17">
+                                <input type="hidden" name="service17_price" id="service17-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service18" data-service-name="Ремонт крыла переднего левого с удалением лакокрасочного покрытия">
+                                <label for="service18" class="checkbox-btn"> Ремонт левого с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service18-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service18_name" id="service18-name" value="Ремонт крыла переднего левого с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service18_section" value="work">
+                                <input type="hidden" name="service18_service_id" value="18">
+                                <input type="hidden" name="service18_price" id="service18-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service19" data-service-name="Ремонт крыла переднего правого с удалением лакокрасочного покрытия">
+                                <label for="service19" class="checkbox-btn"> Ремонт правого с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service19-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service19_name" id="service19-name" value="Ремонт крыла переднего правого с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service19_section" value="work">
+                                <input type="hidden" name="service19_service_id" value="19">
+                                <input type="hidden" name="service19_price" id="service19-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Двери передние </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service20" data-service-name="Снятие, установка двери передней левой">
+                                <label for="service20" class="checkbox-btn"> Снятие, установка левой </label>
+                                <input type="number" class="service-cost" id="service20-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service20_name" id="service20-name" value="Снятие, установка двери передней левой">
+                                <input type="hidden" name="service20_section" value="work">
+                                <input type="hidden" name="service20_service_id" value="20">
+                                <input type="hidden" name="service20_price" id="service20-price-hidden" value="0">
+                            </div>
+
+                                <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service21" data-service-name="Снятие, установка двери передней правой">
+                                <label for="service21" class="checkbox-btn"> Снятие установка правой </label>
+                                <input type="number" class="service-cost" id="service21-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service21_name" id="service21-name" value="Снятие, установка двери передней правой">
+                                <input type="hidden" name="service21_section" value="work">
+                                <input type="hidden" name="service21_service_id" value="21">
+                                <input type="hidden" name="service21_price" id="service21-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service22" data-service-name="Замена двери передней левой">
+                                <label for="service22" class="checkbox-btn"> Замена левой </label>
+                                <input type="number" class="service-cost" id="service22-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service22_name" id="service22-name" value="Замена двери передней левой">
+                                <input type="hidden" name="service22_section" value="work">
+                                <input type="hidden" name="service22_service_id" value="22">
+                                <input type="hidden" name="service22_price" id="service22-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service23" data-service-name="Замена двери передней правой">
+                                <label for="service23" class="checkbox-btn"> Замена правой </label>
+                                <input type="number" class="service-cost" id="service23-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service23_name" id="service23-name" value="Замена двери передней правой">
+                                <input type="hidden" name="service23_section" value="work">
+                                <input type="hidden" name="service23_service_id" value="23">
+                                <input type="hidden" name="service23_price" id="service23-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service24" data-service-name="Ремонт двери передней левой">
+                                <label for="service24" class="checkbox-btn"> Ремонт левой </label>
+                                <input type="number" class="service-cost" id="service24-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service24_name" id="service24-name" value="Ремонт двери передней левой">
+                                <input type="hidden" name="service24_section" value="work">
+                                <input type="hidden" name="service24_service_id" value="24">
+                                <input type="hidden" name="service24_price" id="service24-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service25" data-service-name="Ремонт двери передней правой">
+                                <label for="service25" class="checkbox-btn"> Ремонт правой </label>
+                                <input type="number" class="service-cost" id="service25-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service25_name" id="service25-name" value="Ремонт двери передней правой">
+                                <input type="hidden" name="service25_section" value="work">
+                                <input type="hidden" name="service25_service_id" value="25">
+                                <input type="hidden" name="service25_price" id="service25-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service26" data-service-name="Ремонт двери передней левой без удаления лакокрасочного покрытия">
+                                <label for="service26" class="checkbox-btn"> Ремонт левой без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service26-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service26_name" id="service26-name" value="Ремонт двери передней левой без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service26_section" value="work">
+                                <input type="hidden" name="service26_service_id" value="26">
+                                <input type="hidden" name="service26_price" id="service26-price-hidden" value="0">
+                            </div>
+
+                                <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service27" data-service-name="Ремонт двери передней правой без удаления лакокрасочного покрытия">
+                                <label for="service27" class="checkbox-btn"> Ремонт правой без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service27-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service27_name" id="service27-name" value="Ремонт двери передней правой без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service27_section" value="work">
+                                <input type="hidden" name="service27_service_id" value="27">
+                                <input type="hidden" name="service27_price" id="service27-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service28" data-service-name="Ремонт двери передней левой с удалением лакокрасочного покрытия">
+                                <label for="service28" class="checkbox-btn"> Ремонт левой с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service28-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service28_name" id="service28-name" value=" Ремонт двери передней левой с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service28_section" value="work">
+                                <input type="hidden" name="service28_service_id" value="28">
+                                <input type="hidden" name="service28_price" id="service28-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service29" data-service-name="Ремонт двери передней правой с удалением лакокрасочного покрытия">
+                                <label for="service29" class="checkbox-btn"> Ремонт правой с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service29-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service29_name" id="service29-name" value="Ремонт двери передней правой с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service29_section" value="work">
+                                <input type="hidden" name="service29_service_id" value="29">
+                                <input type="hidden" name="service29_price" id="service29-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Двери задние </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service30" data-service-name="Снятие, установка двери задней левой">
+                                <label for="service30" class="checkbox-btn"> Снятие, установка левой </label>
+                                <input type="number" class="service-cost" id="service30-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service30_name" id="service30-name" value="Снятие, установка двери задней левой">
+                                <input type="hidden" name="service30_section" value="work">
+                                <input type="hidden" name="service30_service_id" value="30">
+                                <input type="hidden" name="service30_price" id="service30-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service31" data-service-name="Снятие, установка двери задней правой">
+                                <label for="service31" class="checkbox-btn"> Снятие установка правой </label>
+                                <input type="number" class="service-cost" id="service31-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service31_name" id="service31-name" value="Снятие, установка двери задней правой">
+                                <input type="hidden" name="service31_section" value="work">
+                                <input type="hidden" name="service31_service_id" value="31">
+                                <input type="hidden" name="service31_price" id="service31-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service32" data-service-name="Замена двери задней левой">
+                                <label for="service32" class="checkbox-btn"> Замена левой </label>
+                                <input type="number" class="service-cost" id="service32-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service32_name" id="service32-name" value="Замена двери задней левой">
+                                <input type="hidden" name="service32_section" value="work">
+                                <input type="hidden" name="service32_service_id" value="32">
+                                <input type="hidden" name="service32_price" id="service32-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service33" data-service-name="Замена двери задней правой">
+                                <label for="service33" class="checkbox-btn"> Замена правой </label>
+                                <input type="number" class="service-cost" id="service33-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service33_name" id="service33-name" value="Замена двери задней правой">
+                                <input type="hidden" name="service33_section" value="work">
+                                <input type="hidden" name="service33_service_id" value="33">
+                                <input type="hidden" name="service33_price" id="service33-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service34" data-service-name="Ремонт двери задней левой">
+                                <label for="service34" class="checkbox-btn"> Ремонт левой </label>
+                                <input type="number" class="service-cost" id="service34-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service34_name" id="service34-name" value="Ремонт двери задней левой">
+                                <input type="hidden" name="service34_section" value="work">
+                                <input type="hidden" name="service34_service_id" value="34">
+                                <input type="hidden" name="service34_price" id="service34-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service35" data-service-name="Ремонт двери задней правой">
+                                <label for="service35" class="checkbox-btn"> Ремонт правой </label>
+                                <input type="number" class="service-cost" id="service35-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service35_name" id="service35-name" value="Ремонт двери задней правой">
+                                <input type="hidden" name="service35_section" value="work">
+                                <input type="hidden" name="service35_service_id" value="35">
+                                <input type="hidden" name="service35_price" id="service35-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service36" data-service-name="Ремонт двери задней левой без удаления лакокрасочного покрытия">
+                                <label for="service36" class="checkbox-btn"> Ремонт левой без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service36-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service36_name" id="service36-name" value="Ремонт двери задней левой без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service36_section" value="work">
+                                <input type="hidden" name="service36_service_id" value="36">
+                                <input type="hidden" name="service36_price" id="service36-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service37" data-service-name="Ремонт двери задней правой без удаления лакокрасочного покрытия">
+                                <label for="service37" class="checkbox-btn"> Ремонт правой без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service37-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service37_name" id="service37-name" value="Ремонт двери задней правой без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service37_section" value="work">
+                                <input type="hidden" name="service37_service_id" value="37">
+                                <input type="hidden" name="service37_price" id="service37-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service38" data-service-name="Ремонт двери задней левой с удалением лакокрасочного покрытия">
+                                <label for="service38" class="checkbox-btn"> Ремонт левой с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service38-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service38_name" id="service38-name" value=" Ремонт двери задней левой с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service38_section" value="work">
+                                <input type="hidden" name="service38_service_id" value="38">
+                                <input type="hidden" name="service38_price" id="service38-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service39" data-service-name="Ремонт двери задней правой с удалением лакокрасочного покрытия">
+                                <label for="service39" class="checkbox-btn"> Ремонт правой с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service39-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service39_name" id="service39-name" value="Ремонт двери задней правой с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service39_section" value="work">
+                                <input type="hidden" name="service39_service_id" value="39">
+                                <input type="hidden" name="service39_price" id="service39-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Крылья задние </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service40" data-service-name="Замена крыла заднего левого">
+                                <label for="service40" class="checkbox-btn"> Замена левого </label>
+                                <input type="number" class="service-cost" id="service40-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service40_name" id="service40-name" value="Замена крыла заднего левого">
+                                <input type="hidden" name="service40_section" value="work">
+                                <input type="hidden" name="service40_service_id" value="40">
+                                <input type="hidden" name="service40_price" id="service40-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service41" data-service-name="Замена крыла заднего правого">
+                                <label for="service41" class="checkbox-btn"> Замена правого </label>
+                                <input type="number" class="service-cost" id="service41-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service41_name" id="service41-name" value="Замена крыла заднего правого">
+                                <input type="hidden" name="service41_section" value="work">
+                                <input type="hidden" name="service41_service_id" value="41">
+                                <input type="hidden" name="service41_price" id="service41-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service42" data-service-name="Ремонт крыла заднего левого">
+                                <label for="service42" class="checkbox-btn"> Ремонт левого </label>
+                                <input type="number" class="service-cost" id="service42-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service42_name" id="service42-name" value="Ремонт крыла заднего левого">
+                                <input type="hidden" name="service42_section" value="work">
+                                <input type="hidden" name="service42_service_id" value="42">
+                                <input type="hidden" name="service42_price" id="service42-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service43" data-service-name="Ремонт крыла заднего правого">
+                                <label for="service43" class="checkbox-btn"> Ремонт правого </label>
+                                <input type="number" class="service-cost" id="service43-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service43_name" id="service43-name" value="Ремонт крыла заднего правого">
+                                <input type="hidden" name="service43_section" value="work">
+                                <input type="hidden" name="service43_service_id" value="43">
+                                <input type="hidden" name="service43_price" id="service43-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service44" data-service-name="Ремонт крыла заднего левого без удаления лакокрасочного покрытия">
+                                <label for="service44" class="checkbox-btn"> Ремонт левого без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service44-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service44_name" id="service44-name" value="Ремонт крыла заднего левого без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service44_section" value="work">
+                                <input type="hidden" name="service44_service_id" value="44">
+                                <input type="hidden" name="service44_price" id="service44-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service45" data-service-name="Ремонт крыла заднего правого без удаления лакокрасочного покрытия">
+                                <label for="service45" class="checkbox-btn"> Ремонт правого без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service45-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service45_name" id="service45-name" value="Ремонт крыла заднего правого без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service45_section" value="work">
+                                <input type="hidden" name="service45_service_id" value="45">
+                                <input type="hidden" name="service45_price" id="service45-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service46" data-service-name="Ремонт крыла заднего левого с удалением лакокрасочного покрытия">
+                                <label for="service46" class="checkbox-btn"> Ремонт левого с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service46-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service46_name" id="service46-name" value="Ремонт крыла заднего левого с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service46_section" value="work">
+                                <input type="hidden" name="service46_service_id" value="46">
+                                <input type="hidden" name="service46_price" id="service46-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service47" data-service-name="Ремонт крыла заднего правого с удалением лакокрасочного покрытия">
+                                <label for="service47" class="checkbox-btn"> Ремонт правого с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service47-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service47_name" id="service47-name" value="Ремонт крыла заднего правого с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service47_section" value="work">
+                                <input type="hidden" name="service47_service_id" value="47">
+                                <input type="hidden" name="service47_price" id="service47-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Бампер задний </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service106" data-service-name="Снятие, установка заднего бампера">
+                                <label for="service106" class="checkbox-btn"> Снятие, установка </label>
+                                <input type="number" class="service-cost" id="service106-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service106_name" id="service106-name" value="Снятие, установка заднего бампера">
+                                <input type="hidden" name="service106_section" value="work">
+                                <input type="hidden" name="service106_service_id" value="106">
+                                <input type="hidden" name="service106_price" id="service106-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service107" data-service-name=" Ремонт бампера заднего без удаления лакокрасочного покрытия">
+                                <label for="service107" class="checkbox-btn"> Ремонт без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service107-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service107_name" id="service107-name" value=" Ремонт бампера заднего без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service107_section" value="work">
+                                <input type="hidden" name="service107_service_id" value="107">
+                                <input type="hidden" name="service107_price" id="service107-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service108" data-service-name=" Ремонт бампера заднего с удалением лакокрасочного покрытия">
+                                <label for="service108" class="checkbox-btn"> Ремонт с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service108-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service108_name" id="service108-name" value=" Ремонт бампера заднего с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service108_section" value="work">
+                                <input type="hidden" name="service108_service_id" value="108">
+                                <input type="hidden" name="service108_price" id="service108-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service109" data-service-name=" Изготовление отверстий в заднем бампере под сонары или омыватели фар">
+                                <label for="service109" class="checkbox-btn"> Изготовление отверстий под сонары или омыватели фар </label>
+                                <input type="number" class="service-cost" id="service109-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service109_name" id="service109-name" value=" Изготовление отверстий в заднем бампере под сонары или омыватели фар">
+                                <input type="hidden" name="service109_section" value="work">
+                                <input type="hidden" name="service109_service_id" value="109">
+                                <input type="hidden" name="service109_price" id="service109-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service110" data-service-name=" Мелкий ремонт заднего бампера">
+                                <label for="service110" class="checkbox-btn"> Мелкий ремонт </label>
+                                <input type="number" class="service-cost" id="service110-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service110_name" id="service110-name" value=" Мелкий ремонт заднего бампера">
+                                <input type="hidden" name="service110_section" value="work">
+                                <input type="hidden" name="service110_service_id" value="110">
+                                <input type="hidden" name="service110_price" id="service110-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                    <!-- Итоговая сумма, отображаемая на экране -->
+                    <!-- Отображаем сумму для пользователя -->
+                    <div class="total-price-container">
+                        <strong>Итого: <span id="totalPrice">0</span> руб.</strong>
+                    </div>
+                    <!-- Поле для отправки суммы. Сейчас оно текстовое, чтобы видеть значение -->
+                    <input type="hidden" id="total_price_hidden" name="total_price" value="0" readonly>
+
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="btn btn-success">Оформить заказ</button>
+            </form>
+        </div>
+
+        <footer style="width: 100%; height: 500px; background-color: rgb(134, 134, 134); color: rgb(29, 29, 31); text-align: center; padding: 10px 0; font-size: 14px; margin-top: 4vw;">
+            <p> СТО "STANDOX" </p>
+            <p> г. Чита, ул. Верхоленская 51 </p>
+            <p> Телефон: +7 (924) 272-20-20 </p>
+            <p> Данное программное обеспечение являться интеллектуальной собственностью </p>
+            <p> Индивидуального предпринимателя Фарафонова Владимира Владимировича </p>
+            <p> ОГРН: 306753636100113 </p>
+            <p> ИНН: 753610458920 </p>
+            <p> все права защищены </p>
+            <p> программа разработан в рамках проекта «STANDOX» </p>
+            <p> © 2025 SUBWAY LAB COMPANY </p>
+        </footer>
+
+        <script src="script.js"></script>
+        <script>
+            // Поиск всех заголовков раскрывающихся блоков
+            const collapsibles = document.querySelectorAll('.collapsible-header');
+        
+            // Добавляем обработчик событий для каждого заголовка
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', () => {
+                    const container = collapsible.parentElement;
+                    container.classList.toggle('open');
+                });
+            });
+        </script>
+
+
+        <script>
+            // Функция для обработки ошибки
+            function handleInputValidation(event) {
+                const input = event.target;
+                const errorMessage = input.closest('.customer').querySelector(`.error-message[data-for="${input.id}"]`);
+        
+                // Проверяем поле на валидность
+                if (!input.validity.valid) {
+                    // Меняем текст placeholder на ошибку
+                    input.placeholder = input.dataset.defaultPlaceholder;  // Оставляем текст как был
+                    // Изменяем цвет placeholder
+                    input.classList.add("error-placeholder");  // Добавляем класс для изменения цвета placeholder
+                    // Добавляем класс для отображения ошибки
+                    input.classList.add("error");
+                    // Показываем текст ошибки
+                    errorMessage.style.visibility = 'visible';
+                }
+            else {
+                    // Восстанавливаем стандартный фон
+                    input.style.backgroundColor = "";
+                    // Восстанавливаем исходный placeholder
+                    input.placeholder = input.dataset.defaultPlaceholder;
+                    // Убираем класс ошибки
+                    input.classList.remove("error");
+                    // Скрываем текст ошибки
+                    errorMessage.style.visibility = 'hidden';
+                }
+            }
+        
+            // Получаем все поля ввода
+            const inputs = document.querySelectorAll('.user_input');
+        
+            // Устанавливаем дефолтный placeholder в data-атрибут
+            inputs.forEach(input => {
+                input.dataset.defaultPlaceholder = input.placeholder;
+                input.addEventListener('blur', handleInputValidation);
+            });
+        </script>
+    </body>
+</html>

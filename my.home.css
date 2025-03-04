@@ -1,0 +1,529 @@
+body, html {
+    margin: 0;
+    padding: 0;
+
+    font-family: "Noto Sans", Arial, sans-serif;
+    font-size: clamp(16px, 1.25vw, 20px);
+    font-weight: 400;
+    line-height: 1.33;
+
+    color: #4f4f4f;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: clamp(18px, 6.25vw, 90px);
+    line-height: 0.8;
+
+    color: #005B82;
+
+    transform: translate(-25vw, -47vw);
+}
+
+.indent {
+    margin-left: 3ch;
+}
+
+.horizontal_line { /* Needs to be removed */    
+    position: fixed;
+    z-index: 1000; 
+    left: 0;
+    right: 0;
+
+    height: 1px;
+    margin: auto;
+
+    background-color: rgb(255, 0, 0);
+} 
+
+.vertical_line { /* Needs to be removed */
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+    margin: auto;
+
+    background-color: rgb(255, 0, 0);
+}
+
+.top_1 { /* Needs to be removed */
+    top:3.5vw;
+}
+
+.top_2 { /* Needs to be removed */
+    top:6vw;
+}
+
+.left_1 { /* Needs to be removed */
+    left: 10vw;
+}
+
+.left_2 { /* Needs to be removed */
+    left: 48vw;
+}
+
+.right_1 { /* Needs to be removed */
+    right: 48vw;
+}
+
+.right_2 { /* Needs to be removed */
+    right: 10vw;
+}
+
+.bottom { /* Needs to be removed */
+    bottom: 6vw;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 9vw;
+
+    width: 12vw;
+
+    transform: translateY(-50%);
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    width: 100vw;
+    height: 6vw;
+
+    background-color: rgb(255, 255, 255, 0.98);
+
+    font-size: clamp(8px, 1.25vw, 20px);
+
+}
+
+.menu ul {
+    position: absolute;
+    top: 50%;
+    right: 10vw;
+
+    width: 50%;
+    height: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    transform: translateY(-50%);
+}
+
+.svg_item {
+    width: 4.5vw;
+    height: auto;
+
+    cursor: pointer;
+}
+
+.svg_item:hover .text_language_menu { /* Responsible for changing the color and boldness of the font "En" when hovering */
+    fill:#005B82;
+}
+
+.text_language_menu {
+    font-size: 28px;
+
+    fill: #4f4f4f;
+
+    transition: fill 0.2s ease;
+}
+
+.text_language_menu.active {
+    fill:#005B82;
+}
+
+.arrow-image {
+    width: 20px;
+    height: 20px;
+
+    transition: transform 0.2s ease-in-out;
+}
+
+.arrow-image.rotated {
+    transform: rotate(-180deg);
+}
+
+.language-menu {
+    position: absolute;
+    z-index: 98;
+    top: 6vw;
+    right: 10vw;
+
+    width: 18vw;
+    height: 17vh;
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+
+    background-color: rgb(255, 255, 255, 0.98);
+
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+    transform: translateY(-10vh);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.language-menu ul {
+    margin-left: 12%;
+    margin-top: 1.5%;
+    margin-bottom: 10%;
+    padding: 0;
+
+    font-size: clamp(8px, 1.25vw, 20px);
+    line-height: 1.4;
+
+    list-style: none;
+}
+
+.language-menu:not(.hidden) {
+    position: fixed;
+
+    transform: translateY(0);
+    pointer-events: auto;
+
+    opacity: 1;
+}
+
+.language-menu ul li:hover {
+    color: #005B82;
+
+    cursor: pointer;
+}
+
+.language-menu-wrapper {
+    height: 17vh;
+
+    border-right: 20px solid transparent; /* Fake right margin */
+
+    overflow-y: auto;
+}
+
+.language-menu-wrapper::-webkit-scrollbar {
+    width: 4px;
+
+    background-color: white;
+}
+
+.language-menu-wrapper::-webkit-scrollbar-track {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+
+    background: white;
+}
+
+.language-menu-wrapper::-webkit-scrollbar-thumb {
+    width: 2px;
+    height: 80px;
+
+    background-color: #9D9D9D;
+
+    border-radius: 8px;
+}
+
+.language-menu-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #005B82;
+
+    cursor: pointer;
+}
+
+.language-menu-wrapper::-webkit-scrollbar-thumb:active {
+    background-color: #005B82;
+
+    cursor: grabbing;
+}
+
+.cover {
+    display: block;
+    width: 100vw;
+    height: 115vh;
+
+    background-color: white;
+}
+
+.collage {
+    position: absolute;
+    top: 50vw;
+    left: 50vw;
+}
+
+.plane {
+    width: 50vw;
+
+    transform: translate(-32vw, -33.7vw);
+}
+
+.cloud_1 {
+    width: 22vw;
+
+    transform: translate(-45vw, -30vw);
+}
+
+.cloud_2 {
+    width: 15vw;
+
+    transform: translate(9vw, -44vw);
+}
+
+.cloud_3 {
+    width: 24vw;
+
+    transform: translate(19.5vw, -24.8vw);
+}
+
+.cloud_4 {
+    width: 21vw;
+
+    transform: translate(11vw, -14.8vw);
+}
+
+
+
+.row {
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    outline: 1px dashed blue;
+}
+
+/* Устанавливаем строки через nth-child */
+.row:nth-child(1) { grid-row: 1 / 2; grid-column: 2 / 5; }
+.row:nth-child(2) { grid-row: 2 / 3; grid-column: 2 / 5; }
+.row:nth-child(3) { grid-row: 3 / 4; grid-column: 2 / 3; }
+.row:nth-child(4) { grid-row: 4 / 5; grid-column: 2 / 3; }
+.row:nth-child(5) { grid-row: 5 / 6; grid-column: 2 / 3; }
+.row:nth-child(6) { grid-row: 6 / 7; grid-column: 2 / 3; display: block;}
+
+
+
+
+.block-2{ /*About head*/
+    position: relative;
+    margin-left: 9.6%;
+    width: 80.75%;
+}
+
+.block-3{ /*About text*/
+    position: relative;
+    margin-left: 9.6%;
+    width: 80.75%;
+}
+
+.block-4{ /* Block for buttons*/
+    position:relative;
+    margin-top: 20px;
+    margin-left: 9.6%;
+    width: 39.3%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.block-5{ /*About text*/
+    position: relative;
+    margin-top: 50px;
+    margin-left: 9.6%;
+    width: 80.75%;
+}
+
+.head-text-1 {
+    font-family: 'Montserrat';
+    color: #005B82;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 50px;
+}
+
+.head-text-2{
+    font-family: 'Montserrat';
+    color: #005B82;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
+
+}
+
+.button-download {
+    line-height: 48px;
+    height: 50px;
+    font-family: Noto Sans;
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.button{
+    position:relative;
+    width: 48%;
+    height: 50px;
+    background-color: white;
+    font-size: 16px;
+    color: #005B82;
+    border: 2px solid #005B82;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.button:hover {
+    background-color: #005B82;
+    color: white;
+}
+
+.left-column{
+    position: relative;
+    margin-left: 9.6%;
+    width: 39.3%;
+    text-align: justify;
+}
+
+.right-column{
+    position: relative;
+    margin-left: 50.95%;
+    width: 39.4%;
+    text-align: justify;
+}
+
+.left-list{
+    position: relative;
+    margin-left: 9.6%;
+    width: 36.3%;
+    text-align: justify;
+    padding: 1.5%;
+}
+
+.right-list-1{
+    position: relative;
+    margin-left: 50.95%;
+    width: 36.4%;
+    text-align: justify;
+    padding: 1.5%;
+}
+
+.right-list-2{
+    position: relative;
+    margin-left: 50.95%;
+    width: 39.4%;
+    text-align: justify;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    color: #9D9D9D;
+}
+
+.form {
+    margin-top: 40px;
+    width: 50%;
+  }
+  
+  form div {
+    margin-bottom: 25px; /* Пространство между элементами формы */
+  }
+  
+  input, button {
+    width: 100%; /* Поля ввода и кнопка будут занимать всю ширину контейнера */
+    height: 50px;
+    padding: 10px; /* Внутренние отступы для удобства ввода */
+    box-sizing: border-box; /* Включаем отступы в общую ширину */
+    font-family: Noto Sans;
+    font-size: 18px;
+    color: #005B82;
+    font-weight: 400;
+    line-height: 24px;
+    border: none;
+    outline: none; /* Убираем контур при фокусе */
+    border-bottom: 1px solid #9D9D9D;
+  }
+
+  input::placeholder{ /* Свойства текста вводимого пользователем */
+    color: #4f4f4f;
+  }
+
+.link {
+    color: #005B82;
+    text-decoration: none;
+    position: relative;
+}
+.link::after {
+    content: ""; /* Контент, который будет отображаться при наведении на ссылку, это может быть текст 'Важно' или символ '✔', или картинка, тогда атрибут будет выглядеть вот так: content: url('Image/cloud_2.svg'); */
+    width: 100%;
+    height: 2px;
+    background-color: #005B82;
+    position: absolute;
+    left: 0; /* Позиционирование, откуда будет разворачиваться псевдоэлемент */
+    bottom: -2px;
+    transform: scaleX(0); /* Начальный размер псевдоэлемента */
+    transition: transform 0.2s ease-out;
+}
+.link:hover {
+    color: #005B82;
+    text-decoration: none;
+    position: relative;
+}
+.link:hover::after {
+    transform: scaleX(1);
+}
+
+.link-1 {
+    position: relative;
+
+    color: #4f4f4f;
+    text-decoration: none;
+
+    transition: color 0.2s ease-out;
+}
+
+.link-1::after {
+    position: absolute;
+    display: block;
+
+    width: 100%;
+    height: 3px;
+    left: 0;
+    bottom: -10px;
+
+    background: #005B82;
+
+    transform: scaleX(0);
+    transition: transform 0.2s ease-out;
+
+    content:'';
+}
+
+.link-1:hover {
+    color: #005B82;
+}
+
+.link-1:hover::after {
+    transform: scaleX(1);
+}
+
+.animation-1{
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="key words"> <!-- Important, key words. Don't forget to fill in, for SEO. -->
+        <meta name="description" content="description of the page SEO"> <!-- Short description of the page, SEO is used -->
+        <title>My Home</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css?v=123">
+    </head>
+    <body>
+        <!-- Guide lines --> <!-- Needs to be removed -->
+        <!-- <article>
+            <div class="horizontal_line top_1"></div>
+            <div class="horizontal_line top_2"></div>
+            <div class="horizontal_line bottom"></div>
+            <div class="vertical_line left_1"></div>
+            <div class="vertical_line left_2"></div>
+            <div class="vertical_line right_1"></div>
+            <div class="vertical_line right_2"></div>
+        </article> -->
+        <!--Header-->
+        <header id="top">
+            <nav class="menu">
+                <a href="#top"><img src="files/logo.svg" class="logo" alt="My Home company logo" ></a>
+                <ul>
+                    <li><a href="#About" class="link-1">About the project</a></li>
+                    <li><a href="#Investing" class="link-1">Investing in the project</a></li>
+                    <li><a href="#Plan" class="link-1">Business plan</a></li>
+                    <li><a href="#Feedback" class="link-1">Feedback</a></li>
+                    <li class="svg_item">
+                        <svg id="language-menu-bth"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="xMidYMid meet"
+                            onclick="toggleColor()"
+                        >
+                            <circle cx="50" cy="54" r="45" stroke="#EFEFEF" fill="none"></circle>
+                            <text
+                                class="text_language_menu"
+                                x="57"
+                                y="57"
+                                text-anchor="end"
+                                dominant-baseline="middle"
+                                fill="#4f4f4f"
+                            >
+                                En
+                            </text>
+                            <g transform="translate(72, 59)">
+                                <image
+                                    class="arrow-image"
+                                    href="files/arrow_for_language_menu.svg"
+                                    x="-10"
+                                    y="-10"
+                                />
+                            </g>
+                        </svg>
+                    </li>
+                 </ul>
+            </nav>
+            <div id="language-menu" class="language-menu hidden">
+                <div class="language-menu-wrapper">
+                    <ul>
+                        <li>English</li>
+                        <li>中國人</li>
+                        <li>Español</li>
+                        <li>हिन्दी</li>
+                        <li>عربي</li>
+                        <li>Français</li>
+                        <li>Deutsch</li>
+                        <li>Русский</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main>
+           <section> <!--Cover project-->
+                <div class="cover">
+                    <h1 class="collage">
+                        PROJECT
+                        <span class="indent">MY HOME</span>
+                    </h1>
+                    <img src="Image/plane.svg" class="collage plane" alt="plane">
+                    <img src="Image/cloud_1.svg" class="collage cloud_1" alt="cloud">
+                    <img src="Image/cloud_2.svg" class="collage cloud_2" alt="cloud">
+                    <img src="Image/cloud_3.svg" class="collage cloud_3" alt="cloud">
+                    <img src="Image/cloud_4.svg" class="collage cloud_4" alt="cloud">
+                </div>
+            </section>
+        <div class="grid"> <!-- Grid container -->
+            <!--<section> --> <!--About the project-->
+                <h2 id="About" class="row head-text-1 animation-1">
+                    About the project
+                </h2>
+                <p class="row animation-1">
+                    The goal of the project is to create an online service that simplifies the process of selection and documentation of a mortgage. At the moment, documentation of a mortgage loan is a rather complex and time-consuming procedure both in terms of choosing the most favorable financial conditions and proper filling in and filing of the necessary documents. My Home significantly simplifies these tasks, by providing the user with all information about all currently available the financial offers as well as by helping him / her to correctly fill in and send the necessary documents to the Bank. * 1
+                </p>
+                <h3 class="row head-text-2 animation-1">
+                    Why are we Convinced that the project My Home will it be successful?
+                </h3>
+                    <p class=" row body-text animation-1">
+                    Because even at the initial stage, the project has a number of undeniable advantages.
+                    </p>
+                <h4 class="row body-text animation-1">
+                    For Users:
+                </h4>
+                    <ul class="body-text row animation-1">
+                        <li>There is no need to examine and compare each financial proposal separately. The service provides an opportunity to analyze conditions of all available offers based on the most important parameters for the user, such as an interest rate, amount of a down payment, amount of monthly payments, etc.;</li>
+                        <li>When filling in only one electronic form, the user has an opportunity to send out applications *1 for a mortgage to all banks marked as priority;</li>
+                        <li>Guarantee of correctness of filling in and submission of documents sent by the user in an electronic form; *2</li>
+                        <li>My Home is an international service, providing information on the possibility of purchasing real estate anywhere in the world, without limiting the user's choice to local offers;</li>
+                        <li>Possibility of obtaining a mortgage loan at a reduced interest rate through the implementation of rights to social benefits, subsidies, national incentive, and support programs;</li>
+                        <li>Possibility to purchase real estate in installments through the use of programs provided by developers;</li>
+                        <li>Obtaining up-to-date information on the possibility of reducing the financial burden, by restructuring the existing mortgage loan;</li>
+                        <li>Saving user's time;</li>
+                        <li>Possibility to file the application without leaving the comfort zone, possibility to interrupt and return to filling in the application at any convenient time;</li>
+                        <li>Reducing stress caused by the need to visit a Bank branch, substantiate one's financial situation as well as elimination of phobias associated with possible refusal to grant a loan;</li>
+                        <li>The service provides all the above advantages to its user absolutely free of charge, without requiring anything in return.</li>
+                    </ul>
+            <!--</section>-->
+        </div>
+                    <!--img src="Image/app_my-home.svg" style="position: absolute; right: 6%; top:1400px; width: 34%;"-->
+                <h4 class="body-text right-column animation-1">
+                    Advantages Of Banks:
+                </h4>
+                    <ul class="body-text right-list-1 animation-1">
+                        <li>The choice of users, including financial products, is more and more often based on information received from Internet sources. Participation in the project will allow to convey information about the Bank's products and services to a much larger number of potential customers;</li>
+                        <li>As a consequence, the increase in the volume of applications, the volume of mortgage loans granted;</li>
+                        <li>Reduction of financial and labor costs for personnel in relation to consulting, filling in and verification of documents provided by users;</li>
+                        <li>Centralization of the process of verification of submitted applications, documents;</li>
+                        <li>Improving the quality of documents provided by borrowers;</li>
+                    </ul>
+                    <p class="body-text right-column animation-1">
+                        These are just a number of advantages that would attract the attention of users. The further goal of the project is the maximum simplification of the procedure for obtaining a mortgage, possibility of its online receipt by filing and signing documents in compliance with provisions of the national legislation on the use of cryptographic methods in transactions, legislation on electronic mortgages.
+                    </p>
+                    <ul class="body-text right-list-2 animation-1">
+                        <li>*1 For banks participating in the project;</li>
+                        <li>*2 The documents shall be submitted in electronic form in the form of the Bank.</li>
+                    </ul>
+                    <!--img src="Image/сompass.svg" style="position: relative; left: 14%; top: 250px; width: 24%;"-->
+    <!--Investing-->
+        <section>
+            <div>
+                <h2 id="Investing" class="head-text-1 block-3 fade-in-text animation-1">
+                    Investing in the project
+                </h2>
+                    <p class="body-text right-column animation-1">
+                        Dear investors, OÜ MetroLab invites you to consider investing in My Home. To date, the writing stage of this project has almost been completed, the release of the project is scheduled for October 1, 2021.
+                    </p>
+                    <p class="body-text right-column animation-1">
+                        Today, the project does not require large-scale investments, yet attracting investment at this stage will undoubtedly be useful for the project, allowing to raise additional funds to create high-quality it-product and letting us to gain and investment attraction.
+                    </p>
+                    <p class="body-text right-column animation-1">
+                        As in the future a more significant amount of investments will be required for dynamic promotion, we take measures to find mutually beneficial financing conditions in advance. We are currently considering the following investment options:
+                    </p>
+                    <ul class="body-text right-list-1 animation-1">
+                        <li>Venture capital investments;</li>
+                        <li>A loan for a period of 18 to 36 months;</li>
+                        <li>Investing in the authorized capital of the company;</li>
+                    </ul>
+                    <p class="body-text right-column animation-1">
+                        We will be happy to communicate both with companies and professional investors and with private investors.
+                    </p>
+                    <p class="body-text right-column animation-1">
+                        <a href="mailto:hello@subway-lab.com" class="link">Write to us</a>, we are happy to meet You and are extremely open to communication.
+                    </p>
+                    <!--img src="Image/a_wad _of_money.svg" style="position: relative; left: 12%; top: 2960px; width: 34%;">-->
+            </div>
+        </section>
+    <!--Bussines Plan-->
+        <section>
+                <h2 id="Plan" class="head-text-1 block-3 animation-1">
+                    Business plan
+                </h2>
+                    <p class="body-text left-column animation-1">
+                        You can find our vision of the prospects and directions for further development of the project by clicking on the links below.
+                    </p>
+                    <p class="body-text left-column animation-1">
+                        The business plan reflects the financial indicators and stages of the project development identified by us as the main objectives. Information on the amount of investments attracted, structure of operating expenses, project implementation schedule, expected profit growth, calculations of the date of the project's break-even point as well as prospects and plans for further development are presented.
+                    </p>
+                    <p class="body-text left-column animation-1">
+                        We hope that our business plan will provide answers to your questions. However, if you have any questions, <a href="#Feedback" class="link">please let us know,</a> and we will try to provide you with all the necessary information as quickly as possible.
+                    </p>
+                    <div class="left-column animation-1">
+                        <button class="button animation-1" type="button" onclick="window.open('https://subway-lab.com', '_blank')">
+                            Learn more
+                        </button>
+                    </div>
+                    <div class="block-4 animation-1">
+                        <a class="button button-download animation-1" href="PDF/2024.08.13_Bill.pdf" download>
+                            Download PDF
+                        </a>
+                        <button class="button animation-1" type="button" onclick="window.open('https://subway-lab.com', '_blank')">
+                            Share
+                        </button>
+                    </div>
+        </section>
+    <!--Feedback-->
+        <section>
+                <h2 id="Feedback" class="head-text-1 block-5 animation-1">
+                    Feedback
+                </h2>
+                <h3 class="head-text-2 left-column animation-1">
+                    Write a letter
+                </h3>
+                <form class="left-column form animation-1" action="send_email.php" method="post" target="_self" name="Feedback My Home">
+                    <div class="animation-1">
+                        <label for="name"></label>
+                        <input type="text" name="name" id="name" placeholder="Your name" required>
+                    </div>
+                    <div class="animation-1">
+                        <label for="email"></label>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="animation-1">
+                        <label for="message"></label>
+                        <input type="text" name="message" id="message" placeholder="Message" required>
+                    </div>
+                    <style>
+                        .input-container {
+                          display: flex;
+                          align-items: center;
+                          border: 1px solid #ccc;
+                          padding: 5px;
+                        }
+                      
+                        .input-container .icon {
+                          width: 20px;
+                          height: 20px;
+                          background-image: url(Image/logo_and_project_name.svg);
+                          background-size: cover;
+                          margin-right: 10px; /* отступ между иконкой и текстом */
+                        }
+                      
+                        .input-container input {
+                          border: none;
+                          outline: none;
+                          flex-grow: 1;
+                        }
+                    </style>
+                    <div class="input-container animation-1">
+                    <div class="icon animation-1"></div>
+                        <input type="text" placeholder="Введите текст">
+                    </div>
+                    <div class="animation-1">
+                        <label for="user_message"></label>
+                        <textarea name="user_message" placeholder="Your message" rows="5" style="width: 100%; font-size: 18px; color: #4f4f4f; font-weight: 400; line-height: 24px; padding-left: 10px; border: none; outline: none; border-bottom: 1px solid #9D9D9D;"></textarea>
+                    </div>
+                    <div class="animation-1">
+                        <label for="pdf-file"></label>
+                        <input type="file" id="pdf-file" name="pdf-file" accept="application/pdf">
+                    </div>
+                    <div>
+                        <button type="submit" class="button animation-1">
+                            Send
+                        </button>
+                    </div>
+                </form>
+        </section>
+    </main>
+        <footer>
+            <p class="body-text animation-1">
+                Подвал сайта
+            </p>
+        </footer>
+        <script src="script.js"></script>
+        <script src="language_menu.js"></script>
+        <script src="language_menu_text.js"></script>
+    </body>
+</html>

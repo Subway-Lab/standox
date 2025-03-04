@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="key words">
+        <meta name="description" content="description of the page SEO">
+        <title>STANDOX</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
+        <header>
+            <h1> STANDOX </h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="#Investing" class="menu_link"> личный кабинет </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="title">
+            <h2> Создание нового заказ-наряда </h2>
+            <h3> Данные о заказчике: </h3>
+        </div>
+
+        <div class="form">
+            <form id="orderForm" action="submit_order.php" method="POST">
+
+                <div class="customer">
+                    <label for="surname" class="sr-only"> Фамилия </label>
+                    <input class="user_input" id="surname" type="text" name="surname" placeholder="Фамилия *" pattern="^[а-яА-ЯёЁ\-]+$" title="Укажите Фамилию" required>
+
+                    <label for="name" class="sr-only"> Имя </label>
+                    <input class="user_input" id="name" type="text" name="name" placeholder="Имя *" pattern="^[а-яА-ЯёЁ\-]+$" title="Укажите Имя" required>
+
+                    <div class="error-message" data-for="surname"> Допустимые символы: буквы кириллицы, знак тире </div>
+                    <div class="error-message" data-for="name"> Допустимые символы: буквы кириллицы, знак тире </div>
+
+                    <label for="patronymic" class="sr-only"> Отчество </label>
+                    <input class="user_input" id="patronymic" type="text" name="patronymic" placeholder="Отчество" pattern="^[а-яА-ЯёЁ\s\-]+$" title="Укажите Отчествo">
+
+                    <label for="phone" class="sr-only"> Контактный телефон </label>
+                    <input class="user_input" id="phone" type="tel" name="phone" placeholder="Номер телефона *" pattern="^[0-9\+\-\s]+$" title="Укажите Номер телефона" required>
+
+                    <div class="error-message" data-for="patronymic"> Допустимые символы: буквы кириллицы, знак тире, пробел </div>
+                    <div class="error-message" data-for="phone"> Допустимые символы: цифры, знак "+", тире, пробел </div>
+
+                    <label for="car_model" class="sr-only"> Марка автомобиля </label>
+                    <input class="user_input" id="car_model" type="text" name="car_model" placeholder="Марка автомобиля *" pattern="^[а-яА-ЯёЁa-zA-Z0-9\-\s]+$" title="Укажите Марку автомобиля" required>
+
+                    <label for="car_number" class="sr-only"> Регистрационный знак </label>
+                    <input class="user_input" id="car_number" type="text" name="car_number" placeholder="Регистрационный знак *" pattern="^[а-яА-ЯёЁa-zA-Z0-9\-\s]+$" title="Укажите Гос. номер" required>
+
+                    <div class="error-message" data-for="car_model"> Допустимые символы: буквы кириллицы, латиницы, знак тире, пробел </div>
+                    <div class="error-message" data-for="car_number"> Допустимые символы: буквы кириллицы, латиницы, знак тире, пробел </div>
+                </div>
+                <p class="asterisk"> * поля обязательные для заполнения </p>
+
+                <div class="title">
+                    <h4> Перечень работ: </h4>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Бампер передний </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service1" data-service-name="Снятие, установка переднего бампера">
+                                <label for="service1" class="checkbox-btn"> Снятие, установка </label>
+                                <input type="number" class="service-cost" id="service1-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service1_name" id="service1-name" value="Снятие, установка переднего бампера">
+                                <input type="hidden" name="service1_section" value="work">
+                                <input type="hidden" name="service1_service_id" value="1">
+                                <input type="hidden" name="service1_price" id="service1-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service2" data-service-name=" Ремонт бампера переднего без удаления лакокрасочного покрытия">
+                                <label for="service2" class="checkbox-btn"> Ремонт без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service2-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service2_name" id="service2-name" value=" Ремонт бампера переднего без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service2_section" value="work">
+                                <input type="hidden" name="service2_service_id" value="2">
+                                <input type="hidden" name="service2_price" id="service2-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service3" data-service-name=" Ремонт бампера переднего с удалением лакокрасочного покрытия">
+                                <label for="service3" class="checkbox-btn"> Ремонт с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service3-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service3_name" id="service3-name" value=" Ремонт бампера переднего с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service3_section" value="work">
+                                <input type="hidden" name="service3_service_id" value="3">
+                                <input type="hidden" name="service3_price" id="service3-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service4" data-service-name=" Изготовление отверстий в переднем бампере под сонары или омыватели фар">
+                                <label for="service4" class="checkbox-btn"> Изготовление отверстий под сонары или омыватели фар </label>
+                                <input type="number" class="service-cost" id="service4-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service4_name" id="service4-name" value=" Изготовление отверстий в переднем бампере под сонары или омыватели фар">
+                                <input type="hidden" name="service4_section" value="work">
+                                <input type="hidden" name="service4_service_id" value="4">
+                                <input type="hidden" name="service4_price" id="service4-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service5" data-service-name=" Мелкий ремонт переднего бампера">
+                                <label for="service5" class="checkbox-btn"> Мелкий ремонт </label>
+                                <input type="number" class="service-cost" id="service5-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service5_name" id="service5-name" value=" Мелкий ремонт переднего бампера">
+                                <input type="hidden" name="service5_section" value="work">
+                                <input type="hidden" name="service5_service_id" value="5">
+                                <input type="hidden" name="service5_price" id="service5-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible-container">
+                    <div class="collapsible-header">
+                        <label class="form-label"> Бампер задний </label>
+                        <span class="collapsible-arrow">↓</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="wrapper">
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service6" data-service-name="Снятие, установка заднего бампера">
+                                <label for="service6" class="checkbox-btn"> Снятие, установка </label>
+                                <input type="number" class="service-cost" id="service6-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service6_name" id="service6-name" value="Снятие, установка заднего бампера">
+                                <input type="hidden" name="service6_section" value="work">
+                                <input type="hidden" name="service6_service_id" value="6">
+                                <input type="hidden" name="service6_price" id="service6-price-hidden" value="0">
+                            </div>
+
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service7" data-service-name=" Ремонт бампера заднего без удаления лакокрасочного покрытия">
+                                <label for="service7" class="checkbox-btn"> Ремонт без удаления лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service7-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service7_name" id="service7-name" value=" Ремонт бампера заднего без удаления лакокрасочного покрытия">
+                                <input type="hidden" name="service7_section" value="work">
+                                <input type="hidden" name="service7_service_id" value="7">
+                                <input type="hidden" name="service7_price" id="service7-price-hidden" value="0">
+                            </div>
+
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service8" data-service-name=" Ремонт бампера заднего с удалением лакокрасочного покрытия">
+                                <label for="service8" class="checkbox-btn"> Ремонт с удалением лакокрасочного покрытия </label>
+                                <input type="number" class="service-cost" id="service8-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service8_name" id="service8-name" value=" Ремонт бампера заднего с удалением лакокрасочного покрытия">
+                                <input type="hidden" name="service8_section" value="work">
+                                <input type="hidden" name="service8_service_id" value="8">
+                                <input type="hidden" name="service8_price" id="service8-price-hidden" value="0">
+                            </div>
+
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service9" data-service-name=" Изготовление отверстий в заднем бампере под сонары или омыватели фар">
+                                <label for="service9" class="checkbox-btn"> Изготовление отверстий под сонары или омыватели фар </label>
+                                <input type="number" class="service-cost" id="service9-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service9_name" id="service9-name" value=" Изготовление отверстий в заднем бампере под сонары или омыватели фар">
+                                <input type="hidden" name="service9_section" value="work">
+                                <input type="hidden" name="service9_service_id" value="9">
+                                <input type="hidden" name="service9_price" id="service9-price-hidden" value="0">
+                            </div>
+
+                            <div class="service-item">
+                                <input type="checkbox" class="service-checkbox" id="service10" data-service-name=" Мелкий ремонт заднего бампера">
+                                <label for="service10" class="checkbox-btn"> Мелкий ремонт </label>
+                                <input type="number" class="service-cost" id="service10-cost" placeholder="0.00" disabled>
+                                <input type="hidden" name="service10_name" id="service10-name" value=" Мелкий ремонт заднего бампера">
+                                <input type="hidden" name="service10_section" value="work">
+                                <input type="hidden" name="service10_service_id" value="10">
+                                <input type="hidden" name="service10_price" id="service10-price-hidden" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                    <!-- Итоговая сумма, отображаемая на экране -->
+                    <!-- Отображаем сумму для пользователя -->
+                    <div class="total-price-container">
+                        <strong>Итого: <span id="totalPrice">0</span> руб.</strong>
+                    </div>
+                    <!-- Поле для отправки суммы. Сейчас оно текстовое, чтобы видеть значение -->
+                    <input type="hidden" id="total_price_hidden" name="total_price" value="0" readonly>
+
+                    <!-- Кнопка отправки -->
+                    <button type="submit" class="btn btn-success">Оформить заказ</button>
+            </form>
+        </div>
+
+        <div style="margin-left: 15vw;">
+            <a href="admin_orders.php" class="nav-link">Перейти к заказам СТО</a>
+            <a href="registration.php" class="nav-link">Зарегистрироваться / войти</a>
+            <style>
+                .nav-link {
+                    display: inline-block;
+                    padding: 10px 15px;
+                    background-color: rgb(18, 85, 164);
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    margin: 20px;
+                }
+                .nav-link:hover {
+                    background-color: #0056b3;
+                }
+            </style>
+        </div>
+
+        <footer style="width: 100%; height: 500px; background-color: rgb(134, 134, 134); color: rgb(29, 29, 31); text-align: center; padding: 10px 0; font-size: 14px;">
+            <p> СТО "STANDOX" </p>
+            <p> Забайкальский край, г. Чита, ул. Верхоленская 51 </p>
+            <p> Телефон: +7 (924) 272-20-20 </p>
+            <p> Данное программное обеспечение являться интеллектуальной собственностью </p>
+            <p> Индивидуального предпринимателя Фарафонова Владимира Владимировича </p>
+            <p> ОГРН: 306753636100113 </p>
+            <p> ИНН: 753610458920 </p>
+            <p> все права защищены </p>
+            <p> программа разработан в рамках проекта «STANDOX» </p>
+            <p> © 2025 SUBWAY LAB COMPANY </p>
+        </footer>
+
+        <script src="script.js"></script>
+        <script>
+            // Поиск всех заголовков раскрывающихся блоков
+            const collapsibles = document.querySelectorAll('.collapsible-header');
+        
+            // Добавляем обработчик событий для каждого заголовка
+            collapsibles.forEach(collapsible => {
+                collapsible.addEventListener('click', () => {
+                    const container = collapsible.parentElement;
+                    container.classList.toggle('open');
+                });
+            });
+        </script>
+        <script>
+            // Функция для обработки ошибки
+            function handleInputValidation(event) {
+                const input = event.target;
+                const errorMessage = input.closest('.customer').querySelector(`.error-message[data-for="${input.id}"]`);
+        
+                // Проверяем поле на валидность
+                if (!input.validity.valid) {
+                    // Меняем текст placeholder на ошибку
+                    input.placeholder = input.dataset.defaultPlaceholder;  // Оставляем текст как был
+                    // Изменяем цвет placeholder
+                    input.classList.add("error-placeholder");  // Добавляем класс для изменения цвета placeholder
+                    // Добавляем класс для отображения ошибки
+                    input.classList.add("error");
+                    // Показываем текст ошибки
+                    errorMessage.style.visibility = 'visible';
+                }
+            else {
+                    // Восстанавливаем стандартный фон
+                    input.style.backgroundColor = "";
+                    // Восстанавливаем исходный placeholder
+                    input.placeholder = input.dataset.defaultPlaceholder;
+                    // Убираем класс ошибки
+                    input.classList.remove("error");
+                    // Скрываем текст ошибки
+                    errorMessage.style.visibility = 'hidden';
+                }
+            }
+        
+            // Получаем все поля ввода
+            const inputs = document.querySelectorAll('.user_input');
+        
+            // Устанавливаем дефолтный placeholder в data-атрибут
+            inputs.forEach(input => {
+                input.dataset.defaultPlaceholder = input.placeholder;
+                input.addEventListener('blur', handleInputValidation);
+            });
+        </script>
+    </body>
+</html>

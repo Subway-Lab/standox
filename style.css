@@ -1,0 +1,468 @@
+body, html {
+    margin: 0;
+    padding: 0;
+
+    background: rgb(255, 255, 255);
+    color: rgb(134, 134, 134);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: clamp(18px, 1.389vw, 20px);
+    font-weight: 500;
+    line-height: 1.38;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    height: 10vw;
+    margin: 0;
+
+    background-color: rgb(18, 85, 164);
+    align-items: center;
+}
+
+h1 {
+    position: relative;
+    left: 15%;
+    
+    font-size: clamp(18px, 4.17vw, 60px);
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+
+    /* border: 0.5px dashed white; */ /* Needs to be removed */  
+}
+
+nav {
+    position: absolute;
+    top: 0.2vw;
+    right: 15%;
+    
+    display: flex;
+}
+
+.menu ul {
+    display: flex;
+    margin-left: auto;
+    padding: 0;
+
+    list-style: none;
+
+   /*  border: 0.5px dashed white; */ /* Needs to be removed */  
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+}
+
+.menu li:first-child { margin-right: 2vw; }
+
+
+.menu_link {
+    position: relative;
+
+    font-size: clamp(9px, 1.04vw, 15px);
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+
+    transition: color 0.2s ease-out;
+}
+
+.menu_link::after {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+
+    width: 100%;
+    height: 2px;
+    
+    background: rgb(255, 255, 255);
+
+    transform: scaleX(0);
+    transition: transform 0.2s ease-out;
+    content:'';
+}
+
+.menu_link:hover::after {
+    transform: scaleX(1);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+
+    /* border: 0.5px dashed red; */ /* Needs to be removed */  
+}
+
+h2, h3, h4, h5, h6 {
+    font-size: clamp(13px, 1.53vw, 22px);
+    font-weight: 500;
+    color: rgb(29, 29, 31);
+
+   /* border: 0.5px dashed blue; */ /* Needs to be removed */
+}
+
+h2 { 
+    margin-top: 5vw;
+    margin-left: 15%;
+
+    font-size: clamp(18px, 2.22vw, 32px);
+}
+
+h3 { margin-left: 15%;}
+
+
+.form {
+    display: flex;
+    width: 70%;
+    
+    margin: auto;
+}
+
+.customer {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    column-gap: 2vw;
+
+    /* border: 0.5px dashed blue; */ /* Needs to be removed */
+}
+
+.sr-only {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+
+    clip: rect (0, 0, 0, 0);
+    overflow: hidden;
+}
+
+.user_input {
+    flex: 2 auto;
+    width: 30vw;
+    height: 4vw;
+    padding-left: 3vw;
+
+    font-size: clamp(12px, 1.25vw, 18px);
+    background-color: rgb(255, 255, 255);
+
+    border-radius: clamp(2px, 5px, 8px);
+    border: 2px solid rgb(134, 134, 134);
+}
+
+.user_input:focus {
+    background-color: rgb(255, 255, 255);
+
+    border-color: rgb(18, 85, 164);
+    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
+}
+
+.user_input.error {
+    color: rgb(230, 62, 50);
+    background-color: rgb(252, 242, 244);
+
+    border: 2px solid rgb(230, 62, 50);
+    box-shadow: 0 0 5px rgba(230, 62, 50, 0.5);
+}
+
+.user_input.error:focus {
+    color: rgb(29, 29, 31);
+    background-color: rgb(255, 255, 255);
+    
+    border-color: rgb(18, 85, 164);
+    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
+}
+
+.error-message {
+    display: flex;
+    flex: 2 auto;
+    width: 30vw;
+    height: 2vw;
+    padding-left: 1vw;
+
+    color: rgb(230, 62, 50);
+    font-size: clamp(8px, 0.83vw, 12px);
+    align-items: center;
+
+    visibility: hidden;
+}
+
+.error-placeholder::placeholder {
+    color: rgb(230, 62, 50)
+}
+
+.asterisk {
+    margin: 0;
+    
+    color: rgb(134, 134, 134);
+    font-weight: 400;
+    font-size: clamp(10px, 1.11vw, 16px);
+
+    /* border: 0.5px dashed blue; */ /* Needs to be removed */
+}
+
+h4 { margin-left: 0;}
+
+.collapsible-container { /* Контейнер целиком, например "Бампер передний" */
+    margin-top: 0;
+    margin-bottom: 1vw;
+
+    background-color: rgb(243, 246, 250);
+
+    border-radius: 0 0 clamp(2px, 5px, 8px) clamp(2px, 5px, 8px); /* Скругление только для нижних углов */
+   
+    overflow: hidden;
+}
+
+.collapsible-container.open .collapsible-content { /* Контейнер целиком, например "Бампер передний", когда он раскрыт */
+    display: block;
+    max-height: 500px; /* Скорее всего будут проблемы другие блоки не будут влезать в высоту 300px */
+
+    transition: max-height 0.3s ease-in-out;
+}
+
+.collapsible-header { /* Заголовок контейнера, например "Бампер передний" */
+    display: flex;
+    height: 4vw;
+
+    background-color: rgb(255, 255, 255);
+    color: rgb(29, 29, 31);
+    align-items: center;
+
+    border: 2px solid rgb(134, 134, 134);
+    border-radius: clamp(2px, 5px, 8px);
+   
+    cursor: pointer;
+}
+
+.collapsible-header:hover,
+.collapsible-container.open .collapsible-header { /* Заголовок контейнера, например "Бампер передний" при наведении либо раскрытии */
+    background-color: rgb(18, 85, 164);
+    color: rgb(255, 255, 255);
+    
+    border: 2px solid rgb(18, 85, 164);
+}
+
+.form-label { /* Текст заголовка, например "Бампер передний" */
+    padding-left: 3vw;
+
+    font-size: clamp(12px, 1.25vw, 18px);
+    font-weight: 400;
+}
+
+.collapsible-arrow { /* Стрелочка */
+    margin-left: auto;
+    margin-right: 3vw;
+    
+    align-self: center;
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.collapsible-container.open .collapsible-arrow {
+    transform: rotate(-180deg);
+}
+
+.collapsible-content { /* Блок, содержащий check-box и поля ввода стоимости когда он расскрыт */
+    display: block;
+    max-height: 0;
+    padding: 0 10px 0 10px;
+    overflow: hidden;
+    
+    transition: max-height 0.3s ease-in-out;
+}
+
+.wrapper { /* Внутреняя обертка для кнопок и полей ввода раная 100% ширине и высоте collapsible-content. Нужна потому что collapsible-content display: none, следовательно не может быть display: flex; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 2vw;
+    width: 100%;
+    height: 100%;
+    margin: 1.5vw 0vw 2.5vw 0vw;
+}
+
+.service-item { /* Блок check-box и поле ввода даных стоимости. Например: "Снятие и установка переднего бампера" */
+    display: flex;
+    height: 4vw;
+    flex: 0 1 48%;
+}
+
+.service-checkbox { /* Check-box стилизованый под кнопку. Скрываем стандартный check-box */
+    display: none;
+}
+
+.checkbox-btn { /* Стелизация check-box под кнопку */
+    display: flex;
+    width: 80%;
+    height: 100%;
+    margin-right: 2vw; /* Отсуп между check-box и полем стоимости */
+    padding: 10px;
+
+    background-color: rgb(243, 246, 250);
+    color: rgb(18, 85, 164);
+    font-size: clamp(6px, 1.11vw, 16px);
+    font-weight: 400;
+    line-height: 1.2;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    border: 2px solid rgb(18, 85, 164);
+    border-radius: clamp(2px, 5px, 8px);
+
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    
+    cursor: pointer;
+}
+
+.service-checkbox:checked + .checkbox-btn { /* Check-box активирован */
+    background-color: rgb(18, 85, 164);
+    color: rgb(255, 255, 255);
+    transform: scale(0.98); 
+}
+
+input[type="number"] { /* Стилизация поля ввода данных стоимости */
+    display: flex;
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    justify-content: end;
+
+    background-color: rgb(243, 246, 250);
+    color: rgb(29, 29, 31);
+    font-size: clamp(6px, 1.11vw, 16px);
+    text-align: right;
+    
+    border: 2px solid rgb(18, 85, 164);
+    border-radius: clamp(2px, 5px, 8px);
+    
+    transition: border-color 0.2s ease-in-out;
+    
+    appearance: none; /* Убираем дефолтное оформление на мобильных устройствах */
+}
+
+input[type="number"]::placeholder {
+    color: rgb(134, 134, 134)
+}
+
+input[type="number"]:disabled { /* Маркер курсора когда поле неактивно */
+    cursor: not-allowed;
+}
+
+input[type="number"]::-webkit-outer-spin-button, /* Убираем стрелочки в браузере */
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] { /* Убираем стрелочки в браузере Firefox */
+    -moz-appearance: textfield;
+}
+
+input[type="number"]:focus {
+    background-color: rgb(255, 255, 255);
+    
+    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5); 
+    
+    outline: none;   
+}
+
+
+
+
+
+
+
+
+
+
+button {
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    padding: 8px 20px;
+    margin-top: 1vw;
+    background-color: rgb(18, 85, 164);
+    font-size: 16px;
+    font-weight: normal;
+    color: white;
+    cursor: pointer;
+    border: 2px solid rgb(18, 85, 164);
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+
+
+  
+
+
+
+
+
+
+
+
+
+.total-price-container {
+    margin-top: 4vw;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 1180px) { /* iPad 10.9 vertical */
+    
+    .customer {
+        margin-top: 1vw;
+    }
+
+    .user_input {
+        height: 5vw;
+    }
+
+    .user_input::placeholder {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 820px) { /* iPad 10.9 horizontal */
+
+    .customer {
+        gap: 3vw;
+    }
+
+    .user_input {
+        height: 7vw;
+    }
+
+    .user_input::placeholder {
+        font-size: 14px;
+    }  
+}
+
+@media (max-width: 750px) { /* iPhone 12 Pro vertical */   
+}
+
+@media (max-width: 390px) { /* iPhone 12 Pro horizontal */
+}
+
+html {
+    scroll-behavior: smooth;
+}
