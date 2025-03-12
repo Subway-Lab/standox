@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Массив с данными услуг
     $service_count = isset($_POST['service_count']) ? (int)$_POST['service_count'] : 0;
     // Обработка данных для услуг, теперь ограничиваемся числом из POST
-    $maxServices = 500;
+    $maxServices = 10000;
     $services = [];
     for ($i = 1; $i <= $maxServices; $i++) {
         if (isset($_POST["service{$i}_price"]) && $_POST["service{$i}_price"] > 0) {

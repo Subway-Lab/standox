@@ -43,19 +43,101 @@ if ($searchQuery) {
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Управление заказами СТО</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-        table, th, td { border: 1px solid #333; }
-        th, td { padding: 8px; text-align: left; }
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="key words">
+        <meta name="description" content="description of the page SEO">
+        <title> STANDOX </title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="admin_orders.css">
+    </head>
+    <body>
+
+        <header>
+            <h1> STANDOX </h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html" class="menu_link"> новый заказ-наряд </a></li>
+                    <li><a href="registration.php" class="menu_link"> выйти </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="search_block">
+            <h4> База даных заказ-нарядов </h4>
+            <div class="search">
+                <form class="search-form" method="get" action="admin_orders.php">
+                    <input type="text" name="search" placeholder="Поиск по модели, ФИО или телефону" value="<?= htmlspecialchars($search) ?>">
+                    <button type="submit"> ПОИСК </button>
+                    <?php if ($search): ?>
+                        <a href="admin_orders.php"> Сбросить поиск </a>
+                    <?php endif; ?>
+                </form>
+            </div>
+        </div>
+
+         <div class="base">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Номер закза </th>
+                        <th> Дата </th>
+                        <th> Закзчик </th>
+                        <th> Номер телефона </th>
+                        <th> Марка т/с </th>
+                        <th> Гос. номер </th>
+                        <th> Сумма заказа </th>
+                        <th> Из них работы </th>
+                        <th> Из них запчасти </th>
+                        <!-- <th>Услуги</th> -->
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($order = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($order['id']) ?></td>
+                                <td><?= htmlspecialchars(date('d.m.Y', strtotime($order['created_at']))) ?></td>
+                                <td><?= htmlspecialchars($order['surname'] . ' ' . $order['name'] . ' ' . $order['patronymic']) ?></td>
+                                <td><?= htmlspecialchars($order['phone']) ?></td>
+                                <td><?= htmlspecialchars($order['car_model']) ?></td>
+                                <td><?= htmlspecialchars($order['car_number']) ?></td>
+                                <td><?= htmlspecialchars($order['services_total']) ?></td>
+                                <td><?= htmlspecialchars(floor($order['total_work_price'] ?? 0)) ?></td>
+                                <td><?= htmlspecialchars(floor($order['total_parts_price'] ?? 0)) ?></td>
+                                <!--<td><?= nl2br(htmlspecialchars($order['services'])) ?></td>-->
+                                <td class="action-links">
+                                    <!-- Ссылка на страницу редактирования заказа -->
+                                    <a href="edit_order.php?id=<?= $order['id'] ?>">Редактировать</a>
+                                    <!-- Ссылка для удаления заказа -->
+                                    <a href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)">Удалить</a>
+                                    <!-- Ссылка для распечатки заказа -->
+                                    <a href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank">Распечатать</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr><td colspan="7">Заказов не найдено</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+    
+    <!-- <style>
         form.search-form { margin-bottom: 20px; }
         .action-links a { margin-right: 10px; }
-    </style>
+    </style> -->
+
+    
+
+
+
     <script>
         // Функция подтверждения удаления заказа
         function confirmDeletion(orderId) {
@@ -64,58 +146,7 @@ if ($searchQuery) {
             }
         }
     </script>
-</head>
-<body>
-    <h1>Управление заказами СТО</h1>
-    <!-- Форма поиска заказов -->
-    <form class="search-form" method="get" action="admin_orders.php">
-        <input type="text" name="search" placeholder="Поиск по модели, ФИО или телефону" value="<?= htmlspecialchars($search) ?>">
-        <button type="submit">Найти</button>
-        <?php if ($search): ?>
-            <a href="admin_orders.php">Сбросить поиск</a>
-        <?php endif; ?>
-    </form>
-    
-    <!-- Таблица заказов -->
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>ФИО</th>
-                <th>Телефон</th>
-                <th>Модель автомобиля</th>
-                <th>Регистрационный знак</th>
-                <th>Услуги</th>
-                <th>Дата создания</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($order = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($order['id']) ?></td>
-                        <td><?= htmlspecialchars($order['surname'] . ' ' . $order['name'] . ' ' . $order['patronymic']) ?></td>
-                        <td><?= htmlspecialchars($order['phone']) ?></td>
-                        <td><?= htmlspecialchars($order['car_model']) ?></td>
-                        <td><?= htmlspecialchars($order['car_number']) ?></td>
-                        <td><?= nl2br(htmlspecialchars($order['services'])) ?></td>
-                        <td><?= htmlspecialchars($order['created_at']) ?></td>
-                        <td class="action-links">
-                            <!-- Ссылка на страницу редактирования заказа -->
-                            <a href="edit_order.php?id=<?= $order['id'] ?>">Редактировать</a>
-                            <!-- Ссылка для удаления заказа -->
-                            <a href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)">Удалить</a>
-                            <!-- Ссылка для распечатки заказа -->
-                            <a href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank">Распечатать</a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr><td colspan="7">Заказов не найдено</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+
 </body>
 </html>
 

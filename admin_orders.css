@@ -1,0 +1,151 @@
+
+.search_block {
+    display: flex;
+    width: 90%;
+    height: 6vw;
+    margin: auto;
+
+    justify-content: space-between;
+
+
+
+    /* border: 1px dashed red; */
+}
+
+.search {
+    display: flex;
+    width: 40vw;
+    justify-content: end;
+    align-items: center;
+
+    /* border: 1px dashed blue; */
+}
+
+input {
+    flex: 2 auto;
+    width: 25vw;
+    height: 2.5vw;
+    padding-left: 1vw;
+    margin-right: 1vw;
+
+    font-size: 14px;
+    background-color: rgb(255, 255, 255);
+
+    border: none;
+    border-bottom: 2px solid rgb(134, 134, 134);
+}
+
+input:focus {
+    background-color: rgb(255, 255, 255);
+
+    border-color: rgb(18, 85, 164);
+    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
+}
+
+input.error {
+    color: rgb(230, 62, 50);
+    background-color: rgb(252, 242, 244);
+
+    border: none;
+    border-bottom: 2px solid rgb(230, 62, 50);
+    box-shadow: 0 0 5px rgba(230, 62, 50, 0.5);
+}
+
+input.error:focus {
+    color: rgb(29, 29, 31);
+    background-color: rgb(255, 255, 255);
+    
+    border-color: rgb(18, 85, 164);
+    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
+}
+
+button {
+    
+    width: 10vw;
+    height: 2.5vw;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(134, 134, 134);
+    color: rgb(134, 134, 134);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: rgb(18, 85, 164);
+    color: rgb(255, 255, 255);
+    border-color: rgb(18, 85, 164);
+    font-weight: 500;
+
+}
+
+.base {
+    display: flex;
+    width: 90%;
+    
+    margin: auto;
+}
+
+
+
+
+/* Устанавливаем фиксированное расположение столбцов */
+table {
+    display: table;
+    table-layout: fixed; /* Устанавливаем фиксированное расположение столбцов */
+    width: 100%;
+    margin-top: 10mm;
+    font-size: clamp(10px, 0.972vw, 14px);
+    color: rgb(29, 29, 31);
+    font-weight: 400;
+    line-height: 0.9;
+    word-wrap: break-word;
+    border-collapse: collapse; /* Чтобы границы не дублировались */
+}
+
+/* Устанавливаем ширину столбцов в vw */
+th:nth-child(1), td:nth-child(1) { width: 5vw; text-align: center;}
+th:nth-child(2), td:nth-child(2) { width: 7vw; }
+th:nth-child(3), td:nth-child(3) { width: 18vw; text-align: left; padding-left: 1vw; }
+th:nth-child(4), td:nth-child(4) { width: 10vw; }
+th:nth-child(5), td:nth-child(5) { width: 15vw; }
+th:nth-child(6), td:nth-child(6) { width: 10vw; }
+th:nth-child(7), td:nth-child(7) { width: 5vw; text-align: right; }
+th:nth-child(8), td:nth-child(8) { width: 5vw; text-align: right; }
+th:nth-child(9), td:nth-child(9) { width: 5vw; text-align: right; }
+th:nth-child(10), td:nth-child(10) { width: 10vw; text-align: left; padding-left: 1vw; }
+
+/* Стили для чётных строк */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Стили для нечётных строк */
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* Внешняя граница для thead */
+thead {
+    height: 4vw;
+    border: 2px solid rgb(29, 29, 31); /* Внешняя граница для thead */
+    text-align: center;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+}
+
+/* Убираем границы слева и справа для первого и последнего столбца */
+th:first-child, td:first-child {
+    border-left: none;
+}
+
+th:last-child, td:last-child {
+    border-right: none;
+}
+
+/* Прокрутка родительского контейнера, если таблица выходит за пределы */
+.container {
+    max-width: 100%;
+    overflow-x: auto;
+}
