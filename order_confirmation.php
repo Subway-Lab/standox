@@ -80,7 +80,7 @@ $conn->close();
                 <p> 8 924 472-30-30 </p>
                 <p> www.standox.chita.ru </p>
                 <p> lider00@list.ru </p>
-                <img src="filles/standox_logo.svg" class="collage plane" alt="STANDOX logo">
+                <img src="filles/standox_logo.svg" alt="STANDOX logo">
             </div>
 
             <div class="customer_data">
