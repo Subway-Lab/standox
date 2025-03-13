@@ -80,6 +80,7 @@ if ($searchQuery) {
             </div>
         </div>
 
+
          <div class="base">
             <table>
                 <thead>
@@ -127,27 +128,57 @@ if ($searchQuery) {
                 </tbody>
             </table>
         </div>
+        
+        <footer>
+            <div class="all_footer_block">
+                <div class="footer_column_1">
+                    <img class="bottom_logo" src="filles/black_logo.svg" alt="STANDOX logo">
+                    <div class="contacts">
+                        <p>
+                            СТО "STANDOX" <br>
+                            672039, г. Чита, ул. Верхоленская 51 <br>
+                            телефон: 8 914 472-10-10, 8 924 472-30-30 <br>
+                            email: lider00@list.ru <br>
+                            web-site: www.standox.chita.ru
+                        </p>
+                    </div>
+                </div>
 
-    
-    <!-- <style>
-        form.search-form { margin-bottom: 20px; }
-        .action-links a { margin-right: 10px; }
-    </style> -->
+                <div class="property">
+                    <p>
+                        Данное программное обеспечение является интеллектуальной собственностью <br>
+                        Индивидуального предпринимателя Фарафонова Владимира Владимировича <br>
+                        ОГРНИП: 306753636100113, ИНН: 753610458920 <br>
+                        Все права защищены
+                    </p>
+                </div>
 
-    
+                <div class="sbwlab">
+                    <p>
+                        © 2025 SUBWAY LAB COMPANY <br>
+                        <span class="other_font_size"> программа разработана в рамках проекта «STANDOX» </span>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- <style>
+            form.search-form { margin-bottom: 20px; }
+            .action-links a { margin-right: 10px; }
+        </style> -->
 
 
-
-    <script>
-        // Функция подтверждения удаления заказа
-        function confirmDeletion(orderId) {
-            if (confirm("Вы уверены, что хотите удалить этот заказ?")) {
-                window.location.href = "delete_order.php?id=" + orderId;
+        <script>
+            // Функция подтверждения удаления заказа
+            function confirmDeletion(orderId) {
+                if (confirm("Вы уверены, что хотите удалить этот заказ?")) {
+                    window.location.href = "delete_order.php?id=" + orderId;
+                }
             }
-        }
-    </script>
+        </script>
 
-</body>
+
+    </body>
 </html>
 
 <?php

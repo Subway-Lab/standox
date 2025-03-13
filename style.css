@@ -31,8 +31,6 @@ h1 {
     font-size: clamp(18px, 4.17vw, 60px);
     font-weight: 800;
     color: rgb(255, 255, 255);
-
-    /* border: 0.5px dashed white; */ /* Needs to be removed */  
 }
 
 nav {
@@ -49,8 +47,6 @@ nav {
     padding: 0;
 
     list-style: none;
-
-   /*  border: 0.5px dashed white; */ /* Needs to be removed */  
 }
 
 .menu li {
@@ -96,16 +92,12 @@ nav {
     flex-direction: column;
     width: 100%;
     height: auto;
-
-    /* border: 0.5px dashed red; */ /* Needs to be removed */  
 }
 
 h2, h3, h4, h5, h6 {
     font-size: clamp(13px, 1.53vw, 22px);
     font-weight: 500;
     color: rgb(29, 29, 31);
-
-   /* border: 0.5px dashed blue; */ /* Needs to be removed */
 }
 
 h2 { 
@@ -130,8 +122,6 @@ h3 { margin-left: 15%;}
     width: 100%;
     flex-flow: row wrap;
     column-gap: 2vw;
-
-    /* border: 0.5px dashed blue; */ /* Needs to be removed */
 }
 
 .sr-only {
@@ -207,8 +197,6 @@ h3 { margin-left: 15%;}
     color: rgb(134, 134, 134);
     font-weight: 400;
     font-size: clamp(10px, 1.11vw, 16px);
-
-    /* border: 0.5px dashed blue; */ /* Needs to be removed */
 }
 
 h4 { margin-left: 0;}
@@ -235,8 +223,9 @@ h4 { margin-left: 0;}
     display: flex;
     height: 4vw;
 
-    background-color: rgb(255, 255, 255);
     color: rgb(134, 134, 134);
+    background-color: rgb(255, 255, 255);
+
     align-items: center;
 
     border: 2px solid rgb(134, 134, 134);
@@ -247,8 +236,9 @@ h4 { margin-left: 0;}
 
 .collapsible-header:hover,
 .collapsible-container.open .collapsible-header { /* Заголовок контейнера, например "Бампер передний" при наведении либо раскрытии */
-    background-color: rgb(18, 85, 164);
     color: rgb(255, 255, 255);
+    background-color: rgb(18, 85, 164);
+    
     
     border: 2px solid rgb(18, 85, 164);
 }
@@ -309,8 +299,8 @@ h4 { margin-left: 0;}
     margin-right: 2vw; /* Отсуп между check-box и полем стоимости */
     padding: 10px;
 
-    background-color: rgb(243, 246, 250);
     color: rgb(18, 85, 164);
+    background-color: rgb(243, 246, 250);
     font-size: clamp(6px, 1.11vw, 16px);
     font-weight: 400;
     line-height: 1.2;
@@ -328,8 +318,8 @@ h4 { margin-left: 0;}
 }
 
 .service-checkbox:checked + .checkbox-btn { /* Check-box активирован */
-    background-color: rgb(18, 85, 164);
     color: rgb(255, 255, 255);
+    background-color: rgb(18, 85, 164);
     transform: scale(0.98); 
 }
 
@@ -340,8 +330,8 @@ input[type="number"] { /* Стилизация поля ввода данных 
     padding: 10px;
     justify-content: end;
 
-    background-color: rgb(243, 246, 250);
     color: rgb(29, 29, 31);
+    background-color: rgb(243, 246, 250);
     font-size: clamp(6px, 1.11vw, 16px);
     text-align: right;
     
@@ -385,22 +375,21 @@ input[type="number"]:focus {
 }
 
 button { 
-    margin-top: 10mm;
-
-    width: 16vw;
+    width: 17vw;
     height: 4vw;
+    margin-top: 1vw;
 
-    font-size: 14px;
+    font-size: clamp(10px, 0.97vw, 14px);
     letter-spacing: 0.1em;
+    
     color: rgb(255, 255, 255);
     background-color: rgb(18, 85, 164);
     
     border: 2px solid rgb(18, 85, 164);
     border-radius: clamp(2px, 5px, 8px);
-    box-sizing: border-box;
 
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 button:hover, button:active {
@@ -408,87 +397,64 @@ button:hover, button:active {
 
     color: rgb(18, 85, 164);
     background-color: rgb(255, 255, 255);
-    box-sizing: border-box;
 }
 
 footer {
     display: flex;
     width: 100%;
-    height: 370px;
+    height: 360px;
     margin-top: 12vw;
-    padding: 1vw 0;
     
-    background-color: rgb(134, 134, 134);
     color: rgb(29, 29, 31);
+    background-color: rgb(134, 134, 134);
     font-size: 13px;
     line-height: 1.3;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .all_footer_block {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     width: 80%;
     margin: auto;
-    margin-top: 4vw;
-    height: auto;
-
-    /* border: 1px dashed black; */
+    margin-top: 5vw;
 }
 
-.footer_coloumn_1 {
-    width: 27vw;
+.footer_column_1 {
     display: flex;
     flex-direction: column;
-
-
-
-    /* border: 1px dashed black; */
+    width: 27vw; 
 }
 
-.bottom_logo {
-    width: 8vw;
-    height: auto;
+.bottom_logo { width: 8vw; }
 
-   /* border: 1px dashed black; */
-}
-
-.contacts {
-    padding-top: 1vw;
-    justify-content: flex-end; 
-
+.contacts { 
+    margin-top: 1vw;
+    
     text-align: left;
-
-    /* border: 1px dashed black; */
 }
 
 .property {
-    width: 40vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Этот стиль прижмёт содержимое блока property к нижнему краю */
+    justify-content: flex-end;
+    width: 40vw;
+    
     text-align: left;
-    /* border: 1px dashed black; */
 }
 
 .sbwlab {
     display: flex;
+    justify-content: flex-end;
+    align-items: end;
     width: 21vw;
 
-
-
-    justify-content: flex-end;
-    text-align: right;
-    align-items: end;
-
-   /* border: 1px dashed black; */
+    text-align: right; 
 }
 
-.other_font_size {
-    font-size: 9px;
-}
+.other_font_size { font-size: 9px; }
+
+
 
 @media (max-width: 1180px) { /* iPad 10.9 vertical */
     

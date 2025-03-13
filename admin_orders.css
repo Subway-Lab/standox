@@ -1,15 +1,22 @@
 
 .search_block {
     display: flex;
-    width: 90%;
-    height: 6vw;
+    flex-direction: row;
+    width: 90vw;
+    height: 8vw;
     margin: auto;
+    margin-top: 2vw;
+
+
+    align-items: center;
 
     justify-content: space-between;
 
+    /*border: 1px dashed red; /* TODO: Needs to be removed */ 
+}
 
-
-    /* border: 1px dashed red; */
+h4 {
+    margin-left: 1em;
 }
 
 .search {
@@ -94,13 +101,14 @@ table {
     display: table;
     table-layout: fixed; /* Устанавливаем фиксированное расположение столбцов */
     width: 100%;
-    margin-top: 10mm;
+    margin: auto;
     font-size: clamp(10px, 0.972vw, 14px);
     color: rgb(29, 29, 31);
     font-weight: 400;
     line-height: 0.9;
     word-wrap: break-word;
     border-collapse: collapse; /* Чтобы границы не дублировались */
+    box-sizing: border-box;
 }
 
 /* Устанавливаем ширину столбцов в vw */
