@@ -54,6 +54,23 @@ if ($searchQuery) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="admin_orders.css">
+
+
+        <style>
+            label[for="toggle"] {
+            font-size: 3rem;
+            position: absolute;
+            top: 4px;
+            right: 5px;
+            z-index: 1;
+            cursor: pointer;
+            }
+
+            input[type="checkbox"] {
+            position: absolute;
+            top: -100px;
+            }
+        </style>
     </head>
     <body>
 
@@ -64,10 +81,33 @@ if ($searchQuery) {
                     <li><a href="index.html" class="menu_link"> новый заказ-наряд </a></li>
                     <li><a href="registration.php" class="menu_link"> выйти </a></li>
                 </ul>
-            </nav>
+            </nav> 
         </header>
 
-        <div class="search_block">
+        <div class="experement">
+            <label for="toggle" aria-expanded="false" aria-controls="info-panel">❔</label>
+            <input type="checkbox" id="toggle">
+            <aside id="info-panel">
+            <form class="search-form" method="get" action="admin_orders.php">
+                    <input type="text" name="search" placeholder="Поиск по модели, ФИО или телефону" value="<?= htmlspecialchars($search) ?>">
+                    <button type="submit"> ПОИСК </button>
+                    <?php if ($search): ?>
+                        <a href="admin_orders.php"> Сбросить поиск </a>
+                    <?php endif; ?>
+                </form>
+                <!-- <h2>Information</h2>
+                <p>Some very important information about your app:</p>
+                <ol>
+                    <li>It has a really cool slide-out information panel.</li>
+                    <li>This information panel uses a combination of fixed positioning and a CSS transition for the smooth sliding.</li>
+                    <li>Using JavaScript this information panel is brought in and out of the view.</li>
+                </ol> -->
+            </aside>
+        </div>
+
+
+
+        <!--<div class="search_block">
             <h4> База даных заказ-нарядов </h4>
             <div class="search">
                 <form class="search-form" method="get" action="admin_orders.php">
@@ -78,7 +118,7 @@ if ($searchQuery) {
                     <?php endif; ?>
                 </form>
             </div>
-        </div>
+        </div> -->
 
 
          <div class="base">
@@ -94,31 +134,31 @@ if ($searchQuery) {
                         <th> Сумма заказа </th>
                         <th> Из них работы </th>
                         <th> Из них запчасти </th>
-                        <!-- <th>Услуги</th> -->
-                        <th>Действия</th>
+                        <th> Действия </th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if ($result->num_rows > 0): ?>
                         <?php while ($order = $result->fetch_assoc()): ?>
                             <tr>
-                                <td><?= htmlspecialchars($order['id']) ?></td>
+                                <td>
+                                    <a class="link_move_2
+                                    "  href="order_confirmation.php?id=<?= htmlspecialchars($order['id']) ?>">
+                                        <?= htmlspecialchars($order['id']) ?>
+                                    </a>
+                                </td>
                                 <td><?= htmlspecialchars(date('d.m.Y', strtotime($order['created_at']))) ?></td>
                                 <td><?= htmlspecialchars($order['surname'] . ' ' . $order['name'] . ' ' . $order['patronymic']) ?></td>
                                 <td><?= htmlspecialchars($order['phone']) ?></td>
                                 <td><?= htmlspecialchars($order['car_model']) ?></td>
                                 <td><?= htmlspecialchars($order['car_number']) ?></td>
-                                <td><?= htmlspecialchars($order['services_total']) ?></td>
-                                <td><?= htmlspecialchars(floor($order['total_work_price'] ?? 0)) ?></td>
-                                <td><?= htmlspecialchars(floor($order['total_parts_price'] ?? 0)) ?></td>
-                                <!--<td><?= nl2br(htmlspecialchars($order['services'])) ?></td>-->
-                                <td class="action-links">
-                                    <!-- Ссылка на страницу редактирования заказа -->
-                                    <a href="edit_order.php?id=<?= $order['id'] ?>">Редактировать</a>
-                                    <!-- Ссылка для удаления заказа -->
-                                    <a href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)">Удалить</a>
-                                    <!-- Ссылка для распечатки заказа -->
-                                    <a href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank">Распечатать</a>
+                                <td><?= htmlspecialchars(number_format($order['services_total'], 0, '.', ' ')) ?></td>
+                                <td><?= htmlspecialchars(number_format(floor($order['total_work_price'] ?? 0), 0, '.', ' ')) ?></td>
+                                <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
+                                <td>
+                                    <a class="link_move_1" href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
+                                    <a class="link_move_1" href="edit_order.php?id=<?= $order['id'] ?>"> Редактировать </a>
+                                    <a class="link_move_1" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
