@@ -47,37 +47,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Добавляем новые услуги
     $services = [];
+    // В обработчике POST-запроса (submit_order.php)
     foreach ($_POST as $key => $value) {
         if (preg_match('/service(\d+)_price/', $key, $matches)) {
             $service_id = $matches[1];
             if ($value > 0) {
                 $services[] = [
                     'service_id' => $service_id,
-                    'price' => $value,
-                    'name' => $_POST["service{$service_id}_name"],
-                    'section' => $_POST["service{$service_id}_section"]
+                    'price'      => (float)$value,
+                    'name'       => $_POST["service{$service_id}_name"] ?? '',
+                    'section'    => $_POST["service{$service_id}_section"] ?? 'work'
                 ];
             }
         }
     }
-    
+
     foreach ($services as $service) {
-        $stmt = $conn->prepare("INSERT INTO list_of_work 
-            (order_id, service_id, name_work, price, section) 
-            VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iisss",
+        $sql_services = "INSERT INTO list_of_work 
+            (order_id, service_id, name_work, price, section, full_work) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+            
+        $stmt_services = $conn->prepare($sql_services);
+        
+        // Формируем полное описание
+        $full_work = "{$service['name']} {$service['price']} руб."; 
+        
+        $stmt_services->bind_param("iissss",
             $order_id,
             $service['service_id'],
             $service['name'],
             $service['price'],
-            $service['section']
+            $service['section'],
+            $full_work // Добавляем в запрос
         );
-        $stmt->execute();
+        
+        $stmt_services->execute();
     }
-    
-    header("Location: order_confirmation.php?id=$order_id");
-    exit;
-}
+        
+        header("Location: admin_orders.php?id=$order_id");
+        exit;
+    }
 
 // ПОЛУЧЕНИЕ ДАННЫХ ДЛЯ РЕДАКТИРОВАНИЯ
 $order_data = [];
@@ -171,14 +180,13 @@ if ($order_id > 0) {
                     <p class="asterisk"> * поля обязательные для заполнения </p>
 
                     <?php
-                    function render_service($service_id, $service_name, $label_text, $services_data) {
+                    function render_service($service_id, $service_name, $label_text, $section, $services_data) {
                         $is_checked = isset($services_data[$service_id]);
                         $price_value = $is_checked ? $services_data[$service_id]['price'] : 0;
                         $checked_attr = $is_checked ? 'checked' : '';
                         $disabled_attr = $is_checked ? '' : 'disabled';
                         
                         echo <<<HTML
-
                         <div class="service-item">
                             <input type="checkbox" class="service-checkbox" id="service{$service_id}" 
                                 data-service-name="{$service_name}" {$checked_attr}>
@@ -189,13 +197,11 @@ if ($order_id > 0) {
                             
                             <input type="hidden" name="service{$service_id}_name" 
                                 id="service{$service_id}-name" value="{$service_name}">
-                            <input type="hidden" name="service{$service_id}_section" value="work">
+                            <input type="hidden" name="service{$service_id}_section" value="{$section}">
                             <input type="hidden" name="service{$service_id}_service_id" value="{$service_id}">
-                            <input type="hidden" name="service{$service_id}_price" 
-                                id="service{$service_id}-price-hidden" value="{$price_value}">
                         </div>
                         HTML;
-                        }
+                    } 
                     ?>
 
                     <div class="title">
@@ -212,15 +218,15 @@ if ($order_id > 0) {
 
                             <?php
                             render_service(303, "Снятие, установка переднего бампера", 
-                                "Снятие, установка", $services_data);
+                                "Снятие, установка", "work", $services_data);
                             render_service(306, "Мелкий ремонт переднего бампера", 
-                                "Мелкий ремонт", $services_data);
+                                "Мелкий ремонт", "work", $services_data);
                             render_service(309, "Ремонт бампера переднего без удаления лакокрасочного покрытия", 
-                                "Ремонт без удаления лакокрасочного покрытия", $services_data);
+                                "Ремонт без удаления лакокрасочного покрытия", "work", $services_data);
                             render_service(312, "Ремонт бампера переднего с удалением лакокрасочного покрытия", 
-                                "Ремонт с удалением лакокрасочного покрытия", $services_data);
+                                "Ремонт с удалением лакокрасочного покрытия", "work", $services_data);
                             render_service(315, "Изготовление отверстий в переднем бампере под сонары или омыватели фар", 
-                                "Изготовление отверстий под сонары или омыватели фар", $services_data);
+                                "Изготовление отверстий под сонары или омыватели фар", "work", $services_data);
                             ?>
 
                             </div>
@@ -237,9 +243,40 @@ if ($order_id > 0) {
 
                             <?php
                             render_service(603, "Замена решетки радиатора", 
-                                "Замена", $services_data);
+                                "Замена", "work", $services_data);
                             render_service(606, "Ремонт решетки радиатора", 
-                                "Ремонт", $services_data);
+                                "Ремонт", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Стекла </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(8103, "Стекло лобовое", 
+                                "Стекло лобовое", "parts", $services_data);
+                            render_service(8106, "Стекло заднее", 
+                                "Стекло заднее", "parts", $services_data);
+                            render_service(8109, "Стекло двери передней левой", 
+                                "Стекло двери передней левой", "parts", $services_data);
+                            render_service(8112, "Стекло двери передней правой", 
+                                "Стекло двери передней правой","parts", $services_data);
+                            render_service(8115, "Стекло двери задней левой", 
+                                "Стекло двери задней левой", "parts", $services_data);
+                            render_service(8118, "Стекло двери задней правой", 
+                                "Стекло двери задней правой", "parts", $services_data);
+                            render_service(8121, "Стекло форточки задней левой", 
+                                "Стекло форточки задней левой", "parts", $services_data);
+                            render_service(8124, "Стекло форточки задней правой", 
+                                "Стекло форточки задней правой","parts", $services_data);
                             ?>
 
                             </div>
