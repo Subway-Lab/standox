@@ -123,7 +123,7 @@ if ($order_id > 0) {
             <nav class="menu">
                 <ul>
                     <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
-                    <li><a href="registration.php" class="menu_link"> выход </a></li>
+                    <li><a href="registration.php" class="menu_link"> выйте </a></li>
                 </ul>
             </nav>
         </header>
@@ -251,6 +251,124 @@ if ($order_id > 0) {
                             </div>
                         </div>
                     </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Капот </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(903, "Снятие, установка капота", 
+                                "Снятие, установка капота", "work", $services_data);
+                            render_service(906, "Замена капота", 
+                                "Замена капота", "work", $services_data);
+                            render_service(909, "Ремонт капота без удаления лакокрасочного покрытия", 
+                                "Ремонт капота без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(912, "Ремонт капота с удалением лакокрасочного покрытия", 
+                                "Ремонт капота с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(915, "Замена шарнира капота левого", 
+                                "Замена шарнира капота левого", "work", $services_data);
+                            render_service(918, "Замена шарнира капота правого", 
+                                "Замена шарнира капота правого", "work", $services_data);
+                            render_service(921, "Замена обоих шарниров капота", 
+                                "Замена обоих шарниров капота", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Моторный отсек </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(1203, "Замена передней панели радиатора", 
+                                "Замена передней панели радиатора", "work", $services_data);
+                            render_service(1206, "Замена передней панели радиатора с частями лонжеронов", 
+                                "Замена передней панели радиатора с частями лонжеронов", "work", $services_data);
+                            render_service(1209, "Замена лонжерона переднего левого", 
+                                "Замена лонжерона переднего левого", "work", $services_data);
+                            render_service(1212, "Замена лонжерона переднего правого", 
+                                "Замена лонжерона переднего правого", "work", $services_data);
+                            render_service(1215, "Ремонт лонжерона переднего левого", 
+                                "Ремонт лонжерона переднего левого", "work", $services_data);
+                            render_service(1218, "Ремонт лонжерона переднего правого", 
+                                "Ремонт лонжерона переднего правого", "work", $services_data);
+                            render_service(1221, "Замена моторного щита", 
+                                "Замена моторного щита", "work", $services_data);
+                            render_service(1224, "Ремонт моторного щита", 
+                                "Ремонт моторного щита", "work", $services_data);
+                            render_service(1227, "Замена нижнего бруса", 
+                                "Замена нижнего бруса", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Элементы кузова </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(1503, "Ремонт порога двери левого", 
+                                "Ремонт порога двери левого", "work", $services_data);
+                            render_service(1506, "Ремонт порога двери правого", 
+                                "Ремонт порога двери правого", "work", $services_data);
+                            render_service(1509, "Замена порога двери левого", 
+                                "Замена порога двери левого", "work", $services_data);
+                            render_service(1512, "Замена порога двери правого", 
+                                "Замена порога двери правого", "work", $services_data);
+                            render_service(1515, "Замена усилителя порога левого", 
+                                "Замена усилителя порога левого", "work", $services_data);
+                            render_service(1518, "Замена усилителя порога правого", 
+                                "Замена усилителя порога правого", "work", $services_data);
+                            render_service(1521, "Замена средней стойки кузова левой", 
+                                "Замена средней стойки кузова левой", "work", $services_data);
+                            render_service(1524, "Замена средней стойки кузова правой", 
+                                "Замена средней стойки кузова правой", "work", $services_data);
+                            render_service(1527, "Ремонт средней стойки кузова левой", 
+                                "Ремонт средней стойки кузова левой", "work", $services_data);
+                            render_service(1530, "Ремонт средней стойки кузова правой", 
+                                "Ремонт средней стойки кузова правой", "work", $services_data);
+                            render_service(1533, "Замена средней стойки кузова с порогом (левой)", 
+                                "Замена средней стойки кузова с порогом (левой)", "work", $services_data);
+                            render_service(1536, "Замена средней стойки кузова с порогом (правой)", 
+                                "Замена средней стойки кузова с порогом (правой)", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+          
+
+                           
+
+
+
+                            
+
+                           
+
+
+
+
+
+
+
 
                     <div class="collapsible-container">
                         <div class="collapsible-header">
