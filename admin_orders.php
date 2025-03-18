@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
 
-// NOTE: Обработка поискового запроса (по модели, ФИО или телефону)
+/// NOTE: Обработка поискового запроса (по модели, ФИО или телефону)
 $search = "";
 $searchQuery = "";
 $searchParams = [];
@@ -23,11 +23,11 @@ $searchTypes = "";
 
 if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $search = trim($_GET['search']);
-    // NOTE: Поиск по полям: car_model, name, surname, patronymic и phone
-    $searchQuery = " WHERE car_model LIKE ? OR car_number LIKE? OR name LIKE ? OR surname LIKE ? OR patronymic LIKE ? OR phone LIKE ?";
+    // Исправлено количество параметров и пробел после LIKE
+    $searchQuery = " WHERE car_model LIKE ? OR car_number LIKE ? OR name LIKE ? OR surname LIKE ? OR patronymic LIKE ? OR phone LIKE ?";
     $likeSearch = "%" . $search . "%";
-    $searchParams = [$likeSearch, $likeSearch, $likeSearch, $likeSearch, $likeSearch];
-    $searchTypes = "sssss";
+    $searchParams = array_fill(0, 6, $likeSearch);
+    $searchTypes = "ssssss"; 
 }
 
 // NOTE: Запрос для получения заказов
@@ -78,7 +78,6 @@ if ($searchQuery) {
                             <input class="search_input" type="text" name="search" placeholder="Поиск по ФИО, модели, номеру или сумме заказа" 
                                 value="<?= htmlspecialchars($search) ?>">
                             <?php if ($search): ?>
-                                <a href="admin_orders.php">Сбросить поиск</a>
                             <?php endif; ?>
                         </form>
                     </aside>

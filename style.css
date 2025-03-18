@@ -376,21 +376,20 @@ input[type="number"]:focus {
 }
 
 button { 
-    width: 17vw;
+    width: 18.5vw;
     height: 4vw;
     margin-top: 1vw;
 
     font-size: clamp(10px, 0.97vw, 14px);
     letter-spacing: 0.1em;
-    
     color: rgb(255, 255, 255);
     background-color: rgb(18, 85, 164);
     
     border: 2px solid rgb(18, 85, 164);
-    border-radius: clamp(2px, 5px, 8px);
+    border-radius: 4px;
 
     cursor: pointer;
-    transition: background-color 0.1s ease, transform 0.1s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 button:hover, button:active {

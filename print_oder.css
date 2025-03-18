@@ -101,7 +101,7 @@ img {
     align-items: center;
 }
 
-.customer_data p:nth-child(-n+4) { grid-column: 1 / 2; text-align: left; }
+.customer_data p:nth-child(-n+4) { grid-column: 1 / 3; text-align: left; }
 .customer_data p:nth-child(1) { grid-row: 1 / 2; }
 .customer_data p:nth-child(2) { grid-row: 2 / 3; }
 .customer_data p:nth-child(3) { grid-row: 3 / 4; }
@@ -244,17 +244,16 @@ section div:nth-child(4) p:nth-child(3) { /* Сдал, принял */
 }
 
 button { 
-    margin-top: 10mm;
-
     width: 60mm;
     height: 13mm;
+    margin-top: 10mm;
 
-    font-size: 14px;
+    font-size: clamp(10px, 0.97vw, 14px);
     letter-spacing: 0.1em;
     color: rgb(255, 255, 255);
-    background-color: rgb(6, 64, 150);
+    background-color: rgb(18, 85, 164);
     
-    border: 2px solid rgb(6, 64, 150);
+    border: 2px solid rgb(18, 85, 164);
     border-radius: 4px;
     
     cursor: pointer;
@@ -264,7 +263,7 @@ button {
 button:hover, button:active {
     font-weight: 600;
 
-    color: rgb(6, 64, 150);
+    color: rgb(18, 85, 164);
     background-color: rgb(255, 255, 255);
 }
 

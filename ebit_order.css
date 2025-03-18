@@ -1,0 +1,40 @@
+.button_block {
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: 1.5vw;
+
+    justify-content: space-between;
+}
+
+.left_button:hover {
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    background-color: rgb(18, 85, 164);
+
+    border: 2px solid rgb(18, 85, 164);
+}
+
+.hover-effect { /* NOTE: Стиль для Java Script */
+    font-weight: 600;
+    color: rgb(18, 85, 164);
+    background-color: rgb(255, 255, 255);
+}
+
+.right_button {
+    font-weight: 600;
+    color: rgb(18, 85, 164);
+    background-color: rgb(255, 255, 255);
+    
+    border: 2px solid rgb(18, 85, 164);
+
+    cursor: pointer;
+}
+
+.right_button:hover, .right_button:active {
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    background-color: rgb(18, 85, 164);
+}
+
+

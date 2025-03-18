@@ -115,6 +115,7 @@ if ($order_id > 0) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="ebit_order.css">
     </head>
     <body>
 
@@ -123,7 +124,7 @@ if ($order_id > 0) {
             <nav class="menu">
                 <ul>
                     <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
-                    <li><a href="registration.php" class="menu_link"> выйте </a></li>
+                    <li><a href="registration.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
@@ -353,23 +354,539 @@ if ($order_id > 0) {
                         </div>
                     </div>
 
-          
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Крылья передние </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
 
-                           
+                            <?php
+                            render_service(1803, "Замена крыла переднего левого", 
+                                "Замена крыла переднего левого", "work", $services_data);
+                            render_service(1806, "Замена крыла переднего правого", 
+                                "Замена крыла переднего правого", "work", $services_data);
+                            render_service(1809, "Ремонт крыла переднего левого", 
+                                "Ремонт крыла переднего левого", "work", $services_data);
+                            render_service(1812, "Ремонт крыла переднего правого", 
+                                "Ремонт крыла переднего правого", "work", $services_data);
+                            render_service(1815, "Ремонт крыла переднего левого без удаления лакокрасочного покрытия", 
+                                "Ремонт крыла переднего левого без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(1818, "Ремонт крыла переднего правого без удаления лакокрасочного покрытия", 
+                                "Ремонт крыла переднего правого без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(1821, "Ремонт крыла переднего левого с удалением лакокрасочного покрытия", 
+                                "Ремонт крыла переднего левого с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(1824, "Ремонт крыла переднего правого с удалением лакокрасочного покрытия", 
+                                "Ремонт крыла переднего правого с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(1827, "Замена брызговика переднего левого (метал)", 
+                                "Замена брызговика переднего левого (метал)", "work", $services_data);
+                            render_service(1830, "Замена брызговика переднего правого (метал)", 
+                                "Замена брызговика переднего правого (метал)", "work", $services_data);
+                            render_service(1833, "Замена усилителя крыла переднего левого", 
+                                "Замена усилителя крыла переднего левого", "work", $services_data);
+                            render_service(1836, "Замена усилителя крыла переднего правого", 
+                                "Замена усилителя крыла переднего правого", "work", $services_data);
+                            render_service(1839, "Ремонт усилителя крыла переднего левого", 
+                                "Ремонт усилителя крыла переднего левого", "work", $services_data);
+                            render_service(1842, "Ремонт усилителя крыла переднего правого", 
+                                "Ремонт усилителя крыла переднего правого", "work", $services_data);
+                            ?>
 
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Двери передние </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
 
+                            <?php
+                            render_service(2103, "Снятие установка двери передней левой", 
+                                "Снятие установка двери передней левой", "work", $services_data);
+                            render_service(2106, "Снятие установка двери передней правой", 
+                                "Снятие установка двери передней правой", "work", $services_data);
+                            render_service(2109, "Замена двери передней левой", 
+                                "Замена двери передней левой", "work", $services_data);
+                            render_service(2112, "Замена двери передней правой", 
+                                "Замена двери передней правой", "work", $services_data);
+                            render_service(2115, "Ремонт двери передней левой", 
+                                "Ремонт двери передней левой", "work", $services_data);
+                            render_service(2118, "Ремонт двери передней правой", 
+                                "Ремонт двери передней правой", "work", $services_data);
+                            render_service(2121, "Ремонт двери передней левой без удаления лакокрасочного покрытия", 
+                                "Ремонт двери передней левой без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2124, "Ремонт двери передней правой без удаления лакокрасочного покрытия", 
+                                "Ремонт двери передней правой без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2127, "Ремонт двери передней левой с удалением лакокрасочного покрытия", 
+                                "Ремонт двери передней левой с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2130, "Ремонт двери передней правой с удалением лакокрасочного покрытия", 
+                                "Ремонт двери передней правой с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2133, "Замена шарниров двери передней левой", 
+                                "Замена шарниров двери передней левой", "work", $services_data);
+                            render_service(2136, "Замена шарниров двери передней правой", 
+                                "Замена шарниров двери передней правой", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Двери задние </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(2403, "Снятие установка двери задней левой", 
+                                "Снятие установка двери задней левой", "work", $services_data);
+                            render_service(2406, "Снятие установка двери задней правой", 
+                                "Снятие установка двери задней правой", "work", $services_data);
+                            render_service(2409, "Замена двери задней левой", 
+                                "Замена двери задней левой", "work", $services_data);
+                            render_service(2412, "Замена двери задней правой", 
+                                "Замена двери задней правой", "work", $services_data);
+                            render_service(2415, "Ремонт двери задней левой", 
+                                "Ремонт двери задней левой", "work", $services_data);
+                            render_service(2418, "Ремонт двери задней правой", 
+                                "Ремонт двери задней правой", "work", $services_data);
+                            render_service(2421, "Ремонт двери задней левой без удаления лакокрасочного покрытия", 
+                                "Ремонт двери задней левой без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2424, "Ремонт двери задней правой без удаления лакокрасочного покрытия", 
+                                "Ремонт двери задней правой без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2427, "Ремонт двери задней левой с удалением лакокрасочного покрытия", 
+                                "Ремонт двери задней левой с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2430, "Ремонт двери задней правой с удалением лакокрасочного покрытия", 
+                                "Ремонт двери задней правой с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2433, "Замена шарниров двери задней левой", 
+                                "Замена шарниров двери задней левой", "work", $services_data);
+                            render_service(2436, "Замена шарниров двери задней правой", 
+                                "Замена шарниров двери задней правой", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Крылья задние </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(2703, "Замена крыла заднего левого", 
+                                "Замена крыла заднего левого", "work", $services_data);
+                            render_service(2706, "Замена крыла заднего правого", 
+                                "Замена крыла заднего правого", "work", $services_data);
+                            render_service(2709, "Ремонт крыла заднего левого", 
+                                "Ремонт крыла заднего левого", "work", $services_data);
+                            render_service(2712, "Ремонт крыла заднего правого", 
+                                "Ремонт крыла заднего правого", "work", $services_data);
+                            render_service(2715, "Ремонт крыла заднего левого без удаления лакокрасочного покрытия", 
+                                "Ремонт крыла заднего левого без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2718, "Ремонт крыла заднего правого без удаления лакокрасочного покрытия", 
+                                "Ремонт крыла заднего правого без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(2721, "Ремонт крыла заднего левого с удалением лакокрасочного покрытия", 
+                                "Ремонт крыла заднего левого с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2724, "Ремонт крыла заднего правого с удалением лакокрасочного покрытия", 
+                                "Ремонт крыла заднего правого с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(2727, "Замена наружной арки крыла задней левой", 
+                                "Замена наружной арки крыла задней левой", "work", $services_data);
+                            render_service(2730, "Замена наружной арки крыла задней правой", 
+                                "Замена наружной арки крыла задней правой", "work", $services_data);
+                            render_service(2733, "Замена внутренней арки крыла задней левой", 
+                                "Замена внутренней арки крыла задней левой", "work", $services_data);
+                            render_service(2736, "Замена внутренней арки крыла задней правой", 
+                                "Замена внутренней арки крыла задней правой", "work", $services_data);
+                            render_service(2739, "Ремонт наружной арки крыла задней левой", 
+                                "Ремонт наружной арки крыла задней левой", "work", $services_data);
+                            render_service(2742, "Ремонт наружной арки крыла задней правой", 
+                                "Ремонт наружной арки крыла задней правой", "work", $services_data);
+                            render_service(2745, "Ремонт внутренней арки крыла задней левой", 
+                                "Ремонт внутренней арки крыла задней левой", "work", $services_data);
+                            render_service(2748, "Ремонт внутренней арки крыла задней правой", 
+                                "Ремонт внутренней арки крыла задней правой", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Крышка багажника (задняя дверь) </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(3003, "Снятие, установка крышки багажника", 
+                                "Снятие, установка крышки багажника", "work", $services_data);
+                            render_service(3006, "Снятие, установка задней двери", 
+                                "Снятие, установка задней двери", "work", $services_data);
+                            render_service(3009, "Замена крышки багажника", 
+                                "Замена крышки багажника", "work", $services_data);
+                            render_service(3012, "Замена задней двери", 
+                                "Замена задней двери", "work", $services_data);
+                            render_service(3015, "Ремонт крышки багажника без удаления лакокрасочного покрытия", 
+                                "Ремонт крышки багажника без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(3018, "Ремонт задней двери без удаления лакокрасочного покрытия", 
+                                "Ремонт задней двери без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(3021, "Ремонт крышки багажника с удалением лакокрасочного покрытия", 
+                                "Ремонт крышки багажника с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(3024, "Ремонт задней двери с удалением лакокрасочного покрытия", 
+                                "Ремонт задней двери с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(3027, "Замена задней панели", 
+                                "Замена задней панели", "work", $services_data);
+                            render_service(3030, "Ремонт задней панели", 
+                                "Ремонт задней панели", "work", $services_data);
+                            render_service(3033, "Замена обоих шарниров багажника", 
+                                "Замена обоих шарниров багажника", "work", $services_data);
+                            render_service(3036, "Замена обоих шарниров задней двери", 
+                                "Замена обоих шарниров задней двери", "work", $services_data);
+                            render_service(3039, "Замена шарнира багажника левого", 
+                                "Замена шарнира багажника левого", "work", $services_data);
+                            render_service(3042, "Замена шарнира багажника правого", 
+                                "Замена шарнира багажника правого", "work", $services_data);
+                            render_service(3045, "Замена шарнира задней двери левого", 
+                                "Замена шарнира задней двери левого", "work", $services_data);
+                            render_service(3048, "Замена шарнира задней двери правого", 
+                                "Замена шарнира задней двери правого", "work", $services_data);
+                            render_service(3051, "Замена внутренней части багажного отсека (без гарантии)", 
+                                "Замена внутренней части багажного отсека (без гарантии)", "work", $services_data);
+                            render_service(3054, "Замена задней панели с внутренней частью багажного отсека", 
+                                "Замена задней панели с внутренней частью багажного отсека", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Бампер задний </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(3303, "Снятие, установка заднего бампера", 
+                                "Снятие, установка заднего бампера", "work", $services_data);
+                            render_service(3306, "Мелкий ремонт заднего бампера", 
+                                "Мелкий ремонт заднего бампера", "work", $services_data);
+                            render_service(3309, "Ремонт бампера заднего без удаления лакокрасочного покрытия", 
+                                "Ремонт бампера заднего без удаления лакокрасочного покрытия", "work", $services_data);
+                            render_service(3312, "Ремонт бампера заднего с удалением лакокрасочного покрытия", 
+                                "Ремонт бампера заднего с удалением лакокрасочного покрытия", "work", $services_data);
+                            render_service(3315, "Изготовление отверстий в заднем бампере под сонары", 
+                                "Изготовление отверстий в заднем бампере под сонары", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Светотехника </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(3603, "Замена фар головного света", 
+                                "Замена фар головного света", "work", $services_data);
+                            render_service(3606, "Замена противотуманных фар", 
+                                "Замена противотуманных фар", "work", $services_data);
+                            render_service(3609, "Замена фары головного света передней левой", 
+                                "Замена фары головного света передней левой", "work", $services_data);
+                            render_service(3612, "Замена фары головного света передней правой", 
+                                "Замена фары головного света передней правой", "work", $services_data);
+                            render_service(3615, "Замена фары противотуманной левой", 
+                                "Замена фары противотуманной левой", "work", $services_data);
+                            render_service(3618, "Замена фары противотуманной правой", 
+                                "Замена фары противотуманной правой", "work", $services_data);
+                            render_service(3621, "Замена указателя поворота переднего левого", 
+                                "Замена указателя поворота переднего левого", "work", $services_data);
+                            render_service(3624, "Замена указателя поворота переднего правого", 
+                                "Замена указателя поворота переднего правого", "work", $services_data);
+                            render_service(3627, "Замена фары задней левой", 
+                                "Замена фары задней левой", "work", $services_data);
+                            render_service(3630, "Замена фары задней правой", 
+                                "Замена фары задней правой", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Стекла </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+
+                            <?php
+                            render_service(3903, "Замена лобового стекла", 
+                                "Замена лобового стекла", "work", $services_data);
+                            render_service(3906, "Замена заднего стекла", 
+                                "Замена заднего стекла", "work", $services_data);
+                            render_service(3909, "Замена бокового стекла двери передней левой", 
+                                "Замена бокового стекла двери передней левой", "work", $services_data);
+                            render_service(3912, "Замена бокового стекла двери передней правой", 
+                                "Замена бокового стекла двери передней правой", "work", $services_data);
+                            render_service(3915, "Замена бокового стекла двери задней левой", 
+                                "Замена бокового стекла двери задней левой", "work", $services_data);
+                            render_service(3918, "Замена бокового стекла двери задней правой", 
+                                "Замена бокового стекла двери задней правой", "work", $services_data);
+                            render_service(3921, "Замена стекла форточки задней левой", 
+                                "Замена стекла форточки задней левой", "work", $services_data);
+                            render_service(3924, "Замена стекла форточки задней правой", 
+                                "Замена стекла форточки задней правой", "work", $services_data);
+                            render_service(3927, "Врезка форточки задней левой с последующей установкой", 
+                                "Врезка форточки задней левой с последующей установкой", "work", $services_data);
+                            render_service(3930, "Врезка форточки задней правой с последующей установкой", 
+                                "Врезка форточки задней правой с последующей установкой", "work", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="title">
+                        <h4> 3. Запасные части и расходные материалы: </h4>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Бампера, решетка радиатора </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
                             
+                            <?php
+                            render_service(6003, "Бампер передний", 
+                                "Бампер передний", "parts", $services_data);
+                            render_service(6006, "Бампер задний", 
+                                "Бампер задний", "parts", $services_data);
+                            render_service(6009, "Решетка радиатора", 
+                                "Решетка радиатора", "parts", $services_data);
+                            ?>
 
-                           
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Капот </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(6303, "Шарнир капота левый", 
+                                "Шарнир капота левый", "parts", $services_data);
+                            render_service(6306, "Шарнир капота правый", 
+                                "Шарнир капота правый", "parts", $services_data);
+                            render_service(6309, "Капот", 
+                                "Капот", "parts", $services_data);
+                            ?>
 
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Моторный отсек </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(6603, "Нижний брус", 
+                                "Нижний брус", "parts", $services_data);
+                            render_service(6606, "Передняя панель радиатора", 
+                                "Передняя панель радиатора", "parts", $services_data);
+                            render_service(6609, "Лонжерон передний левый", 
+                                "Лонжерон передний левый", "parts", $services_data);
+                            render_service(6612, "Лонжерон передний правый", 
+                                "Лонжерон передний правый","parts", $services_data);
+                            render_service(6615, "Моторный щит", 
+                                "Моторный щит", "parts", $services_data);
+                            ?>
 
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Крылья </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(6903, "Крыло переднее левое", 
+                                "Крыло переднее левое", "parts", $services_data);
+                            render_service(6906, "Крыло переднее правое", 
+                                "Крыло переднее правое", "parts", $services_data);
+                            render_service(6909, "Крыло заднее левое", 
+                                "Крыло заднее левое", "parts", $services_data);
+                            render_service(6912, "Крыло заднее правое", 
+                                "Крыло заднее правое","parts", $services_data);
+                            render_service(6915, "Брызговик передний левый (метал)", 
+                                "Брызговик передний левый (метал)", "parts", $services_data);
+                            render_service(6918, "Брызговик передний правый (метал)", 
+                                "Брызговик передний правый (метал)", "parts", $services_data);
+                            render_service(6921, "Усилитель крыла передний левый", 
+                                "Усилитель крыла передний левый", "parts", $services_data);
+                            render_service(6924, "Усилитель крыла передний правый", 
+                                "Усилитель крыла передний правый","parts", $services_data);
+                            render_service(6927, "Наружная арка крыла заднего левого", 
+                                "Наружная арка крыла заднего левого", "parts", $services_data);
+                            render_service(6930, "Наружная арка крыла заднего правого", 
+                                "Наружная арка крыла заднего правого", "parts", $services_data);
+                            render_service(6933, "Внутренняя арка крыла заднего левого", 
+                                "Внутренняя арка крыла заднего левого", "parts", $services_data);
+                            render_service(6936, "Внутренняя арка крыла заднего правого", 
+                                "Внутренняя арка крыла заднего правого", "parts", $services_data);
+                            ?>
 
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Двери </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(7203, "Дверь передняя левая", 
+                                "Дверь передняя левая", "parts", $services_data);
+                            render_service(7206, "Дверь передняя правая", 
+                                "Дверь передняя правая", "parts", $services_data);
+                            render_service(7209, "Дверь задняя левая", 
+                                "Дверь задняя левая", "parts", $services_data);
+                            render_service(7212, "Дверь задняя правая", 
+                                "Дверь задняя правая","parts", $services_data);
+                            render_service(7215, "Средняя стойка кузова левая", 
+                                "Средняя стойка кузова левая", "parts", $services_data);
+                            render_service(7218, "Средняя стойка кузова правая", 
+                                "Средняя стойка кузова правая", "parts", $services_data);
+                            render_service(7221, "Порог двери левый", 
+                                "Порог двери левый", "parts", $services_data);
+                            render_service(7224, "Порог двери правый", 
+                                "Порог двери правый","parts", $services_data);
+                            render_service(7227, "Усилитель левого порога", 
+                                "Усилитель левого порога", "parts", $services_data);
+                            render_service(7230, "Усилитель правого порога", 
+                                "Усилитель правого порога", "parts", $services_data);
+                            render_service(7233, "Шарнир двери передней левой", 
+                                "Шарнир двери передней левой", "parts", $services_data);
+                            render_service(7236, "Шарнир двери передней правой", 
+                                "Шарнир двери передней правой","parts", $services_data);
+                            render_service(7239, "Шарнир двери задней левой", 
+                                "Шарнир двери задней левой", "parts", $services_data);
+                            render_service(7242, "Шарнир двери задней правой", 
+                                "Шарнир двери задней правой", "parts", $services_data);
+                            ?>
 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Крышка багажника (задняя дверь) </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(7503, "Крышка багажника", 
+                                "Крышка багажника", "parts", $services_data);
+                            render_service(7506, "Задняя дверь", 
+                                "Задняя дверь", "parts", $services_data);
+                            render_service(7509, "Шарнир багажника левый", 
+                                "Шарнир багажника левый", "parts", $services_data);
+                            render_service(7512, "Шарнир багажника правый", 
+                                "Шарнир багажника правый","parts", $services_data);
+                            render_service(7515, "Шарнир задней двери левый", 
+                                "Шарнир задней двери левый", "parts", $services_data);
+                            render_service(7518, "Шарнир задней двери правый", 
+                                "Шарнир задней двери правый", "parts", $services_data);
+                            render_service(7521, "Задняя панель", 
+                                "Задняя панель", "parts", $services_data);
+                            render_service(7524, "Внутренняя часть багажного отсека", 
+                                "Внутренняя часть багажного отсека", "parts", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label"> Светотехника </label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">
+                            
+                            <?php
+                            render_service(7803, "Фара головного света передняя левая", 
+                                "Фара головного света передняя левая", "parts", $services_data);
+                            render_service(7806, "Фара головного света передняя правая", 
+                                "Фара головного света передняя правая", "parts", $services_data);
+                            render_service(7809, "Противотуманная фара левая", 
+                                "Противотуманная фара левая", "parts", $services_data);
+                            render_service(7812, "Противотуманная фара правая", 
+                                "Противотуманная фара правая","parts", $services_data);
+                            render_service(7815, "Указатель поворота левый", 
+                                "Указатель поворота левый", "parts", $services_data);
+                            render_service(7818, "Указатель поворота правый", 
+                                "Указатель поворота правый", "parts", $services_data);
+                            render_service(7821, "Повторитель указателя поворота левый", 
+                                "Повторитель указателя поворота левый", "parts", $services_data);
+                            render_service(7824, "Повторитель указателя поворота правый", 
+                                "Повторитель указателя поворота правый", "parts", $services_data);
+                            render_service(7827, "Фара задняя левая", 
+                                "Фара задняя левая", "parts", $services_data);
+                            render_service(7830, "Фара задняя правая", 
+                                "Фара задняя правая", "parts", $services_data);
+                            ?>
+
+                            </div>
+                        </div>
+                    </div>
+                         
                     <div class="collapsible-container">
                         <div class="collapsible-header">
                             <label class="form-label"> Стекла </label>
@@ -404,17 +921,54 @@ if ($order_id > 0) {
                     <!-- Итоговая сумма, отображаемая на экране -->
                     <!-- Отображаем сумму для пользователя -->
                     <div class="title">
-                        <h4> Итого: <span id="totalPrice"><?= $order_data['services_total'] ?? 0 ?></span> руб. </h4>
+                        <h4> Итого: 
+                            <span id="totalPrice">
+                                <?= number_format(($order_data['services_total'] ?? 0), 0, ',', ' ') ?>
+                            </span> руб. 
+                        </h4>
                         <input type="hidden" id="total_price_hidden" name="total_price" 
                             value="<?= $order_data['services_total'] ?? 0 ?>">
                     </div>
 
-                    <div class="form-controls">
-                        <button type="submit" class="btn btn-save">Сохранить изменения</button>
-                        <button type="reset" class="btn btn-reset">Сбросить изменения</button>
+                    <div class="button_block">
+                        <button type="submit" class="btn btn-save left_button"> СОХРАНИТЬ ИЗМЕНЕНИЯ </button>
+                        <button type="reset" class="btn btn-reset right_button"> СБРОСИТЬ ИЗМЕНЕНИЯ </button>
                     </div>
             </form>
         </div>
+
+        <footer>
+            <div class="all_footer_block">
+                <div class="footer_column_1">
+                    <img class="bottom_logo" src="filles/black_logo.svg" alt="STANDOX logo">
+                    <div class="contacts">
+                        <p>
+                            СТО "STANDOX" <br>
+                            672039, г. Чита, ул. Верхоленская 51 <br>
+                            телефон: 8 914 472-10-10, 8 924 472-30-30 <br>
+                            email: lider00@list.ru <br>
+                            web-site: www.standox.chita.ru
+                        </p>
+                    </div>
+                </div>
+
+                <div class="property">
+                    <p>
+                        Данное программное обеспечение является интеллектуальной собственностью <br>
+                        Индивидуального предпринимателя Фарафонова Владимира Владимировича <br>
+                        ОГРНИП: 306753636100113, ИНН: 753610458920 <br>
+                        Все права защищены
+                    </p>
+                </div>
+
+                <div class="sbwlab">
+                    <p>
+                        © 2025 SUBWAY LAB COMPANY <br>
+                        <span class="other_font_size"> программа разработана в рамках проекта «STANDOX» </span>
+                    </p>
+                </div>
+            </div>
+        </footer>
 
         <script src="script.js"></script>
         
@@ -467,6 +1021,16 @@ if ($order_id > 0) {
             inputs.forEach(input => {
                 input.dataset.defaultPlaceholder = input.placeholder;
                 input.addEventListener('blur', handleInputValidation);
+            });
+        </script>
+
+        <script>
+            document.querySelector('.btn-reset').addEventListener('mouseover', function() {
+                document.querySelector('.btn-save').classList.add('hover-effect');
+            });
+
+            document.querySelector('.btn-reset').addEventListener('mouseout', function() {
+                document.querySelector('.btn-save').classList.remove('hover-effect');
             });
         </script>
         
