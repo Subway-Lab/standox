@@ -1,0 +1,149 @@
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.left_block {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45vw;
+    height: 100vh;
+    
+    background: rgb(18, 85, 164);
+}
+
+.logo {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+
+    display: flex;
+
+    animation: logo-animation 1s ease-out forwards;
+}
+
+img { width: 20vw; }
+
+@keyframes logo-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1); 
+        opacity: 1;
+    }
+}
+
+.address {
+    margin-top: auto;
+    margin-bottom: 3vw;
+
+    font-size: clamp(8px, 0.83vw, 12px);
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    text-align: center;
+
+    animation: address-opacity 4s ease-out 1s forwards;
+
+    opacity: 0; 
+}
+ 
+@keyframes address-opacity {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.right_block {
+    display: flex;
+    width: 55vw;
+    height: 100vh;
+
+    background: rgb(255, 255, 255);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 35vw;
+    height: auto;
+    margin-top: 14vw;
+    margin-left: 6vw;
+
+    background: rgb(255, 255, 255);
+}
+
+h2 {
+    margin: 0;
+
+    color: rgb(35, 39, 42);
+    font-weight: 400;
+}
+
+p {
+    margin-top: 0.3vw;
+    margin-bottom: 1vw;
+
+    font-size: clamp(10px, 1.04vw, 15px);
+    font-weight: 400;
+}
+
+.user_input {
+    width: 100%;
+    height: 4vw;
+    margin-bottom: 2vw;
+    padding-left: 3vw;
+
+    font-size: clamp(12px, 1.39vw, 20px);
+    color: rgb(35, 39, 42);
+    background-color: rgb(255, 255, 255);
+
+    border-radius: clamp(2px, 5px, 8px);
+    border: 2px solid rgb(134, 134, 134);
+}
+
+.user_input:focus {
+    border-color: rgb(18, 85, 164);
+}
+
+.user_input.error {
+    font-weight: 300;
+    background-color: rgb(252, 242, 244);
+
+    border: 2px solid rgb(230, 62, 50);
+}
+
+.user_input.error:focus {
+    color: rgb(35, 39, 42);
+    background-color: rgb(255, 255, 255);
+    
+    border-color: rgb(18, 85, 164);
+}
+
+.user_input.error::placeholder { /* NOTE: Цвет текста при ошибки */
+    color: rgb(230, 62, 50); 
+}
+
+button { 
+    width: 100%;
+    height: 4vw;
+    margin: 0;
+
+    font-size: clamp(10px, 1.04vw, 15px);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: rgb(255, 255, 255);
+    
+    border-radius: 4px;
+}
+
+button:hover {
+    font-weight: 600;
+    color: rgb(18, 85, 164);
+    background: rgb(255, 255, 255);
+    
+    border: 2px solid rgb(18, 85, 164); 
+}

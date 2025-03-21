@@ -1,3 +1,8 @@
+<?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
+
 <!DOCTYPE HTML>
 <html lang="ru">
     <head>

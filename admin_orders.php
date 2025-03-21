@@ -1,5 +1,9 @@
 <?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
 
+<?php
 // NOTE: Включаем отображение ошибок (для отладки)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -60,7 +64,7 @@ if ($searchQuery) {
                 <h1> STANDOX </h1>
                 <nav class="menu">
                     <ul>
-                        <li><a href="index.html" class="menu_link"> новый заказ-наряд </a></li>
+                        <li><a href="index.php" class="menu_link"> новый заказ-наряд </a></li>
                         <li><a href="registration.php" class="menu_link"> выйти </a></li>
                     </ul>
                 </nav> 

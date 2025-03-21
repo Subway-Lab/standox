@@ -1,4 +1,9 @@
 <?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
+
+<?php
 // Включение отладки (уберите в продакшене)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

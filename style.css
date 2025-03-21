@@ -155,7 +155,7 @@ h3 { margin-left: 15%;}
     background-color: rgb(255, 255, 255);
 
     border-color: rgb(18, 85, 164);
-    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
+
 }
 
 .user_input.error {
@@ -163,7 +163,6 @@ h3 { margin-left: 15%;}
     background-color: rgb(252, 242, 244);
 
     border: 2px solid rgb(230, 62, 50);
-    box-shadow: 0 0 5px rgba(230, 62, 50, 0.5);
 }
 
 .user_input.error:focus {
@@ -171,7 +170,6 @@ h3 { margin-left: 15%;}
     background-color: rgb(255, 255, 255);
     
     border-color: rgb(18, 85, 164);
-    box-shadow: 0 0 5px rgba(18, 85, 164, 0.5);
 }
 
 .error-message {
