@@ -66,7 +66,7 @@ if ($searchQuery) {
                 <nav class="menu">
                     <ul>
                         <li><a href="index.php" class="menu_link"> новый заказ-наряд </a></li>
-                        <li><a href="registration.php" class="menu_link"> выйти </a></li>
+                        <li><a href="logout.php" class="menu_link"> выйти </a></li>
                     </ul>
                 </nav> 
             </header>

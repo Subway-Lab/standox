@@ -22,7 +22,7 @@ require_once('auth_check.php');
             <nav class="menu">
                 <ul>
                     <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
-                    <li><a href="registration.php" class="menu_link"> выйти </a></li>
+                    <li><a href="logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
