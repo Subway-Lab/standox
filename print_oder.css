@@ -14,6 +14,7 @@ body {
 }
 
 .sheet {
+    display: flex;
     width: 210mm;
     margin: 20mm auto;
     padding: 15mm 15mm 20mm 20mm;
@@ -21,9 +22,9 @@ body {
     background: rgb(255, 255, 255);
     color: rgb(29, 29, 31);
     font-family: "Inter", Arial, sans-serif;
-}
 
-.wrapper {}
+    /* border: 1px dashed blue; /* NOTE: Удалить после окончательной верстки */
+}
 
 .work_order {
     width: 100%;
@@ -122,13 +123,13 @@ table {
     width: 100%;
     margin-top: 10mm;
 
-    font-size: clamp(10px, 0.972vw, 14px);
+    font-size: clamp(9px, 0.90vw, 13px);
     font-weight: 400;
     line-height: 0.9;
 }
 
 thead {
-    height: 6mm;
+    height: 8mm;
     border-top: 2px solid rgb(29, 29, 31);
     border-bottom: 2px solid rgb(29, 29, 31);
 }
@@ -172,11 +173,14 @@ tbody td:last-child {
 
 section {
     width: 100%;
+    height: auto;
     margin-top: auto;
     padding-top: 15mm;
+
+    /* border: 1px dashed red; /* NOTE: Удалить после окончательной верстки */
 }
 
-section div:nth-child(1) { /* Обязательно к прочтению */
+section div:nth-child(1) { /* NOTE: Обязательно к прочтению */
     display: flex;
     height: 10mm;
     
@@ -187,13 +191,13 @@ section div:nth-child(1) { /* Обязательно к прочтению */
     align-items: center;
 }
 
-section div:nth-child(2) { /* Перечень правил */
+section div:nth-child(2) { /* NOTE: Перечень правил */
     padding: 2mm 0;
     
     font-size: clamp(8px, 0.833vw, 12px);
 }
 
-section div:nth-child(3) { /* Стоянка 250 руб */
+section div:nth-child(3) { /* NOTE: Стоянка 250 руб */
     display: flex;
     height: 10mm;
 
@@ -204,7 +208,7 @@ section div:nth-child(3) { /* Стоянка 250 руб */
     align-items: center;
 }
 
-section div:nth-child(4) { /* Целиком последняя строка блока предупреждения */
+section div:nth-child(4) { /* NOTE: Целиком последняя строка блока предупреждения */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
@@ -215,14 +219,14 @@ section div:nth-child(4) { /* Целиком последняя строка б�
     border-bottom: 2px solid rgb(29, 29, 31);
 }
 
-section div:nth-child(4) p:nth-child(1) { /* Претензии примаються */
+section div:nth-child(4) p:nth-child(1) { /* NOTE: Претензии примаються */
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 
     align-self: center;
 }
 
-section div:nth-child(4) p:nth-child(2) { /* Итого по закза-наряду */
+section div:nth-child(4) p:nth-child(2) { /* NOTE: Итого по закза-наряду */
     display: flex;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -236,7 +240,7 @@ section div:nth-child(4) p:nth-child(2) { /* Итого по закза-наря
     border-left: 2px solid rgb(29, 29, 31);
 }
 
-section div:nth-child(4) p:nth-child(3) { /* Сдал, принял */
+section div:nth-child(4) p:nth-child(3) { /* NOTE: Сдал, принял */
     grid-column: 3 / 4;
     grid-row: 1 / 2;
     padding: 3mm 0mm 1mm 0mm;
@@ -271,21 +275,28 @@ button:hover, button:active {
 
 @media print {
     @page {
-        size: 210mm 297mm;
-        margin: 0;
+        width: 210mm;
+        height: 297mm;
+        padding-top: 10mm;
+        padding-bottom: 15mm;
     }
 
-    body { -webkit-print-color-adjust: exact; }
+
+    body {
+        -webkit-print-color-adjust: exact;
+    }
 
     h1, h2 { font-size: 16px; }
 
-    table { font-size: 12px; }
+    table { 
+        font-size: 12px;
+    }
 
-    section { /* Скорее всего придеться дорабтывать так как из позиционирование Absolute будкт наслоение на основной контент */
-        position: absolute;
-        bottom: 15mm;
-        width: 175mm;
-        height: auto;
+    tr {page-break-inside: avoid;}
+
+    section {
+        /* width: 175mm; */
+        /* height: auto; */
     }
     section div:nth-child(2) { font-size: 10px; } /* Перечень правил */
     section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* Претензии примаються */
@@ -295,9 +306,10 @@ button:hover, button:active {
     button { display: none; }
 
     .sheet {
+        min-height: 297mm;
         margin: 0;
-        padding: 10mm 15mm 20mm 20mm;
-    }
+        padding: 0mm 15mm 0mm 20mm;
+    } 
 
     .work_order {
         font-size: 12px;

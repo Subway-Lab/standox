@@ -74,94 +74,91 @@ $conn->close();
     </head>
     <body class="sheet">
 
-        <div class="wrapper">
-
-            <header>
-                <div class="work_order">
-                    <p> ИП Фарафонов </p>
-                    <p> Владимир Владимирович </p>
-                    <p> ОГРНИП: 306753636100113 </p>
-                    <p> ИНН: 753610458920 </p>
-                    <h1> ЗАКАЗ-НАРЯД № <?= htmlspecialchars($order['id']) ?> </h1>
-                    <p> ул. Верхоленская 51 </p>
-                    <p> тел. 8 914 472-10-10 </p>
-                    <p> 8 924 472-30-30 </p>
-                    <p> www.standox.chita.ru </p>
-                    <p> lider00@list.ru </p>
-                    <img src="filles/standox_logo.svg" alt="STANDOX logo">
-                </div>
-
-                <div class="customer_data">
-                    <p> Заказчик: <?php echo htmlspecialchars($order['full_name']); ?></p>
-                    <p> тел. <?= htmlspecialchars($order['phone']) ?></p>
-                    <p> Марка т/с: <?= htmlspecialchars($order['car_model']) ?> </p>
-                    <p> Гос. номер: <?= htmlspecialchars($order['car_number']) ?> </p>
-                    <p> Дата заезда: <?php echo date("d.m.Y", strtotime($order['created_at'])); ?> г.</p>
-                    <p> Итого за работы: <?php echo number_format($order['total_work_price'], 0, '', ' '); ?> руб.</p>
-                    <p> Итого за запчасти: <?php echo number_format($order['total_parts_price'], 0, '', ' '); ?> руб.</p>
-                    <p> Всего: <?php echo number_format($order['services_total'], 0, '', ' '); ?> руб.</p>
-                </div>
-            </header>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th> № </th>
-                        <th> Наименование выполняемых работ </th>
-                        <th> Стоимость </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $counter = 1;
-                    foreach ($works as $work) {
-                        echo "<tr>";
-                        echo "<td>" . $counter . "</td>";
-                        echo "<td>" . htmlspecialchars($work['name_work']) . "</td>";
-                        echo "<td>" . number_format($work['price'], 0, '', ' ') . " руб.</td>";
-                        echo "</tr>";
-                        $counter++;
-                    }
-                    ?>
-                    <tr>
-                        <td colspan="2"><strong> Итого за работы: </strong></td>
-                        <td><strong><?php echo number_format($order['total_work_price'], 0, '', ' '); ?> руб.</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        
-            <table>
-                <thead>
-                    <tr>
-                        <th> № </th>
-                        <th> Запасные части и расходные материалы </th>
-                        <th> Стоимость </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $counter = 1;
-                    foreach ($parts as $part) {
-                        echo "<tr>";
-                        echo "<td>" . $counter . "</td>";
-                        echo "<td>" . htmlspecialchars($part['name_work']) . "</td>";
-                        echo "<td>" . number_format($part['price'], 0, '', ' ') . " руб.</td>";
-                        echo "</tr>";
-                        $counter++;
-                    }
-                    ?>
-                    <tr>
-                        <td colspan="2"><strong> Итого за запчасти: </strong></td>
-                        <td><strong><?php echo number_format($order['total_parts_price'], 0, '', ' '); ?> руб.</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="acceptance">
-                <p> Претензий к качеству производственных работ не имею </p>
-                <p> Дата "_____"________________________ 2025 г. </p>
-                <p> Подпись закзчика____________________________ </p>
+        <header>
+            <div class="work_order">
+                <p> ИП Фарафонов </p>
+                <p> Владимир Владимирович </p>
+                <p> ОГРНИП: 306753636100113 </p>
+                <p> ИНН: 753610458920 </p>
+                <h1> ЗАКАЗ-НАРЯД № <?= htmlspecialchars($order['id']) ?> </h1>
+                <p> ул. Верхоленская 51 </p>
+                <p> тел. 8 914 472-10-10 </p>
+                <p> 8 924 472-30-30 </p>
+                <p> www.standox.chita.ru </p>
+                <p> lider00@list.ru </p>
+                <img src="filles/standox_logo.svg" alt="STANDOX logo">
             </div>
+
+            <div class="customer_data">
+                <p> Заказчик: <?php echo htmlspecialchars($order['full_name']); ?></p>
+                <p> тел. <?= htmlspecialchars($order['phone']) ?></p>
+                <p> Марка т/с: <?= htmlspecialchars($order['car_model']) ?> </p>
+                <p> Гос. номер: <?= htmlspecialchars($order['car_number']) ?> </p>
+                <p> Дата заезда: <?php echo date("d.m.Y", strtotime($order['created_at'])); ?> г.</p>
+                <p> Итого за работы: <?php echo number_format($order['total_work_price'], 0, '', ' '); ?> руб.</p>
+                <p> Итого за запчасти: <?php echo number_format($order['total_parts_price'], 0, '', ' '); ?> руб.</p>
+                <p> Всего: <?php echo number_format($order['services_total'], 0, '', ' '); ?> руб.</p>
+            </div>
+        </header>
+
+        <table>
+            <thead>
+                <tr>
+                    <th> № </th>
+                    <th> Наименование выполняемых работ </th>
+                    <th> Стоимость </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $counter = 1;
+                foreach ($works as $work) {
+                    echo "<tr>";
+                    echo "<td>" . $counter . "</td>";
+                    echo "<td>" . htmlspecialchars($work['name_work']) . "</td>";
+                    echo "<td>" . number_format($work['price'], 0, '', ' ') . " руб.</td>";
+                    echo "</tr>";
+                    $counter++;
+                }
+                ?>
+                <tr>
+                    <td colspan="2"><strong> Итого за работы: </strong></td>
+                    <td><strong><?php echo number_format($order['total_work_price'], 0, '', ' '); ?> руб.</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th> № </th>
+                    <th> Запасные части и расходные материалы </th>
+                    <th> Стоимость </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $counter = 1;
+                foreach ($parts as $part) {
+                    echo "<tr>";
+                    echo "<td>" . $counter . "</td>";
+                    echo "<td>" . htmlspecialchars($part['name_work']) . "</td>";
+                    echo "<td>" . number_format($part['price'], 0, '', ' ') . " руб.</td>";
+                    echo "</tr>";
+                    $counter++;
+                }
+                ?>
+                <tr>
+                    <td colspan="2"><strong> Итого за запчасти: </strong></td>
+                    <td><strong><?php echo number_format($order['total_parts_price'], 0, '', ' '); ?> руб.</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="acceptance">
+            <p> Претензий к качеству производственных работ не имею </p>
+            <p> Дата "_____"________________________ <?= date("Y") ?> г. </p>
+            <p> Подпись закзчика____________________________ </p>
         </div>
 
         <section>
