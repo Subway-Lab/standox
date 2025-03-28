@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
         <title> STANDOX </title>
-        <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="files/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="left_block">
             <div class="logo">
-                <img src="filles/white_logo.svg" alt="STANDOX logo">
+                <img src="files/white_logo.svg" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>

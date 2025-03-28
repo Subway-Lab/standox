@@ -67,7 +67,7 @@ $conn->close();
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
         <title> STANDOX </title>
-        <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="files/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="print_oder.css">
@@ -85,8 +85,8 @@ $conn->close();
                 <p> тел. 8 914 472-10-10 </p>
                 <p> 8 924 472-30-30 </p>
                 <p> www.standox.chita.ru </p>
-                <p> lider00@list.ru </p>
-                <img src="filles/standox_logo.svg" alt="STANDOX logo">
+                <p> email: lider00@list.ru </p>
+                <img src="files/standox_logo.svg" alt="STANDOX logo">
             </div>
 
             <div class="customer_data">

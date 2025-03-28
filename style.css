@@ -446,12 +446,17 @@ footer {
     justify-content: flex-end;
     align-items: end;
     width: 21vw;
+    text-align: right;
 
-    text-align: right; 
+    color: rgb(29, 29, 31);
+}
+
+.link_sbwlab {
+    color: rgb(29, 29, 31);
+    text-decoration: none;
 }
 
 .other_font_size { font-size: 9px; }
-
 
 
 @media (max-width: 1180px) { /* FIXME: iPad 10.9 vertical */

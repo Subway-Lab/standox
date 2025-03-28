@@ -53,7 +53,7 @@ if ($searchQuery) {
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
         <title> STANDOX </title>
-        <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="files/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -75,7 +75,7 @@ if ($searchQuery) {
                 <div class="search_block">
                     <h2> База данных заказ-нарядов </h2>
                     <label class="icon_search" for="toggle">
-                        <img class="loupe" src="filles/gray_search.svg" alt="icon search">
+                        <img class="loupe" src="files/gray_search.svg" alt="icon search">
                     </label>
                     <input type="checkbox" id="toggle">
                     <aside id="info-panel">
@@ -136,38 +136,8 @@ if ($searchQuery) {
                 </table>
             </div>
             
-            <footer>
-                <div class="all_footer_block">
-                    <div class="footer_column_1">
-                        <img class="bottom_logo" src="filles/black_logo.svg" alt="STANDOX logo">
-                        <div class="contacts">
-                            <p>
-                                СТО "STANDOX" <br>
-                                672039, г. Чита, ул. Верхоленская 51 <br>
-                                телефон: 8 914 472-10-10, 8 924 472-30-30 <br>
-                                email: lider00@list.ru <br>
-                                web-site: www.standox.chita.ru
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="property">
-                        <p>
-                            Данное программное обеспечение является интеллектуальной собственностью <br>
-                            Индивидуального предпринимателя Фарафонова Владимира Владимировича <br>
-                            ОГРНИП: 306753636100113, ИНН: 753610458920 <br>
-                            Все права защищены
-                        </p>
-                    </div>
-
-                    <div class="sbwlab">
-                        <p>
-                            © 2025 SUBWAY LAB COMPANY <br>
-                            <span class="other_font_size"> программа разработана в рамках проекта «STANDOX» </span>
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <?php include 'footer.php'; ?>
+            
             <script>
                 // Функция подтверждения удаления заказа
                 function confirmDeletion(orderId) {

@@ -66,7 +66,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title> STANDOX </title>
-    <link rel="icon" href="filles/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="files/favicon.ico" type="image/x-icon">
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         form { max-width: 400px; margin: 0 auto; }
