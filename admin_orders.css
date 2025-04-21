@@ -10,101 +10,122 @@
 
     display: flex;
     flex-direction: row;
-    width: 90vw;
-    height: 13vw;
+    align-items: flex-start;
+    width: 90%;
+    height: 11vw;
     margin: auto;
 }
 
-h2 { 
-    margin-top: 6vw;
-    margin-left: 1em;
+h2 {
+    display: inline-block;
+    margin-top: 5.2vw;
+    margin-left: 0.5em;
+   
+    transition: opacity 0.2s ease-in;
 }
 
-.icon_search {
+h2.hidden { opacity: 0; }
+
+.loupe {
     position: absolute;
-    top: 6.5vw;
-    right: 2vw;
+    top: 6vw;
+    right: 1vw;
 
     display: flex;
+    width: 2.3vw;
     align-items: center;
     justify-content: center;
-    width: auto;
+
+    transition: opacity 0.2s ease-in;
     
     cursor: pointer;
 }
 
-.loupe { /* FIXME: При каждаом клике на иконку присходит перемещение в таблице вверх на 7 строк */
-    width: 2.5vw;
-}
+.loupe.hidden { opacity: 0; }
 
-aside {
-    display: flex;
-    align-items: center;
-}
-
-#info-panel { /* NOTE: Выдвижная панель поиска */ 
+.search_form {
     position: absolute;
     z-index: 100;
     top: 0;
     left: -100vw;
     
     display: flex;
-    width: 80vw;
-    height: 13vw;
+    width: 90%;
+    height: 11vw;
+    margin: auto;
 
     background: rgb(255, 255, 255);
 
-    transition: 0.3s ease-in-out;
+    transition: 0.3s ease-out;
 }
 
-input[type="checkbox"] { /* NOTE: Сам check-box */
-    position: absolute;
+.search_form.visible { left: 5%; }
+
+form {
+    width: 100%;
+    height: 100%;
 }
 
-input[type="checkbox"]:checked + #info-panel { /* NOTE: Действия при активации check-box */
-    left: 0;
-}
-
-#toggle { /* NOTE: Делаем check-box невидимым */
-    position: absolute;
+.input-container {
+    position: relative;
+    top: 5vw;
     
-    width: 0;  
-    height: 0;
+    width: 100%;
+    margin: 0 auto;
+}
 
+.search_input {
+    width: 100%;
+    height: 4vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+
+    font-size: clamp(12px, 1.25vw, 18px);
+
+    border: 2px solid rgb(134, 134, 134);
+    border-radius: clamp(2px, 5px, 8px);
+    outline: none;
+    
+    background-image: url("files/gray_search.svg"); /* NOTE: Иконка поиска */
+    background-repeat: no-repeat;
+    background-size: 2vw;
+    background-position: 1vw center;
+}
+
+.close_icon { /* NOTE: Иконка закрытия поиска */
+    position: absolute;
+    right: 0.5vw;
+    top: 50%;
+    transform: translateY(-50%);
+  
+    width: 3.7vw;
+    height: 3.7vw;
+
+    background-image: url("files/gray_close.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    transition: 0.1s ease-out;
+    
+    cursor: pointer;
     opacity: 0;
 }
 
-form {
-    position: relative;
-
-    width: auto;
-    margin-top: 3vw;
-    margin-left: 2vw;
+.close_icon.visible {
+    opacity: 1;
+    transition-delay: 0.2s;
 }
 
-.search_input { /* FIXME: Нужно опустить текст Placholder и Input */
-    width: 45vw;
-    height: 4vw;
-    padding-left: 1vw;
-   
-    font-size: clamp(12px, 1.25vw, 18px);
-
-    border: none;
-    border-bottom: 2px solid rgb(134, 134, 134);
-    outline: none; /* NOTE: Убираем OUTLINE */
-}
+.search_input::placeholder { color: rgb(134, 134, 134); }
 
 .search_input:focus {
-    border-bottom: 3px solid rgb(18, 85, 164);
-}
-
-.search_input::placeholder {
-    color: rgb(134, 134, 134);
+    border: 2px solid rgb(134, 134, 134);
+    outline: none;
 }
 
 .base {
     display: flex;
-    width: 90vw;
+    width: 90%;
     margin: auto;
 }
 
@@ -122,7 +143,7 @@ table {
 
 thead {
     position: sticky;
-    top: 10vw;
+    top: 8vw;
 
     height: 5vw;
 

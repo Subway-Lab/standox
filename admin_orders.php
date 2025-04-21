@@ -74,18 +74,20 @@ if ($searchQuery) {
             <div class="sticky_wrapper">
                 <div class="search_block">
                     <h2> База данных заказ-нарядов </h2>
-                    <label class="icon_search" for="toggle">
-                        <img class="loupe" src="files/gray_search.svg" alt="icon search">
-                    </label>
-                    <input type="checkbox" id="toggle">
-                    <aside id="info-panel">
-                        <form method="get" action="admin_orders.php">
-                            <input class="search_input" type="text" name="search" placeholder="Поиск по ФИО, модели, номеру или сумме заказа" 
+                    <img class="loupe" src="files/gray_search.svg" alt="icon search">
+                </div>
+
+                <div class="search_form">
+                    <form method="get" action="admin_orders.php">
+                        <div class="input-container">
+                            <input class="search_input" type="text" name="search" placeholder="ПОИСК" 
                                 value="<?= htmlspecialchars($search) ?>">
-                            <?php if ($search): ?>
-                            <?php endif; ?>
-                        </form>
-                    </aside>
+                            <span class="close_icon"></span>
+                        </div>
+                        <?php if ($search): ?>
+                            <p> Результаты поиска для: "<?= htmlspecialchars($search) ?>"</p>
+                        <?php endif; ?>
+                    </form>
                 </div>
             </div>
 
@@ -146,6 +148,7 @@ if ($searchQuery) {
                     }
                 }
             </script>
+            <script src="search_bar.js"></script>
         </body>
     </html>
 

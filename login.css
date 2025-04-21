@@ -76,12 +76,7 @@ img { width: 20vw; }
     background: rgb(255, 255, 255);
 }
 
-h2 {
-    margin: 0;
-
-    color: rgb(35, 39, 42);
-    font-weight: 400;
-}
+h2 { margin: 0; }
 
 p {
     margin-top: 0.3vw;
