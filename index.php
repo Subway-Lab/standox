@@ -66,7 +66,7 @@ require_once('auth_check.php');
                 <p class="asterisk"> * поля обязательные для заполнения </p>
 
                 <div class="title">
-                    <h4> 2. Наименование выполняемых работ: </h4>
+                    <h4> 2. Кузовные работы: </h4>
                 </div>
 
                 <?php

@@ -215,9 +215,9 @@ h4 { margin-left: 0;}
 
 .collapsible-container.open .collapsible-content { /* NOTE: Контейнер целиком, например "Бампер передний", когда он раскрыт */
     display: block;
-    max-height: 900px;
+    max-height: 1700px;
 
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 }
 
 .collapsible-header { /* NOTE: Заголовок контейнера, например "Бампер передний" */
