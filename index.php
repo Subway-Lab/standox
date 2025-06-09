@@ -92,7 +92,7 @@ require_once('auth_check.php');
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
                                     <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
                                     <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
-                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$item['id'].'">
+                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
                                     <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
                                 </div>';
                     }
@@ -131,7 +131,7 @@ require_once('auth_check.php');
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
                                     <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
                                     <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
-                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$item['id'].'">
+                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
                                     <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
                                 </div>';
                     }
@@ -143,7 +143,44 @@ require_once('auth_check.php');
                 }
                 ?>
 
-                
+                <div class="title">
+                    <h4> 4. Запасные части и расходные материалы </h4>
+                </div>
+
+                <?php
+                $services = require_once 'parts.php';
+
+                foreach ($services as $section) {
+                    echo '
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label">'.$section['title'].'</label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">';
+                    foreach ($section['items'] as $index => $item) {
+                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
+                        $serviceId = 'service'.$serviceNumber;
+                        echo '
+                                <div class="service-item">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
+                                        data-service-name="'.$item['name'].'">
+                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
+                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
+                                    <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
+                                    <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
+                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
+                                    <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
+                                </div>';
+                    }
+                    
+                    echo '
+                            </div>
+                        </div>
+                    </div>';
+                }
+                ?>     
 
                 <!-- Итоговая сумма, отображаемая на экране -->
                 <!-- Отображаем сумму для пользователя -->
