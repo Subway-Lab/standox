@@ -86,8 +86,7 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
                                     <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
@@ -125,8 +124,7 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
                                     <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
@@ -164,8 +162,7 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
                                     <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
