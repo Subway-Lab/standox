@@ -43,60 +43,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$stmt_orders->execute()) {
         die("Ошибка выполнения запроса для orders: " . $stmt_orders->error);
     }
-
-    // Получаем id созданного заказа
     $order_id = $conn->insert_id;
 
-    // Обработка и вставка данных для таблицы list_of_work
-    // Массив с данными услуг
-    $service_count = isset($_POST['service_count']) ? (int)$_POST['service_count'] : 0;
-    // Обработка данных для услуг, теперь ограничиваемся числом из POST
-    $maxServices = 10000;
-    $services = [];
-    for ($i = 1; $i <= $maxServices; $i++) {
-        if (isset($_POST["service{$i}_price"]) && $_POST["service{$i}_price"] > 0) {
-            $services[] = [
-                'name'      => $_POST["service{$i}_name"] ?? '',
-                'section'   => $_POST["service{$i}_section"] ?? '',
-                'service_id'=> $_POST["service{$i}_service_id"] ?? '',
-                'price'     => $_POST["service{$i}_price"] ?? 0,
-            ];
+// После успешной вставки в orders и получения $order_id
+// Обработка и вставка данных для таблицы list_of_work
+if (isset($_POST['services']) && is_array($_POST['services'])) {
+    foreach ($_POST['services'] as $service) {
+        // Приводим к безопасным типам
+        $price = isset($service['price']) ? floatval($service['price']) : 0;
+        if ($price <= 0) {
+            continue;
         }
-    }
-    
-    foreach ($services as $service) {
-        if ($service['price'] > 0) { // Проверяем, чтобы цена была больше 0
-            // Вставка данных для каждой услуги в таблицу list_of_work
-            $sql_services = "INSERT INTO list_of_work (order_id, service_id, name_work, price, section, full_work) 
-                             VALUES (?, ?, ?, ?, ?, ?)";
-                             
-            // Подготовка запроса
-            $stmt_services = $conn->prepare($sql_services);
-            
-            // Проверка успешности подготовки запроса
-            if ($stmt_services === false) {
-                die("Ошибка подготовки запроса для list_of_work: " . $conn->error);
-            }
-    
-            $full_work = $service['name'] . " " . $service['price'] . " руб."; // Формируем полное описание работы
-            $stmt_services->bind_param("iissss", $order_id, $service['service_id'], $service['name'], $service['price'], $service['section'], $full_work);
-    
-            // Выполнение запроса
-            if (!$stmt_services->execute()) {
-                die("Ошибка выполнения запроса для list_of_work: " . $stmt_services->error);
-            }
-            
-            // Закрытие запроса после выполнения
-            $stmt_services->close();
+        $service_id = isset($service['service_id']) ? intval($service['service_id']) : 0;
+        $name = isset($service['name']) ? $conn->real_escape_string($service['name']) : '';
+        $section = isset($service['section']) ? $conn->real_escape_string($service['section']) : '';
+        $full_work = $name . " " . $price . " руб.";
+
+        $sql_services = "INSERT INTO list_of_work (order_id, service_id, name_work, price, section, full_work) 
+                         VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt_services = $conn->prepare($sql_services);
+        if ($stmt_services === false) {
+            die("Ошибка подготовки запроса для list_of_work: " . $conn->error);
         }
+        $stmt_services->bind_param("iissss", $order_id, $service_id, $name, $price, $section, $full_work);
+        if (!$stmt_services->execute()) {
+            die("Ошибка выполнения запроса для list_of_work: " . $stmt_services->error);
+        }
+        $stmt_services->close();
     }
-    
-    
+}    
     // Перенаправляем на страницу подтверждения с ID заказа
     header("Location: order_confirmation.php?id=" . $order_id);
     exit;
 }
-
 // Закрываем соединение с базой данных
 $conn->close();
 ?>

@@ -94,49 +94,69 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Обработка отправки формы
-    orderForm.addEventListener("submit", function (event) {
-        if (!validateForm()) {
-            event.preventDefault(); // Отмена отправки формы при наличии ошибок
-            return;
+orderForm.addEventListener("submit", function (event) {
+    if (!validateForm()) {
+        event.preventDefault();
+        return;
+    }
+    updateTotal();
+
+    // Удаляем старые скрытые поля, созданные ранее (имя 'services[...]' или 'services_details[]', в зависимости от схемы).
+    // Например, если вы ранее создавали hidden с name="services[...]",
+    // то удаляем их:
+    document.querySelectorAll("input[name^='services']").forEach(input => input.remove());
+
+    let serviceCount = 0;
+    document.querySelectorAll(".service-item").forEach(item => {
+        const checkbox = item.querySelector(".service-checkbox");
+        const costInput = item.querySelector(".service-cost");
+        if (checkbox.checked && costInput.value) {
+            const serviceName = checkbox.getAttribute("data-service-name");
+            const cost = costInput.value;
+            const section = checkbox.getAttribute("data-section");
+            const serviceId = checkbox.getAttribute("data-service-id"); // число или строка
+            // Создаём hidden для service_id
+            const hiddenId = document.createElement("input");
+            hiddenId.type = "hidden";
+            hiddenId.name = "services[" + serviceCount + "][service_id]";
+            hiddenId.value = serviceId;
+            orderForm.appendChild(hiddenId);
+            // Создаём hidden для name
+            const hiddenName = document.createElement("input");
+            hiddenName.type = "hidden";
+            hiddenName.name = "services[" + serviceCount + "][name]";
+            hiddenName.value = serviceName;
+            orderForm.appendChild(hiddenName);
+            // Создаём hidden для section
+            const hiddenSection = document.createElement("input");
+            hiddenSection.type = "hidden";
+            hiddenSection.name = "services[" + serviceCount + "][section]";
+            hiddenSection.value = section;
+            orderForm.appendChild(hiddenSection);
+            // Создаём hidden для price
+            const hiddenPrice = document.createElement("input");
+            hiddenPrice.type = "hidden";
+            hiddenPrice.name = "services[" + serviceCount + "][price]";
+            hiddenPrice.value = cost;
+            orderForm.appendChild(hiddenPrice);
+            // (Опционально) Создаём hidden для detail, если нужен
+            const hiddenDetail = document.createElement("input");
+            hiddenDetail.type = "hidden";
+            hiddenDetail.name = "services[" + serviceCount + "][detail]";
+            hiddenDetail.value = serviceName + " " + cost + " руб.";
+            orderForm.appendChild(hiddenDetail);
+
+            serviceCount++;
         }
-
-        // Пересчитываем итоговую сумму перед отправкой
-        updateTotal();
-
-        // Удаляем старые скрытые поля с услугами
-        document.querySelectorAll("input[name='services_details[]']").forEach(input => input.remove());
-
-        // Собираем данные по услугам
-        let serviceCount = 0;
-        document.querySelectorAll(".service-item").forEach(item => {
-            const checkbox = item.querySelector(".service-checkbox");
-            const costInput = item.querySelector(".service-cost");
-            if (checkbox.checked && costInput.value) {
-                const serviceName = checkbox.getAttribute("data-service-name");
-                const cost = costInput.value;
-                const detail = serviceName + " " + cost + " руб.";
-
-                // Добавляем скрытое поле с данными для каждой услуги
-                const hiddenInput = document.createElement("input");
-                hiddenInput.type = "hidden";
-                hiddenInput.name = "services_details[]";
-                hiddenInput.value = detail;
-                orderForm.appendChild(hiddenInput);
-
-                // Обновляем соответствующее скрытое поле для цены
-                const serviceId = checkbox.id;
-                const priceHiddenInput = document.getElementById(serviceId + "-price-hidden");
-                priceHiddenInput.value = cost; // Обновляем скрытое поле с ценой
-
-                serviceCount++;
-            }
-        });
-
-        // Добавляем скрытое поле с количеством услуг
+    });
+        // Добавляем hidden service_count, если нужен
+        const existingCount = document.querySelector("input[name='service_count']");
+        if (existingCount) existingCount.remove();
         const serviceCountInput = document.createElement("input");
         serviceCountInput.type = "hidden";
         serviceCountInput.name = "service_count";
-        serviceCountInput.value = serviceCount; // Записываем количество выбранных услуг
+        serviceCountInput.value = serviceCount;
         orderForm.appendChild(serviceCountInput);
+        // Теперь форма отправляется с полем services = array of selected services with fields
     });
 });

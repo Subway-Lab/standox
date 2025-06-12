@@ -71,7 +71,6 @@ require_once('auth_check.php');
 
                 <?php
                 $services = require_once 'works.php';
-
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -86,16 +85,12 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
+                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                    <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
-                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
-                                    <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
                                 </div>';
                     }
-                    
                     echo '
                             </div>
                         </div>
@@ -109,7 +104,6 @@ require_once('auth_check.php');
 
                 <?php
                 $services = require_once 'painting.php';
-
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -124,16 +118,12 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
+                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                    <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
-                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
-                                    <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
                                 </div>';
                     }
-                    
                     echo '
                             </div>
                         </div>
@@ -147,7 +137,6 @@ require_once('auth_check.php');
 
                 <?php
                 $services = require_once 'parts.php';
-
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -162,25 +151,20 @@ require_once('auth_check.php');
                         $serviceId = 'service'.$serviceNumber;
                         echo '
                                 <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" data-service-name="'.$item['name'].'">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
+                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
                                     <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
                                     <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                    <input type="hidden" name="'.$serviceId.'_name" id="'.$serviceId.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="'.$serviceId.'_section" value="'.$section['section'].'">
-                                    <input type="hidden" name="'.$serviceId.'_service_id" value="'.$serviceNumber.'">
-                                    <input type="hidden" name="'.$serviceId.'_price" id="'.$serviceId.'-price-hidden" value="0">
                                 </div>';
                     }
-                    
                     echo '
                             </div>
                         </div>
                     </div>';
                 }
-                ?>     
+                ?>
 
-                <!-- Итоговая сумма, отображаемая на экране -->
-                <!-- Отображаем сумму для пользователя -->
+                <!-- NOTE: Итоговая сумма, на экране for user -->
                 <div class="title">
                     <h4> Итого: <span id="totalPrice">0</span> руб. </h4>
                 </div>
