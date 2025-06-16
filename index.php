@@ -27,13 +27,15 @@ require_once('auth_check.php');
             </nav>
         </header>
 
-        <div class="title">
-            <h2> Создание нового заказ-наряда </h2>
-            <h3> 1. Данные о заказчике: </h3>
-        </div>
-
         <div class="form">
             <form id="orderForm" action="submit_order.php" method="POST">
+
+            <div class="title">
+                <h2> Создание нового заказ-наряда </h2>
+            </div>
+            <div class="title">
+                <h3> 1. Данные о заказчике: </h3>
+            </div>
 
                 <div class="customer">
                     <label for="surname" class="sr-only"> Фамилия </label>
