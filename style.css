@@ -94,6 +94,7 @@ nav {
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 12vh;
 
@@ -469,18 +470,31 @@ footer {
 
 
 @media (max-width: 1180px) { /* FIXME: iPad 10.9 vertical */
-    
-    .customer {
-        margin-top: 1vw;
+
+    nav { top: 1vw;}
+
+    .menu_link { font-size: 16px; }
+
+    /* .title { border: 1px dashed rgb(18, 85, 164);} /* NOTE: Для отладки */
+
+    h2 {
+        font-size: 27px;
+        font-weight: 500;
     }
 
-    .user_input {
-        height: 5vw;
-    }
+    h3 { font-size: 23px; }
 
-    .user_input::placeholder {
-        font-size: 16px;
-    }
+    .title:nth-of-type(1) { margin-top: 7vh;}
+
+    .customer { margin-top: 1vw; }
+
+    .user_input { height: 5vw; }
+
+    .user_input::placeholder { font-size: 16px; }
+
+    .collapsible-header { height: 5vw;}
+
+    .service-item { height: 5vw;}
 }
 
 @media (max-width: 820px) { /* FIXME: iPad 10.9 horizontal */

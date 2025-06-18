@@ -68,7 +68,7 @@ require_once('auth_check.php');
                 <p class="asterisk"> * поля обязательные для заполнения </p>
 
                 <div class="title">
-                    <h4> 2. Кузовные работы: </h4>
+                    <h3> 2. Кузовные работы: </h3>
                 </div>
 
                 <?php
@@ -101,7 +101,7 @@ require_once('auth_check.php');
                 ?>
 
                 <div class="title">
-                    <h4> 3. Покрасочные работы: </h4>
+                    <h3> 3. Покрасочные работы: </h3>
                 </div>
 
                 <?php
@@ -134,7 +134,7 @@ require_once('auth_check.php');
                 ?>
 
                 <div class="title">
-                    <h4> 4. Запасные части и расходные материалы </h4>
+                    <h3> 4. Запасные части и расходные материалы: </h3>
                 </div>
 
                 <?php
