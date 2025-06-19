@@ -122,6 +122,7 @@ $parts_services = require 'parts.php';
         <meta charset="utf-8">
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
+        <meta name="format-detection" content="telephone=no">
         <title> STANDOX </title>
         <link rel="icon" href="files/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">

@@ -9,6 +9,7 @@ require_once('auth_check.php');
         <meta charset="utf-8">
         <meta name="keywords" content="key words">
         <meta name="description" content="description of the page SEO">
+        <meta name="format-detection" content="telephone=no">
         <title> STANDOX </title>
         <link rel="icon" href="files/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -168,8 +169,9 @@ require_once('auth_check.php');
 
                 <!-- NOTE: Итоговая сумма, на экране for user -->
                 <div class="title">
-                    <h4> Итого: <span id="totalPrice">0</span> руб. </h4>
+                    <h3> Итого: <span id="totalPrice">0</span> руб. </h3>
                 </div>
+
                 <!-- Поле для отправки суммы. Сейчас оно текстовое, чтобы видеть значение -->
                 <input type="hidden" id="total_price_hidden" name="total_price" value="0" readonly>
 
