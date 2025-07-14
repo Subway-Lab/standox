@@ -15,7 +15,7 @@ $error_class = ''; // NOTE: Класс ошибки
 // NOTE: Обработка формы логина
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // NOTE: Строки отвечающие за подключение к базе данных
-    $mysqli = new mysqli('localhost', 'root', '', 'sto_orders'); // Используй свои данные для подключения
+    $mysqli = new mysqli('g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', 'q1i28z5zzuyro11l', 'kwdvun8ff1f8m6fs', 'vtjb3fkssehwjx62');
 
     // NOTE: Проверка на ошибки подключения
     if ($mysqli->connect_error) {

@@ -3,11 +3,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключение к базе данных
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "sto_orders";
+// Подключаемся к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -43,9 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$stmt_orders->execute()) {
         die("Ошибка выполнения запроса для orders: " . $stmt_orders->error);
     }
+
+    // Получаем id созданного заказа
     $order_id = $conn->insert_id;
 
-// После успешной вставки в orders и получения $order_id
 // Обработка и вставка данных для таблицы list_of_work
 if (isset($_POST['services']) && is_array($_POST['services'])) {
     foreach ($_POST['services'] as $service) {

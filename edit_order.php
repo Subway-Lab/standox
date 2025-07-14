@@ -8,14 +8,16 @@ require_once('auth_check.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключение к БД
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "sto_orders";
+// Подключаемся к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+if ($conn->connect_error) {
+    die("Ошибка подключения: " . $conn->connect_error);
+}
 
 // Обработка GET/POST запросов
 $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

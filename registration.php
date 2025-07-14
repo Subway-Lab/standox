@@ -1,18 +1,23 @@
 <?php
+// NOTE: Проверка авторизации пользователя
+require_once('auth_check.php');
+?>
+
+<?php
 // registration.php
 
 // Включаем отображение ошибок для отладки (на продакшене можно отключить)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Параметры подключения к базе данных
-$servername = "localhost";
-$usernameDB = "root";
-$passwordDB = "";
-$dbname     = "sto_orders";
+// Подключаемся к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
 
 // Подключаемся к базе данных
-$conn = new mysqli($servername, $usernameDB, $passwordDB, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
