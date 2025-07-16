@@ -5,17 +5,9 @@ require_once('auth_check.php');
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <meta name="keywords" content="key words">
-        <meta name="description" content="description of the page SEO">
-        <meta name="format-detection" content="telephone=no">
-        <title> STANDOX </title>
-        <link rel="icon" href="files/favicon.ico" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
+
+    <?php include 'head.php'; ?>
+    
     <body>
 
         <header>
