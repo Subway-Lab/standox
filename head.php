@@ -19,7 +19,7 @@
     <meta name="twitter:image" content="https://www.standox.pro/files/Card_for_messengers.jpg">
 
     <!-- NOTE: Icon for iOS -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://www.standox.pro/files/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="https://www.standox.pro/files/apple-touch-icon.png">
 
     <link rel="icon" href="files/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
