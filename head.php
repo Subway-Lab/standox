@@ -8,7 +8,7 @@
     <!-- NOTE: Card for Open Graph -->
     <meta property="og:title" content="<?= htmlspecialchars($ogTitle ?? 'STANDOX') ?>">
     <meta property="og:description" content="<?= htmlspecialchars($ogDescription ?? 'СТО "STANDOX" 672039 г. Чита, ул. Верхоленская 51, телефон: 8 914 472-10-10, 8 924 472-30-30, email: lider00@list.ru, web-site: www.standox.chita.ru') ?>">
-    <meta property="og:image" content="https://www.standox.pro/files/Card_for_messenger.jpg">
+    <meta property="og:image" content="https://www.standox.pro/files/Card_for_messenger's.jpg">
     <meta property="og:url" content="<?= htmlspecialchars($ogUrl ?? 'https://www.standox.pro/') ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?= htmlspecialchars($ogTitle ?? 'STANDOX') ?>">
     <meta name="twitter:description" content="<?= htmlspecialchars($ogDescription ?? 'СТО "STANDOX" 672039 г. Чита, ул. Верхоленская 51, телефон: 8 914 472-10-10, 8 924 472-30-30, email: lider00@list.ru, web-site: www.standox.chita.ru') ?>">
-    <meta name="twitter:image" content="https://www.standox.pro/files/Card_for_messenger.jpg">
+    <meta name="twitter:image" content="https://www.standox.pro/files/Card_for_messenger's.jpg">
 
     <!-- NOTE: Icon for iOS -->
     <link rel="apple-touch-icon" sizes="512x512" href="https://www.standox.pro/files/apple-touch-icon.png">
