@@ -97,21 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <script>
-            // NOTE: Проверка на ошибки
-            window.onload = function() {
-                var errorMessage = '<?php echo $error_message; ?>';
-                if (errorMessage) {
-                    // NOTE: Изменяем placeholder
-                    document.getElementById('login').placeholder = 'Неверный логин или пароль';
-                    document.getElementById('login').classList.add('error');
-                    
-                    // NOTE: Добавляем класс ошибки
-                    document.getElementById('password').classList.add('error');
-
-                    // NOTE: Выводим сообщение об ошибке
-                    alert(errorMessage); // NOTE: Здесь можно использовать любое уведомление, например, вывод в span или div
-                }
-            };
+            var errorMessage = <?php echo json_encode($error_message); ?>;
         </script>
+        <script src="login.js"></script>
+
     </body>
 </html>

@@ -174,57 +174,9 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
 
         <?php include 'footer.php'; ?>
 
-        <script src="script.js"></script>
-        <script>
-            // Поиск всех заголовков раскрывающихся блоков
-            const collapsibles = document.querySelectorAll('.collapsible-header');
-        
-            // Добавляем обработчик событий для каждого заголовка
-            collapsibles.forEach(collapsible => {
-                collapsible.addEventListener('click', () => {
-                    const container = collapsible.parentElement;
-                    container.classList.toggle('open');
-                });
-            });
-        </script>
+        <script src="index_1.js"></script>
+        <script src="index_2.js"></script>
+        <script src="index_3.js"></script>
 
-        <script>
-            // Функция для обработки ошибки
-            function handleInputValidation(event) {
-                const input = event.target;
-                const errorMessage = input.closest('.customer').querySelector(`.error-message[data-for="${input.id}"]`);
-        
-                // Проверяем поле на валидность
-                if (!input.validity.valid) {
-                    // Меняем текст placeholder на ошибку
-                    input.placeholder = input.dataset.defaultPlaceholder;  // Оставляем текст как был
-                    // Изменяем цвет placeholder
-                    input.classList.add("error-placeholder");  // Добавляем класс для изменения цвета placeholder
-                    // Добавляем класс для отображения ошибки
-                    input.classList.add("error");
-                    // Показываем текст ошибки
-                    errorMessage.style.visibility = 'visible';
-                }
-            else {
-                    // Восстанавливаем стандартный фон
-                    input.style.backgroundColor = "";
-                    // Восстанавливаем исходный placeholder
-                    input.placeholder = input.dataset.defaultPlaceholder;
-                    // Убираем класс ошибки
-                    input.classList.remove("error");
-                    // Скрываем текст ошибки
-                    errorMessage.style.visibility = 'hidden';
-                }
-            }
-        
-            // Получаем все поля ввода
-            const inputs = document.querySelectorAll('.user_input');
-        
-            // Устанавливаем дефолтный placeholder в data-атрибут
-            inputs.forEach(input => {
-                input.dataset.defaultPlaceholder = input.placeholder;
-                input.addEventListener('blur', handleInputValidation);
-            });
-        </script>
     </body>
 </html>

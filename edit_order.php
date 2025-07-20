@@ -351,81 +351,10 @@ $parts_services = require 'parts.php';
 
         <?php include 'footer.php'; ?>
 
-        <script src="script.js"></script>
-        
-        <script>
-            // Раскрываем блоки с выбранными услугами при загрузке страницы
-            document.addEventListener('DOMContentLoaded', function() {
-                // Поиск всех заголовков раскрывающихся блоков
-                const collapsibles = document.querySelectorAll('.collapsible-header');
-                
-                // Добавляем обработчик событий для каждого заголовка
-                collapsibles.forEach(collapsible => {
-                    collapsible.addEventListener('click', () => {
-                        const container = collapsible.parentElement;
-                        container.classList.toggle('open');
-                    });
-                });
-                
-                // Автоматическое раскрытие блоков с выбранными услугами
-                document.querySelectorAll('.collapsible-container').forEach(container => {
-                    // Проверяем, есть ли внутри контейнера выбранные услуги
-                    const hasCheckedServices = container.querySelector('.service-checkbox:checked');
-                    
-                    if (hasCheckedServices) {
-                        container.classList.add('open');
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            // Функция для обработки ошибки
-            function handleInputValidation(event) {
-                const input = event.target;
-                const errorMessage = input.closest('.customer').querySelector(`.error-message[data-for="${input.id}"]`);
-        
-                // Проверяем поле на валидность
-                if (!input.validity.valid) {
-                    // Меняем текст placeholder на ошибку
-                    input.placeholder = input.dataset.defaultPlaceholder;
-                    // Изменяем цвет placeholder
-                    input.classList.add("error-placeholder");
-                    // Добавляем класс для отображения ошибки
-                    input.classList.add("error");
-                    // Показываем текст ошибки
-                    errorMessage.style.visibility = 'visible';
-                }
-            else {
-                    // Восстанавливаем исходный placeholder
-                    input.placeholder = input.dataset.defaultPlaceholder;
-                    // Убираем класс ошибки
-                    input.classList.remove("error");
-                    input.classList.remove("error-placeholder");
-                    // Скрываем текст ошибки
-                    errorMessage.style.visibility = 'hidden';
-                }
-            }
-        
-            // Получаем все поля ввода
-            const inputs = document.querySelectorAll('.user_input');
-        
-            // Устанавливаем дефолтный placeholder в data-атрибут
-            inputs.forEach(input => {
-                input.dataset.defaultPlaceholder = input.placeholder;
-                input.addEventListener('blur', handleInputValidation);
-            });
-        </script>
-
-        <script>
-            document.querySelector('.btn-reset').addEventListener('mouseover', function() {
-                document.querySelector('.btn-save').classList.add('hover-effect');
-            });
-
-            document.querySelector('.btn-reset').addEventListener('mouseout', function() {
-                document.querySelector('.btn-save').classList.remove('hover-effect');
-            });
-        </script>
+        <script src="index_1.js"></script>   
+        <script src="edit_order_1.js"></script>
+        <script src="edit_order_2.js"></script>
+        <script src="edit_order_3.js"></script>
         
     </body>
 </html>

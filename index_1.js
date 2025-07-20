@@ -1,3 +1,5 @@
+// NOTE: Файл функционала формы заполнения заказ-наряда
+
 document.addEventListener("DOMContentLoaded", function () {
     const totalPriceElement = document.getElementById("totalPrice");
     const totalPriceHidden = document.getElementById("total_price_hidden");

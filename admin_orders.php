@@ -135,15 +135,9 @@ if ($searchQuery) {
             
             <?php include 'footer.php'; ?>
             
-            <script>
-                // Функция подтверждения удаления заказа
-                function confirmDeletion(orderId) {
-                    if (confirm("Вы уверены, что хотите удалить этот заказ?")) {
-                        window.location.href = "delete_order.php?id=" + orderId;
-                    }
-                }
-            </script>
             <script src="search_bar.js"></script>
+            <script src="admin_order.js"></script>
+
         </body>
     </html>
 
