@@ -122,7 +122,6 @@ $parts_services = require '../../shared/parts.php';
 <html lang="ru">
     
     <?php
-        $ebitingCss = 'editing.css';
         include '../../shared/head.php';
     ?>
     <body>
