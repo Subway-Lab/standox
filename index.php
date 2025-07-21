@@ -66,7 +66,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
                 </div>
 
                 <?php
-                $services = require_once 'works.php';
+                $services = require_once 'shared/works.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -99,7 +99,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
                 </div>
 
                 <?php
-                $services = require_once 'painting.php';
+                $services = require_once 'shared/painting.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
@@ -132,7 +132,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
                 </div>
 
                 <?php
-                $services = require_once 'parts.php';
+                $services = require_once 'shared/parts.php';
                 foreach ($services as $section) {
                     echo '
                     <div class="collapsible-container">
