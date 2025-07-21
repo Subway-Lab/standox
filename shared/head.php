@@ -8,7 +8,8 @@
     <!-- NOTE: Card for Open Graph -->
     <meta property="og:title" content="<?= htmlspecialchars($ogTitle ?? 'СТО "STANDOX"') ?>">
     <meta property="og:description" content="<?= htmlspecialchars($ogDescription ?? '672039 г. Чита, ул. Верхоленская 51, телефон: 8 914 472-10-10, 8 924 472-30-30, email: lider00@list.ru, web-site: www.standox.chita.ru') ?>">
-    <meta property="og:image" content="https://www.standox.pro/files/card_for_messengers.jpg?v=<?=time()?>"><meta property="og:url" content="<?= htmlspecialchars($ogUrl ?? 'https://www.standox.pro/') ?>">
+    <meta property="og:image" content="https://www.standox.pro/files/card_for_messengers.jpg">
+    <meta property="og:url" content="<?= htmlspecialchars($ogUrl ?? 'https://www.standox.pro/') ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
 
