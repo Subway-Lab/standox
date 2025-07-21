@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 
-    <link rel="stylesheet" href="<?= $baseUrl ?>public/style.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="https://www.standox.pro/public/style.css">
 
     <?php if (isset($ebitingCss)): ?>
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars_decode($ebitingCss) ?>">
