@@ -1,6 +1,8 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('auth_check.php');
+require_once('../../auth_check.php');
+
+$base_url = '../../';
 ?>
 
 <?php
@@ -8,16 +10,14 @@ require_once('auth_check.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+// Подключение к БД
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sto_orders";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
-}
+if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 // Обработка GET/POST запросов
 $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: admin_orders.php?id=$order_id");
+    header("Location: ../../admin_orders.php?id=$order_id");
     exit;
 }
 
@@ -113,18 +113,19 @@ if ($order_id > 0) {
 }
 
 // Подключаем файлы с услугами
-$works_services = require 'works.php';
-$painting_services = require 'painting.php';
-$parts_services = require 'parts.php';
+$works_services = require '../../shared/works.php';
+$painting_services = require '../../shared/painting.php';
+$parts_services = require '../../shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    
-    <?php
-        $ebitOrderCss = 'edit_order.css';
-        include 'head.php';
+
+   <?php
+        $ebitingCss = 'editing.css';
+        include '../../shared/head.php';
     ?>
+
 
     <body>
 
@@ -132,14 +133,14 @@ $parts_services = require 'parts.php';
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="../../admin_orders.php" class="menu_link"> база данных </a></li>
                     <li><a href="logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
 
         <div class="form">
-            <form id="orderForm" action="edit_order.php" method="POST">
+            <form id="orderForm" action="editing.php" method="POST">
                 <input type="hidden" name="order_id" value="<?= $order_id ?>">
 
             <div class="title">
@@ -349,12 +350,12 @@ $parts_services = require 'parts.php';
             </form>
         </div>
 
-        <?php include 'footer.php'; ?>
+        <?php include '../../shared/footer.php'; ?>
 
-        <script src="index_1.js"></script>   
-        <script src="edit_order_1.js"></script>
-        <script src="edit_order_2.js"></script>
-        <script src="edit_order_3.js"></script>
+        <script src="../../index_1.js"></script>   
+        <script src="editing_1.js"></script>
+        <script src="editing_2.js"></script>
+        <script src="editing_3.js"></script>
         
     </body>
 </html>

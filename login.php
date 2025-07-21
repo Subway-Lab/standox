@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
       <?php
         $loginCss = 'login.css';
-        include 'head.php';
+        include 'shared/head.php';
     ?>
 
     <body>

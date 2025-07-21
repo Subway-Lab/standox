@@ -172,7 +172,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
             </form>
         </div>
 
-        <?php include 'footer.php'; ?>
+        <?php include 'shared/footer.php'; ?>
 
         <script src="index_1.js"></script>
         <script src="index_2.js"></script>

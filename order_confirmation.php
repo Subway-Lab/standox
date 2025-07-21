@@ -66,7 +66,7 @@ $conn->close();
     <?php
         $noStyle = true;
         $printOrderCss = 'print_order.css';
-        include 'head.php';
+        include 'shared/head.php';
     ?>
 
     <body class="sheet">

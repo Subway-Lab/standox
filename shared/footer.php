@@ -1,7 +1,14 @@
+<?php
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'];
+$projectDir = dirname(dirname($_SERVER['SCRIPT_NAME']));
+$baseUrl = $protocol . $host . $projectDir . '/';
+?>
+
 <footer>
     <div class="all_footer_block">
         <div class="footer_column_1">
-            <img class="bottom_logo" src="files/black_logo.svg" alt="STANDOX logo">
+            <img class="bottom_logo" src="<?= $baseUrl ?>../files/black_logo.svg" alt="STANDOX logo">
             <div class="contacts">
                 <p>
                     СТО "STANDOX" <br>

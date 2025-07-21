@@ -51,7 +51,7 @@ if ($searchQuery) {
     
     <?php
         $adminOrderCss = 'admin_orders.css';
-        include 'head.php';
+        include 'shared/head.php';
     ?>
 
         <body>
@@ -121,7 +121,7 @@ if ($searchQuery) {
                                     <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td>
                                         <a class="link_move_2" href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
-                                        <a class="link_move_2" href="edit_order.php?id=<?= $order['id'] ?>"> Редактировать </a>
+                                        <a class="link_move_2" href="features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
                                         <a class="link_move_2" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                     </td>
                                 </tr>
@@ -133,8 +133,8 @@ if ($searchQuery) {
                 </table>
             </div>
             
-            <?php include 'footer.php'; ?>
-            
+            <?php include 'shared/footer.php'; ?>
+
             <script src="search_bar.js"></script>
             <script src="admin_order.js"></script>
 
