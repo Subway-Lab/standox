@@ -28,7 +28,7 @@ $baseUrl = rtrim($protocol . $host . $cleanPath, '/') . '/';
     <!-- NOTE: Icon for iOS -->
     <link rel="apple-touch-icon" sizes="512x512" href="https://www.standox.pro/files/apple-touch-icon.png">
 
-    <link rel="icon" href="<?= $baseUrl ?>../files/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://www.standox.pro/files/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 
