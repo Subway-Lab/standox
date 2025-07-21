@@ -1,8 +1,8 @@
 <?php
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
 $host = $_SERVER['HTTP_HOST'];
-$projectDir = dirname(dirname($_SERVER['SCRIPT_NAME']));
-$baseUrl = $protocol . $host . $projectDir . '/';
+$cleanPath = dirname(dirname($_SERVER['SCRIPT_NAME']));
+$baseUrl = rtrim($protocol . $host . $cleanPath, '/') . '/';
 ?>
 
 <head>
@@ -32,8 +32,8 @@ $baseUrl = $protocol . $host . $projectDir . '/';
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 
-    <link rel="stylesheet" href="<?= $baseUrl ?>../public/style.css?v=<?= time() ?>">
-    
+    <link rel="stylesheet" href="<?= $baseUrl ?>public/style.css?v=<?= time() ?>">
+
     <?php if (isset($ebitingCss)): ?>
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars_decode($ebitingCss) ?>">
     <?php endif; ?>
