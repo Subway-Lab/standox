@@ -1,8 +1,6 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('../../auth_check.php');
-
-$base_url = '../../';
+require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
@@ -92,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: ../../admin_orders.php?id=$order_id");
+    header("Location: /admin_orders.php?id=$order_id");
     exit;
 }
 
