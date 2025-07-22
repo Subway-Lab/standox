@@ -2,7 +2,7 @@
 // NOTE: Проверка авторизации пользователя
 require_once('../../auth_check.php');
 
-
+$base_url = '../../';
 ?>
 
 <?php
@@ -112,11 +112,10 @@ if ($order_id > 0) {
     }
 }
 
-// NOTE: Подключаем файлы с услугами
-$works_services = require 'https://www.standox.pro/shared/works.php';
-$painting_services = require 'https://www.standox.pro/shared/painting.php';
-$parts_services = require 'https://www.standox.pro/shared/parts.php';
-?>
+// NODE: Подключаем файлы с услугами
+$works_services = require __DIR__ . '/../../shared/works.php';
+$painting_services = require __DIR__ . '/../../shared/painting.php';
+$parts_services = require __DIR__ . '/../../shared/parts.php';
 
 <!DOCTYPE HTML>
 <html lang="ru">
