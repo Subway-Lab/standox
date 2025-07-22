@@ -123,8 +123,9 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
     
     <?php
         $ebitingCss = 'editing.css';
-        include '../../shared/head.php';
+        include __DIR__ . '/../../shared/head.php';
     ?>
+
     <body>
 
         <header>
