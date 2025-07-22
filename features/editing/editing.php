@@ -116,6 +116,7 @@ if ($order_id > 0) {
 $works_services = require __DIR__ . '/../../shared/works.php';
 $painting_services = require __DIR__ . '/../../shared/painting.php';
 $parts_services = require __DIR__ . '/../../shared/parts.php';
+?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
