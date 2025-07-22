@@ -29,9 +29,8 @@
     <link rel="stylesheet" href="https://www.standox.pro/public/style.css">
 
      <?php if (isset($printCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/print/<?= htmlspecialchars($printCss) ?>">
+        <link rel="stylesheet" type="text/css" href="/features/print/print.css?<?= htmlspecialchars($printCss) ?>">
     <?php endif; ?>
- 
 
     <?php if (isset($ebitingCss)): ?>
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars_decode($ebitingCss) ?>">
