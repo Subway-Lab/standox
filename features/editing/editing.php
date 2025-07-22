@@ -349,9 +349,8 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
             </form>
         </div>
 
-        <?php
-            include __DIR__ . '/../../shared/head.php';
-        ?>
+        <?php include __DIR__ . '/../../shared/footer.php'; ?>
+
 
         <script src="../../index_1.js"></script>   
         <script src="editing_1.js"></script>
