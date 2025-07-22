@@ -4,27 +4,25 @@ require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
-// NOTE: Включение отладки убрать в продакшине
+// NOTE: Включение отладки (Убрать в продакшине)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// NOTE: Подключаемся к базе данных
+// NOTE: Подключение к базе данных
 $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
 $username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль к базе данных
+$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
 $dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
-// Обработка GET/POST запросов
 $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // ОБРАБОТКА СОХРАНЕНИЯ ФОРМЫ
     $order_id = intval($_POST['order_id']);
     
-    // Обновление основной информации
+    // NOTE: Обновление основной информации
     $stmt = $conn->prepare("UPDATE orders SET 
         surname = ?,
         name = ?,
@@ -54,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $price_key = 'service' . $i . '_price';
         $name_key = 'service' . $i . '_name';
         $section_key = 'service' . $i . '_section';
-        
-        // Проверяем наличие и стоимость услуги
+
+        // NOTE: Проверка наличия и стоимость услуги
         if (isset($_POST[$price_key]) && floatval($_POST[$price_key]) > 0) {
             $services[] = [
                 'service_id' => $i,
@@ -66,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Добавляем новые услуги
+    // NOTE: Добавление новых услуг
     foreach ($services as $service) {
         $sql_services = "INSERT INTO list_of_work 
             (order_id, service_id, name_work, price, section, full_work) 
@@ -107,7 +105,7 @@ if ($order_id > 0) {
     }
 }
 
-// NODE: Подключаем файлы с услугами
+// NOTE: Подключаем файлы с услугами
 $works_services = require __DIR__ . '/../../shared/works.php';
 $painting_services = require __DIR__ . '/../../shared/painting.php';
 $parts_services = require __DIR__ . '/../../shared/parts.php';
