@@ -121,7 +121,7 @@ if ($searchQuery) {
                                     <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td>
                                         <a class="link_move_2" href="order_confirmation.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
-                                        <a class="link_move_2" href="https://www.standox.pro/features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
+                                        <a class="link_move_2" href="features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
                                         <a class="link_move_2" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                     </td>
                                 </tr>
