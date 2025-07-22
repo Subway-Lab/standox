@@ -112,10 +112,10 @@ if ($order_id > 0) {
     }
 }
 
-// Подключаем файлы с услугами
-$works_services = require '../../shared/works.php';
-$painting_services = require '../../shared/painting.php';
-$parts_services = require '../../shared/parts.php';
+// NOTE: Подключаем файлы с услугами
+$works_services = require 'https://www.standox.pro/shared/works.php';
+$painting_services = require 'https://www.standox.pro/shared/painting.php';
+$parts_services = require 'https://www.standox.pro/shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
