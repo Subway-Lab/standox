@@ -107,7 +107,7 @@ if ($searchQuery) {
                             <?php while ($order = $result->fetch_assoc()): ?>
                                 <tr>
                                     <td>
-                                        <a class="link_move_1" href="/print/print.php?id=<?= htmlspecialchars($order['id']) ?>">
+                                        <a class="link_move_1" href="/features/print/print.php?id=<?= htmlspecialchars($order['id']) ?>">
                                             <?= htmlspecialchars($order['id']) ?>
                                         </a>
                                     </td>
@@ -120,7 +120,7 @@ if ($searchQuery) {
                                     <td><?= htmlspecialchars(number_format(floor($order['total_work_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td>
-                                        <a class="link_move_2" href="print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
+                                        <a class="link_move_2" href="/features/print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
                                         <a class="link_move_2" href="features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
                                         <a class="link_move_2" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                     </td>

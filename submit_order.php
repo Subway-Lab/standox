@@ -74,7 +74,7 @@ if (isset($_POST['services']) && is_array($_POST['services'])) {
     }
 }    
     // Перенаправляем на страницу подтверждения с ID заказа
-    header("Location: /print/print.php?id=" . $order_id);
+    header("Location: /features/print/print.php?id=" . $order_id);
     exit;
 }
 // Закрываем соединение с базой данных
