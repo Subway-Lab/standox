@@ -66,7 +66,7 @@ $conn->close();
     
     <?php
         $noStyle = true;
-        $printCss = 'print_order.css';
+        $printCss = 'print.css';
         include __DIR__ . '/../../shared/head.php';
     ?>
 
