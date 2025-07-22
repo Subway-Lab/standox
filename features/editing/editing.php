@@ -1,16 +1,14 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('../../auth_check.php');
-
-$base_url = '../../';
+require_once('https://www.standox.pro/auth_check.php');
 ?>
 
 <?php
-// NOTE: Включение отладки убрать в продакшине
+// NOTE: Включение отладки, убрать в продакшине
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключаемся к базе данных
+// NOTE:Подключаемся к базе данных
 $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
 $username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
 $password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
@@ -92,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: ../../admin_orders.php?id=$order_id");
+    header("Location: https://www.standox.pro/admin_orders.php");
     exit;
 }
 
@@ -113,9 +111,9 @@ if ($order_id > 0) {
 }
 
 // Подключаем файлы с услугами
-$works_services = require '../../shared/works.php';
-$painting_services = require '../../shared/painting.php';
-$parts_services = require '../../shared/parts.php';
+$works_services = require 'https://www.standox.pro/shared/works.php';
+$painting_services = require 'https://www.standox.pro/shared/painting.php';
+$parts_services = require 'https://www.standox.pro/shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -123,7 +121,7 @@ $parts_services = require '../../shared/parts.php';
     
     <?php
         $ebitingCss = 'editing.css';
-        include '../../shared/head.php';
+        include 'https://www.standox.pro/shared/head.php';
     ?>
     <body>
 
@@ -131,8 +129,8 @@ $parts_services = require '../../shared/parts.php';
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="../../admin_orders.php" class="menu_link"> база данных </a></li>
-                    <li><a href="logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="https://www.standox.pro/admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="https:///www.standox.pro/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
@@ -348,9 +346,9 @@ $parts_services = require '../../shared/parts.php';
             </form>
         </div>
 
-        <?php include '../../shared/footer.php'; ?>
+        <?php include 'https://www.standox.pro/shared/footer.php';?>
 
-        <script src="../../index_1.js"></script>   
+        <script src="https://www.standox.pro/index_1.js"></script>   
         <script src="editing_1.js"></script>
         <script src="editing_2.js"></script>
         <script src="editing_3.js"></script>
