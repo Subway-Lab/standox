@@ -40,7 +40,7 @@
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($adminOrderCss) ?>">
     <?php endif; ?>
 
-    <?php if (isset($printOrderCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($printOrderCss) ?>">
+    <?php if (isset($printCss)): ?>
+        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($printCss) ?>">
     <?php endif; ?> 
 </head>
