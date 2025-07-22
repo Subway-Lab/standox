@@ -16,13 +16,13 @@ if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
 
-// Получаем order_id из GET-параметра
+// NOTE: Получение данных order_id из GET-параметра
 $order_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($order_id <= 0) {
     die("Неверный номер заказа.");
 }
 
-// Запрос данных заказа
+// NOTE: Запрос данных заказа
 $sql_order = "SELECT id, full_name, phone, created_at, car_model, car_number, services_total, total_work_price, total_parts_price FROM orders WHERE id = ?";
 $stmt = $conn->prepare($sql_order);
 $stmt->bind_param("i", $order_id);
@@ -34,7 +34,7 @@ if ($result->num_rows === 0) {
 $order = $result->fetch_assoc();
 $stmt->close();
 
-// Запрос данных работ (только для section = 'work')
+// NOTE: Запрос данных работ, только для section = 'work'
 $sql_works = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'work'";
 $stmt_works = $conn->prepare($sql_works);
 $stmt_works->bind_param("i", $order_id);
@@ -46,7 +46,7 @@ while ($row = $result_works->fetch_assoc()) {
 }
 $stmt_works->close();
 
-// Запрос данных запчастей (только для section = 'parts')
+// NOTE: Запрос данных запчастей, только для section = 'parts'
 $sql_parts = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'parts'";
 $stmt_parts = $conn->prepare($sql_parts);
 $stmt_parts->bind_param("i", $order_id);

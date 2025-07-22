@@ -149,7 +149,7 @@ tbody td:nth-child(1) { text-align: center; }
 tbody td:nth-child(2) { text-align: left; padding-left: 2%; }
 tbody td:nth-child(3) { text-align: right; } 
 
-/* NOTE: Выравнивание текста в последней строке таблицы  "Итого" */
+/* NOTE: Выравнивание текста в последней строке таблицы "Итого" */
 tbody tr:last-child td:nth-child(1) { 
     text-align: left;
     padding-left: 47px;
@@ -183,7 +183,7 @@ section {
     padding-top: 15mm;
 }
 
-section div:nth-child(1) { /* NOTE: Обязательно к прочтению */
+section div:nth-child(1) { /* NOTE: Разде "Обязательно к прочтению" */
     display: flex;
     height: 10mm;
     justify-content: center;
@@ -193,13 +193,13 @@ section div:nth-child(1) { /* NOTE: Обязательно к прочтению
     background-color: rgb(18, 85, 164);
 }
 
-section div:nth-child(2) { /* NOTE: Перечень правил */
+section div:nth-child(2) { /* NOTE: Раздел "Перечень правил" */
     padding: 2mm 0mm;
     
     font-size: clamp(8px, 0.833vw, 12px);
 }
 
-section div:nth-child(3) { /* NOTE: Стоянка 250 руб */
+section div:nth-child(3) { /* NOTE: Раздел "Стоянка 250 руб." */
     display: flex;
     height: 10mm;
     justify-content: center;
@@ -221,13 +221,13 @@ section div:nth-child(4) { /* NOTE: Целиком последняя строк
     border-bottom: 2px solid rgb(35, 39, 42);
 }
 
-section div:nth-child(4) p:nth-child(1) { /* NOTE: Претензии примаються */
+section div:nth-child(4) p:nth-child(1) { /* NOTE: Hfpltk "Претензии примаються" */
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     align-self: center;
 }
 
-section div:nth-child(4) p:nth-child(2) { /* NOTE: Итого по закза-наряду */
+section div:nth-child(4) p:nth-child(2) { /* NOTE: Hfpltk "Итого по закза-наряду" */
     display: flex;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -241,7 +241,7 @@ section div:nth-child(4) p:nth-child(2) { /* NOTE: Итого по закза-н
     border-left: 2px solid rgb(35, 39, 42);
 }
 
-section div:nth-child(4) p:nth-child(3) { /* NOTE: Сдал, принял */
+section div:nth-child(4) p:nth-child(3) { /* NOTE: Раздел "Сдал, принял" */
     grid-column: 3 / 4;
     grid-row: 1 / 2;
     padding: 3mm 0mm 1mm 0mm;
@@ -298,10 +298,10 @@ button:hover, button:active {
 
     tr {page-break-inside: avoid;}
 
-    section div:nth-child(2) { font-size: 10px; } /* NOTE: Перечень правил */
-    section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* NOTE: Претензии примаються */
-    section div:nth-child(4) p:nth-child(2) { font-size: 14px; } /* NOTE: Итого по закза-наряду */
-    section div:nth-child(4) p:nth-child(2) { font-size: 12px; } /* NOTE: Сдал, принял */
+    section div:nth-child(2) { font-size: 10px; } /* NOTE: Раздел "Перечень правил" */
+    section div:nth-child(4) p:nth-child(1) { font-size: 12px; } /* NOTE: Раздел "Претензии примаються" */
+    section div:nth-child(4) p:nth-child(2) { font-size: 14px; } /* NOTE: Раздел "Итого по закза-наряду" */
+    section div:nth-child(4) p:nth-child(2) { font-size: 12px; } /* NOTE: Раздел "Сдал, принял" */
 
     button { display: none; }
 
