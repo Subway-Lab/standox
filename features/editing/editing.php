@@ -2,7 +2,7 @@
 // NOTE: Проверка авторизации пользователя
 require_once('../../auth_check.php');
 
-$base_url = '../../';
+
 ?>
 
 <?php
