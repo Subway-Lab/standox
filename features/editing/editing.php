@@ -8,11 +8,11 @@ require_once __DIR__ . '/../../auth_check.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+// NOTE: Подключаемся к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль к базе данных
+$dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
@@ -47,13 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     );
     $stmt->execute();
     
-    // Удаляем старые услуги
     $conn->query("DELETE FROM list_of_work WHERE order_id = $order_id");
     
-    // ИСПРАВЛЕНИЕ #1: Новый способ сбора данных об услугах
     $services = [];
-    // Собираем все возможные индексы услуг
-    for ($i = 1; $i <= 10000; $i++) { // 300 - максимальный ожидаемый ID услуги
+    for ($i = 1; $i <= 10000; $i++) {
         $price_key = 'service' . $i . '_price';
         $name_key = 'service' . $i . '_name';
         $section_key = 'service' . $i . '_section';
@@ -94,16 +91,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 
-// Загрузка данных заказа
+// NOTE: Загрузка данных заказа
 $order_data = [];
 $services_data = [];
 
 if ($order_id > 0) {
-    // Основные данные заказа
+    // NOTE:Основные данные заказа
     $result = $conn->query("SELECT * FROM orders WHERE id = $order_id");
     $order_data = $result->fetch_assoc();
     
-    // Данные об услугах
+    // NOTE: Данные об услугах
     $result = $conn->query("SELECT * FROM list_of_work WHERE order_id = $order_id");
     while ($row = $result->fetch_assoc()) {
         $services_data[$row['service_id']] = $row;
@@ -350,7 +347,7 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
 
-        <script src="../../index_1.js"></script>   
+        <script src="/index_1.js"></script> 
         <script src="editing_1.js"></script>
         <script src="editing_2.js"></script>
         <script src="editing_3.js"></script>
