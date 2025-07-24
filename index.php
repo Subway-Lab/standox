@@ -15,7 +15,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="admin_orders.php" class="menu_link"> база данных </a></li>
+                    <li><a href="https://www.standox.pro/features/database/database.php" class="menu_link"> база данных </a></li>
                     <li><a href="logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>

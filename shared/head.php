@@ -42,7 +42,7 @@
         <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($loginCss) ?>">
     <?php endif; ?>
 
-    <?php if (isset($adminOrderCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($adminOrderCss) ?>">
+    <?php if (isset($databaseCss)): ?>
+        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($databaseCss) ?>">
     <?php endif; ?>
 </head>

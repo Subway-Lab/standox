@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     $stmt = $conn->prepare("DELETE FROM orders WHERE id = ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
-        header("Location: admin_orders.php");
+        header("Location: database.php");
         exit;
     } else {
         echo "Ошибка удаления заказа: " . $stmt->error;

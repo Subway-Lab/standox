@@ -1,18 +1,18 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('auth_check.php');
+require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
-// NOTE: Включаем отображение ошибок (для отладки)
+// NOTE: Включение отладки (Убрать в продакшине)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// NOTE: Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+// NOTE: Подключение к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
+$dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -50,8 +50,8 @@ if ($searchQuery) {
 <html lang="ru">
     
     <?php
-        $adminOrderCss = 'admin_orders.css';
-        include 'shared/head.php';
+        $databaseCss = 'database.css';
+        include __DIR__ . '/../../shared/head.php';
     ?>
 
         <body>
@@ -60,8 +60,8 @@ if ($searchQuery) {
                 <h1> STANDOX </h1>
                 <nav class="menu">
                     <ul>
-                        <li><a href="index.php" class="menu_link"> новый заказ-наряд </a></li>
-                        <li><a href="logout.php" class="menu_link"> выйти </a></li>
+                        <li><a href="https://www.standox.pro/index.php" class="menu_link"> новый заказ-наряд </a></li>
+                        <li><a href="https://www.standox.pro/logout.php" class="menu_link"> выйти </a></li>
                     </ul>
                 </nav> 
             </header>
@@ -73,7 +73,7 @@ if ($searchQuery) {
                 </div>
 
                 <div class="search_form">
-                    <form method="get" action="admin_orders.php">
+                    <form method="get" action="database.php">
                         <div class="input-container">
                             <input class="search_input" type="text" name="search" placeholder="ПОИСК" 
                                 value="<?= htmlspecialchars($search) ?>">
@@ -107,7 +107,7 @@ if ($searchQuery) {
                             <?php while ($order = $result->fetch_assoc()): ?>
                                 <tr>
                                     <td>
-                                        <a class="link_move_1" href="/features/print/print.php?id=<?= htmlspecialchars($order['id']) ?>">
+                                        <a class="link_move_1" href="https://www.standox.pro/features/print/print.php?id=<?= htmlspecialchars($order['id']) ?>">
                                             <?= htmlspecialchars($order['id']) ?>
                                         </a>
                                     </td>
@@ -120,8 +120,8 @@ if ($searchQuery) {
                                     <td><?= htmlspecialchars(number_format(floor($order['total_work_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td>
-                                        <a class="link_move_2" href="/features/print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
-                                        <a class="link_move_2" href="features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
+                                        <a class="link_move_2" href="https://www.standox.pro/features/print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
+                                        <a class="link_move_2" href="https://www.standox.pro/features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
                                         <a class="link_move_2" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                     </td>
                                 </tr>
@@ -133,10 +133,10 @@ if ($searchQuery) {
                 </table>
             </div>
             
-            <?php include 'shared/footer.php'; ?>
+            <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-            <script src="search_bar.js"></script>
-            <script src="admin_order.js"></script>
+            <script src="database.js"></script>
+            <script src="searchBar.js"></script>
 
         </body>
     </html>
