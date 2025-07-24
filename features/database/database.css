@@ -101,7 +101,7 @@ form {
     width: 3.7vw;
     height: 3.7vw;
 
-    background-image: url("files/gray_close.svg");
+    background-image: url("https://www.standox.pro/files/gray_close.svg");
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -137,8 +137,8 @@ table {
     color: rgb(29, 29, 31);
     line-height: 1.2;
     
-    word-wrap: break-word; /* NOTE: Нужно уточнить целесобразность */
-    border-collapse: collapse; /* NOTE: Нужно уточнить целесобразность */
+    word-wrap: break-word; /* FIXME: Нужно уточнить целесобразность */
+    border-collapse: collapse; /* FIXME: Нужно уточнить целесобразность */
 }
 
 thead {

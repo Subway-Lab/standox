@@ -19,7 +19,7 @@ if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
 
-/// NOTE: Обработка поискового запроса (по модели, ФИО или телефону)
+// NOTE: Обработка поискового запроса (по модели, ФИО или телефону)
 $search = "";
 $searchQuery = "";
 $searchParams = [];
@@ -27,7 +27,6 @@ $searchTypes = "";
 
 if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $search = trim($_GET['search']);
-    // Исправлено количество параметров и пробел после LIKE
     $searchQuery = " WHERE car_model LIKE ? OR car_number LIKE ? OR name LIKE ? OR surname LIKE ? OR patronymic LIKE ? OR phone LIKE ?";
     $likeSearch = "%" . $search . "%";
     $searchParams = array_fill(0, 6, $likeSearch);
@@ -37,7 +36,7 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 // NOTE: Запрос для получения заказов
 if ($searchQuery) {
     $stmt = $conn->prepare("SELECT * FROM orders $searchQuery ORDER BY created_at DESC");
-    // Привязываем параметры поиска
+    // NOTE: Привязываем параметры поиска
     $stmt->bind_param($searchTypes, ...$searchParams);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -142,6 +141,7 @@ if ($searchQuery) {
     </html>
 
     <?php
-    // Закрываем подключение к БД
+
+    // NOTE: Закрываем подключение к БД
     $conn->close();
     ?>
