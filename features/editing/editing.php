@@ -125,7 +125,7 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="https://www.standox.pro/database/database.php" class="menu_link"> база данных </a></li>
+                    <li><a href="https://www.standox.pro/features/database/database.php" class="menu_link"> база данных </a></li>
                     <li><a href="https://www.standox.pro/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
