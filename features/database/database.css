@@ -85,8 +85,8 @@ form {
     border: 2px solid rgb(134, 134, 134);
     border-radius: clamp(2px, 5px, 8px);
     outline: none;
-    
-    background-image: url("files/gray_search.svg"); /* NOTE: Иконка поиска */
+
+    background-image: url("https://www.standox.pro/files/gray_search.svg"); /* NOTE: Иконка поиска */
     background-repeat: no-repeat;
     background-size: 2vw;
     background-position: 1vw center;
