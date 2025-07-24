@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: /database/database.php?id=$order_id");
+    header("Location: /features/database/database.php?id=$order_id");
     exit;
 }
 
