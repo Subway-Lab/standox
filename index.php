@@ -7,8 +7,8 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
 <!DOCTYPE HTML>
 <html lang="ru">
 
-    <?php include 'head.php'; ?>
-    
+    <?php include __DIR__ . '/shared/head.php'; ?>
+
     <body>
 
         <header>
@@ -16,7 +16,7 @@ require_once('auth_check.php'); // NOTE: Проверка авторизации
             <nav class="menu">
                 <ul>
                     <li><a href="https://www.standox.pro/features/database/database.php" class="menu_link"> база данных </a></li>
-                    <li><a href="logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="https://www.standox.pro/features/auth/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>

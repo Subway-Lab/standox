@@ -60,7 +60,7 @@ if ($searchQuery) {
                 <nav class="menu">
                     <ul>
                         <li><a href="https://www.standox.pro/index.php" class="menu_link"> новый заказ-наряд </a></li>
-                        <li><a href="https://www.standox.pro/logout.php" class="menu_link"> выйти </a></li>
+                        <li><a href="https://www.standox.pro/features/auth/logout.php" class="menu_link"> выйти </a></li>
                     </ul>
                 </nav> 
             </header>
