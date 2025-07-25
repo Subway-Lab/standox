@@ -1,6 +1,6 @@
 <?php
 // NOTE: Проверка авторизации пользователя
-require_once('auth_check.php');
+require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
@@ -10,11 +10,11 @@ require_once('auth_check.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+// NOTE: Подключение к базе данных
+$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
+$username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
+$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
+$dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
 // Подключаемся к базе данных
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -68,36 +68,32 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title> STANDOX </title>
-    <link rel="icon" href="files/favicon.ico" type="image/x-icon">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        form { max-width: 400px; margin: 0 auto; }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        .error { color: red; }
-        .success { color: green; }
-    </style>
-</head>
-<body>
-    <h1>Регистрация сотрудника СТО</h1>
-    
-    <?php if (isset($error)): ?>
-        <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-    
-    <form method="post" action="registration.php">
-        <label for="username">Имя пользователя:</label>
-        <input type="text" id="username" name="username" required>
+
+    <?php
+        include __DIR__ . '/../../shared/head.php';
+    ?>
+
+    <body>
+        <h1> Регистрация сотрудника СТО </h1>
         
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required>
+        <?php if (isset($error)): ?>
+            <div class="error"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
         
-        <label for="confirm_password">Подтвердите пароль:</label>
-        <input type="password" id="confirm_password" name="confirm_password" required>
+        <form method="post" action="registration.php">
+            <label for="username"> Введите имя пользователя: </label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password"> Укажите пароль: </label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="confirm_password"> Подтвердите пароль:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            
+            <button type="submit"> ЗАРЕГИСТРИРОВАТЬСЯ </button>
+        </form>
+
+        <?php include __DIR__ . '/../../shared/footer.php'; ?>
         
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-</body>
+    </body>
 </html>
