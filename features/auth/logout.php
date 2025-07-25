@@ -13,6 +13,6 @@ if (isset($_COOKIE['user_logged_in'])) {
 }
 
 // Перенаправляем на страницу входа
-header("Location: login.php");
+header("Location: /../../login.php");
 exit();
 ?>
