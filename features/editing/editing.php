@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
-// NOTE: Включение отладки (Убрать в продакшине)
+// FIXME: Включение отладки (Убрать в продакшине)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 

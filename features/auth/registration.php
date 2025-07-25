@@ -4,9 +4,8 @@ require_once __DIR__ . '/../../auth_check.php';
 ?>
 
 <?php
-// registration.php
 
-// Включаем отображение ошибок для отладки (на продакшене можно отключить)
+// FIXME: Включение отладки (Убрать в продакшине)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -16,26 +15,24 @@ $username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя ба�
 $password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
 $dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
-// Подключаемся к базе данных
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Ошибка подключения: " . $conn->connect_error);
 }
 
-// Обработка отправки формы
+// NOTE: Обработка отправки формы
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Получаем данные из формы
+    // NOTE: Получение данные из формы
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     
-    // Проверяем, что все поля заполнены
     if (empty($username) || empty($password) || empty($confirm_password)) {
         $error = "Все поля обязательны для заполнения.";
     } elseif ($password !== $confirm_password) {
         $error = "Пароли не совпадают.";
     } else {
-        // Проверяем, существует ли уже пользователь с таким именем
+        // NOTE: Проверка наличия пользователь с таким именем
         $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -43,16 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->num_rows > 0) {
             $error = "Пользователь с таким именем уже существует.";
         } else {
-            // Если имя свободно, шифруем пароль
+            // NOTE: Шифруем пароль если имя пользователя свободно
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
-            // Вставляем нового пользователя в таблицу
+            // NOTE: Сохранение нового пользователя в таблицу
             $stmt_insert = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt_insert->bind_param("ss", $username, $hashed_password);
             
             if ($stmt_insert->execute()) {
-                // Регистрация прошла успешно, перенаправляем пользователя на страницу создания заказа
-                header("Location: index.html");
+                // NOTE: Перенаправление пользователя на страницу создания заказа
+                header("Location: /../../login.php");
                 exit;
             } else {
                 $error = "Ошибка регистрации: " . $stmt_insert->error;
@@ -69,9 +66,7 @@ $conn->close();
 <!DOCTYPE html>
 <html lang="ru">
 
-    <?php
-        include __DIR__ . '/../../shared/head.php';
-    ?>
+    <?php include __DIR__ . '/../../shared/head.php'; ?>
 
     <body>
         <h1> Регистрация сотрудника СТО </h1>
