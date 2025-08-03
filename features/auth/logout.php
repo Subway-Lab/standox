@@ -12,6 +12,6 @@
     }
 
     // NOTE: Перенаправление на страницу входа
-    header("Location: /../../login.php");
+    header("Location: login.php");
     exit();
 ?>

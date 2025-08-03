@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($stmt_insert->execute()) {
                 // NOTE: Перенаправление пользователя на страницу создания заказа
-                header("Location: /../../login.php");
+                header("Location: login.php");
                 exit;
             } else {
                 $error = "Ошибка регистрации: " . $stmt_insert->error;

@@ -63,16 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE HTML>
 <html lang="ru">
     
-      <?php
+    <?php
         $loginCss = 'login.css';
-        include 'shared/head.php';
+        include __DIR__ . '/../../shared/head.php';
     ?>
 
     <body>
 
         <div class="left_block">
             <div class="logo">
-                <img src="files/white_logo.svg" alt="STANDOX logo">
+                <img src="https://www.standox.pro/files/white_logo.svg" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>

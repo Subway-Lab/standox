@@ -20,14 +20,14 @@ if ($seconds_until_midnight <= 1) {
     session_destroy();
 
     // Перенаправляем на страницу логина
-    header("Location: login.php");
+    header("Location: features/auth/login.php");
     exit();
 }
 
 // Проверяем, залогинен ли пользователь
 if (!isset($_SESSION['user_id'])) {
     // Если нет, перенаправляем на страницу логина
-    header("Location: login.php");
+    header("Location: features/auth/login.php");
     exit();
 }
 ?>
