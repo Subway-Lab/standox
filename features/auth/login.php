@@ -3,7 +3,7 @@ session_start(); // NOTE: Стартуем сессию
 
 // NOTE: Если пользователь залогинен, перенаправляем его на главную
 if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit();
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $hashed_password)) {
             // NOTE: Успешный вход, сохраняем user_id в сессию
             $_SESSION['user_id'] = $user_id;
-            header("Location: index.php"); // NOTE: Перенаправляем на главную страницу
+            header("Location: ../../index.php"); // NOTE: Перенаправляем на главную страницу
             exit();
         } else {
             // NOTE: В случае если неверный логин или пароль, выводим сообщение об ошибке
