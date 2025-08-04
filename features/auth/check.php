@@ -1,32 +1,31 @@
-<?php
-// Проверка авторизации пользователя
+<?php // NOTE: Файл проверки авторизации пользователя
 
-session_start(); // Начинаем сессию
+session_start(); // NOTE: Стартуем сессию
 
-// Проверка времени, если наступила полночь (00:00), обнуляем cookie
+// NOTE: Проверка времени, если наступила полночь (00:00), обнуляем cookie
 $current_time = time();
 $midnight = strtotime('tomorrow'); // Время 00:00 следующего дня
 $seconds_until_midnight = $midnight - $current_time; // Сколько секунд до полуночи
 
-// Если до полуночи осталось меньше секунды, удаляем cookie и очищаем сессию
+// NOTE:Если до полуночи осталось меньше секунды, удаляем cookie и очищаем сессию
 if ($seconds_until_midnight <= 1) {
-    // Удаляем cookie (если оно существует)
+    // NOTE:Удаляем cookie (если оно существует)
     if (isset($_COOKIE['user_logged_in'])) {
-        setcookie('user_logged_in', '', time() - 3600, '/'); // Удаляем cookie, установив время в прошлом
+        setcookie('user_logged_in', '', time() - 3600, '/'); // NOTE: Удаляем cookie, установив время в прошлом
     }
     
-    // Удаляем сессионные данные
+    // NOTE: Удаляем сессионные данные
     session_unset();
     session_destroy();
 
-    // Перенаправляем на страницу логина
+    // NOTE: Перенаправляем на страницу логина
     header("Location: features/auth/login.php");
     exit();
 }
 
-// Проверяем, залогинен ли пользователь
+// NOTE: Проверяем, залогинен ли пользователь
 if (!isset($_SESSION['user_id'])) {
-    // Если нет, перенаправляем на страницу логина
+    // NOTE: Если нет, перенаправляем на страницу логина
     header("Location: features/auth/login.php");
     exit();
 }
