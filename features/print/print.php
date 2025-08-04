@@ -1,6 +1,5 @@
 <?php
-// NOTE: Проверка авторизации пользователя
-require_once __DIR__ . '/../../auth_check.php';
+    require_once __DIR__ . '/../auth/auth_check.php';  // NOTE: Проверка авторизации пользователя
 ?>
 
 <?php
