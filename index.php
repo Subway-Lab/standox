@@ -1,7 +1,7 @@
 <?php
 set_time_limit(600); // NOTE: Увиличение времени запроса до 10 минут
 
-require_once(__DIR__ . '/features/auth/auth_check.php'); // NOTE: Проверка авторизации пользователя
+require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка авторизации пользователя
 ?>
 
 <!DOCTYPE HTML>
