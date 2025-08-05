@@ -21,7 +21,7 @@ require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка а
             </nav>
         </header>
 
-        <div class="form">
+        <div class="form heavy">
             <form id="orderForm" action="submit_order.php" method="POST">
 
             <div class="title">

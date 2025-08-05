@@ -67,7 +67,7 @@ if ($searchQuery) {
             <div class="sticky_wrapper">
                 <div class="search_block">
                     <h2> База данных заказ-нарядов </h2>
-                    <img class="loupe" src="https://www.standox.pro/files/gray_search.svg" alt="icon search">
+                    <img class="loupe" src="https://www.standox.pro/files/gray_search.svg" loading="lazy" alt="icon search">
                 </div>
 
                 <div class="search_form">

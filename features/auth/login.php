@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="left_block">
             <div class="logo">
-                <img src="https://www.standox.pro/files/white_logo.svg" alt="STANDOX logo">
+                <img src="https://www.standox.pro/files/white_logo.svg" loading="lazy" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>

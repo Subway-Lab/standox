@@ -8,7 +8,7 @@ $baseUrl = $protocol . $host . $projectDir . '/';
 <footer>
     <div class="all_footer_block">
         <div class="footer_column_1">
-            <img class="bottom_logo" src="<?= $baseUrl ?>../files/black_logo.svg" alt="STANDOX logo">
+            <img class="bottom_logo" src="<?= $baseUrl ?>../files/black_logo.svg" loading="lazy" alt="STANDOX logo">
             <div class="contacts">
                 <p>
                     СТО "STANDOX" <br>
