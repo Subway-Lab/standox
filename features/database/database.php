@@ -133,8 +133,8 @@ if ($searchQuery) {
             
             <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-            <script src="database.js"></script>
-            <script src="searchBar.js"></script>
+            <script src="database.js" defer></script>
+            <script src="searchBar.js"defer></script>
 
         </body>
     </html>

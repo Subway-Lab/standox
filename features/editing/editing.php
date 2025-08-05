@@ -344,10 +344,10 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
 
-        <script src="/index_1.js"></script> 
-        <script src="editing_1.js"></script>
-        <script src="editing_2.js"></script>
-        <script src="editing_3.js"></script>
+        <script src="/index_1.js" defer></script> 
+        <script src="editing_1.js" defer></script>
+        <script src="editing_2.js" defer></script>
+        <script src="editing_3.js" defer></script>
         
     </body>
 </html>

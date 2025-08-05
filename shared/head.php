@@ -25,7 +25,7 @@
 
     <link rel="icon" href="https://www.standox.pro/files/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" defer></script>
 
     <?php if (!isset($noStyle) || !$noStyle): ?>
         <link rel="stylesheet" href="https://www.standox.pro/public/style.css">
