@@ -1,3 +1,7 @@
+<?php 
+    $version = "1.0.0";
+?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,22 +31,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <?php if (!isset($noStyle) || !$noStyle): ?>
-        <link rel="stylesheet" href="https://www.standox.pro/public/style.css">
+        <link rel="stylesheet" href="https://www.standox.pro/public/style.css?v=<?php echo $version; ?>">
     <?php endif; ?>
 
-     <?php if (isset($printCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/print/print.css?<?= htmlspecialchars($printCss) ?>">
+    <?php if (isset($printCss)): ?>
+        <link rel="stylesheet" type="text/css" href="/features/print/print.css?v=<?= htmlspecialchars($printCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($ebitingCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars_decode($ebitingCss) ?>">
+        <link rel="stylesheet" type="text/css" href="/features/editing/editing.css?v=<?= htmlspecialchars($ebitingCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($loginCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($loginCss) ?>">
+        <link rel="stylesheet" type="text/css" href="/features/auth/login.css?v=<?= htmlspecialchars($loginCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($databaseCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= htmlspecialchars($databaseCss) ?>">
+        <link rel="stylesheet" type="text/css" href="/features/database/database.css?v=<?= htmlspecialchars($databaseCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 </head>

@@ -133,8 +133,8 @@ if ($searchQuery) {
             
             <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-            <script src="database.js" async></script>
-            <script src="searchBar.js"async></script>
+            <script src="database.js?v=<?php echo $version; ?>" async></script>
+            <script src="searchBar.js?v=<?php echo $version; ?>" async></script>
 
         </body>
     </html>

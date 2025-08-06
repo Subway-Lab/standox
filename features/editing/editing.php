@@ -343,12 +343,11 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
 
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
+        <script src="/index_1.js?v=<?php echo $version; ?>" async></script>
+        <script src="editing_1.js?v=<?php echo $version; ?>" async></script>
+        <script src="editing_2.js?v=<?php echo $version; ?>" async></script>
+        <script src="editing_3.js?v=<?php echo $version; ?>" async></script>
 
-        <script src="/index_1.js" async></script> 
-        <script src="editing_1.js" async></script>
-        <script src="editing_2.js" async></script>
-        <script src="editing_3.js" async></script>
-        
     </body>
 </html>
 <?php $conn->close(); ?>
