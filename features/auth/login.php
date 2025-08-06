@@ -1,5 +1,6 @@
 <?php
-session_start(); // NOTE: Стартуем сессию
+    set_time_limit(600); // NOTE: Увиличение времени запроса до 10 минут
+    session_start(); // NOTE: Стартуем сессию
 
 // NOTE: Если пользователь залогинен, перенаправляем его на главную
 if (isset($_SESSION['user_id'])) {
