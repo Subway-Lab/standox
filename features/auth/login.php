@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var errorMessage = <?php echo json_encode($error_message); ?>;
         </script>
 
-        <script src="login.js?v=<?php echo $version; ?>" async></script>
+        <script src="login.js?v=<?php echo $version; ?>" defer></script>
 
     </body>
 </html>
