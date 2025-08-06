@@ -174,9 +174,9 @@ require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка а
 
         <?php include 'shared/footer.php'; ?>
 
-        <script src="index_1.js?v=<?php echo $version; ?>" async></script>
-        <script src="index_2.js?v=<?php echo $version; ?>" async></script>
-        <script src="index_3.js?v=<?php echo $version; ?>" async></script>
+        <script src="index_1.js?v=<?php echo $version; ?>"></script>
+        <script src="index_2.js?v=<?php echo $version; ?>"></script>
+        <script src="index_3.js?v=<?php echo $version; ?>"></script>
 
     </body>
 </html>
