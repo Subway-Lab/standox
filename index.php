@@ -1,4 +1,8 @@
+<?php
+    set_time_limit(600); // NOTE: Увиличение времени запроса до 10 минут
 
+    require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка авторизации пользователя
+?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
@@ -61,11 +65,45 @@
                     <h3> 2. Кузовные работы: </h3>
                 </div>
 
-            
+                <?php
+                $services = require_once 'shared/works.php';
+                foreach ($services as $section) {
+                    echo '
+                    <div class="collapsible-container">
+                        <div class="collapsible-header">
+                            <label class="form-label">'.$section['title'].'</label>
+                            <span class="collapsible-arrow">↓</span>
+                        </div>
+                        <div class="collapsible-content">
+                            <div class="wrapper">';
+                    foreach ($section['items'] as $index => $item) {
+                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
+                        $serviceId = 'service'.$serviceNumber;
+                        echo '
+                                <div class="service-item">
+                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
+                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
+                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
+                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
+                                </div>';
+                    }
+                    echo '
+                            </div>
+                        </div>
+                    </div>';
+                }
+                ?>
+
+
+                <!-- NOTE: Итоговая сумма, на экране for user -->
                 <div class="title">
-                    <h3> 4. Запасные части и расходные материалы: </h3>
+                    <h3> Итого: <span id="totalPrice">0</span> руб. </h3>
                 </div>
 
+                <!-- Поле для отправки суммы. Сейчас оно текстовое, чтобы видеть значение -->
+                <input type="hidden" id="total_price_hidden" name="total_price" value="0" readonly>
+
+                <button type="submit" class="btn btn-success"> ОФОРМИТЬ ЗАКАЗ </button>
             </form>
         </div>
 
