@@ -174,9 +174,9 @@ require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка а
 
         <?php include 'shared/footer.php'; ?>
 
-        <script src="index_1.js" defer></script>
-        <script src="index_2.js" defer></script>
-        <script src="index_3.js" defer></script>
+        <script src="index_1.js" async></script>
+        <script src="index_2.js" async></script>
+        <script src="index_3.js" async></script>
 
     </body>
 </html>
