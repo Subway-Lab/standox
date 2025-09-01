@@ -58,8 +58,8 @@ if ($searchQuery) {
                 <h1> STANDOX </h1>
                 <nav class="menu">
                     <ul>
-                        <li><a href="https://www.standox.pro/index.php" class="menu_link"> новый заказ-наряд </a></li>
-                        <li><a href="https://www.standox.pro/features/auth/logout.php" class="menu_link"> выйти </a></li>
+                        <li><a href="/sto-site/index.php" class="menu_link"> новый заказ-наряд </a></li>
+                        <li><a href="/sto-site/features/auth/logout.php" class="menu_link"> выйти </a></li>
                     </ul>
                 </nav> 
             </header>
@@ -67,7 +67,7 @@ if ($searchQuery) {
             <div class="sticky_wrapper">
                 <div class="search_block">
                     <h2> База данных заказ-нарядов </h2>
-                    <img class="loupe" src="https://www.standox.pro/files/gray_search.svg" loading="lazy" alt="icon search">
+                    <img class="loupe" src="/sto-site/files/gray_search.svg" loading="lazy" alt="icon search">
                 </div>
 
                 <div class="search_form">
@@ -118,8 +118,8 @@ if ($searchQuery) {
                                     <td><?= htmlspecialchars(number_format(floor($order['total_work_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td><?= htmlspecialchars(number_format(floor($order['total_parts_price'] ?? 0), 0, '.', ' ')) ?></td>
                                     <td>
-                                        <a class="link_move_2" href="https://www.standox.pro/features/print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
-                                        <a class="link_move_2" href="https://www.standox.pro/features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
+                                        <a class="link_move_2" href="/sto-site/features/print/print.php?id=<?= $order['id'] ?>" target="_blank"> Распечатать </a>
+                                        <a class="link_move_2" href="/sto-site/features/editing/editing.php?id=<?= $order['id'] ?>"> Редактировать </a>
                                         <a class="link_move_2" href="javascript:void(0)" onclick="confirmDeletion(<?= $order['id'] ?>)"> Удалить </a>
                                     </td>
                                 </tr>

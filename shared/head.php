@@ -31,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <?php if (!isset($noStyle) || !$noStyle): ?>
-        <link rel="stylesheet" href="https://www.standox.pro/public/style.css?v=<?php echo $version; ?>">
+        <link rel="stylesheet" href="/sto-site/public/style.css?v=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($printCss)): ?>
