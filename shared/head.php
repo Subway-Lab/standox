@@ -35,18 +35,18 @@
     <?php endif; ?>
 
     <?php if (isset($printCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/print/print.css?v=<?= htmlspecialchars($printCss) ?>&version=<?php echo $version; ?>">
+        <link rel="stylesheet" type="text/css" href="/sto-site/features/print/print.css?v=<?= htmlspecialchars($printCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($ebitingCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/editing/editing.css?v=<?= htmlspecialchars($ebitingCss) ?>&version=<?php echo $version; ?>">
+        <link rel="stylesheet" type="text/css" href="/sto-site/features/editing/editing.css?v=<?= htmlspecialchars($ebitingCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($loginCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/auth/login.css?v=<?= htmlspecialchars($loginCss) ?>&version=<?php echo $version; ?>">
+        <link rel="stylesheet" type="text/css" href="/sto-site/features/auth/login.css?v=<?= htmlspecialchars($loginCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($databaseCss)): ?>
-        <link rel="stylesheet" type="text/css" href="/features/database/database.css?v=<?= htmlspecialchars($databaseCss) ?>&version=<?php echo $version; ?>">
+        <link rel="stylesheet" type="text/css" href="/sto-site/features/database/database.css?v=<?= htmlspecialchars($databaseCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 </head>
