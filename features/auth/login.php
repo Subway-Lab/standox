@@ -1,21 +1,24 @@
 <?php
-session_start(); // NOTE: Стартуем сессию
+    session_start(); // NOTE: Стартуем сессию
 
-// NOTE: Если пользователь залогинен, перенаправляем его на главную
-if (isset($_SESSION['user_id'])) {
-    header("Location: /sto-site/index.php");
-    exit();
-}
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 
-// NOTE: Переменные для ошибки
-$error = ''; // NOTE: Сообщение об ошибке
-$error_message = ''; // NOTE: Текст ошибки
-$error_class = ''; // NOTE: Класс ошибки
+    // NOTE: Если пользователь залогинен, перенаправляем его на главную
+    if (isset($_SESSION['user_id'])) {
+        header("Location: " . $basePath . "/index.php");
+        exit();
+    }
 
-// NOTE: Обработка формы логина
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // NOTE: Строки отвечающие за подключение к базе данных
-    $mysqli = new mysqli('g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', 'q1i28z5zzuyro11l', 'kwdvun8ff1f8m6fs', 'vtjb3fkssehwjx62');
+    // NOTE: Переменные для ошибки
+    $error = ''; // NOTE: Сообщение об ошибке
+    $error_message = ''; // NOTE: Текст ошибки
+    $error_class = ''; // NOTE: Класс ошибки
+
+    // NOTE: Обработка формы логина
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // NOTE: Строки отвечающие за подключение к базе данных
+        $mysqli = new mysqli('g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', 'q1i28z5zzuyro11l', 'kwdvun8ff1f8m6fs', 'vtjb3fkssehwjx62');
 
     // NOTE: Проверка на ошибки подключения
     if ($mysqli->connect_error) {
@@ -37,26 +40,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_result($user_id, $hashed_password);
         $stmt->fetch();
 
-        // NOTE: Сверяем введенный пароль с хешированным паролем из базы данных
-        if (password_verify($password, $hashed_password)) {
-            // NOTE: Успешный вход, сохраняем user_id в сессию
-            $_SESSION['user_id'] = $user_id;
-            header("Location: /sto-site/index.php"); // NOTE: Перенаправляем на главную страницу
-            exit();
+    // NOTE: Сверяем введенный пароль с хешированным паролем из базы данных
+    if (password_verify($password, $hashed_password)) {
+        // NOTE: Успешный вход, сохраняем user_id в сессию
+        $_SESSION['user_id'] = $user_id;
+        header("Location: " . $basePath . "/index.php"); // NOTE: Перенаправляем на главную страницу
+        exit();
         } else {
             // NOTE: В случае если неверный логин или пароль, выводим сообщение об ошибке
             $error_message = "Неверный логин или пароль!";
             $error_class = 'error'; // NOTE: Примение класса для ошибки
         }
-    } else {
-        // NOTE: В случае если пользователь не найден, показываем ошибку
-        $error_message = "Пользователь не найден!";
-        $error_class = 'error'; // Применяем класс для ошибки
-    }
+        } else {
+            // NOTE: В случае если пользователь не найден, показываем ошибку
+            $error_message = "Пользователь не найден!";
+            $error_class = 'error'; // Применяем класс для ошибки
+        }
 
-    // NOTE: Закрытие сесси
-    $stmt->close();
-    $mysqli->close();
+        // NOTE: Закрытие сесси
+        $stmt->close();
+        $mysqli->close();
 }
 ?>
 
@@ -72,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="left_block">
             <div class="logo">
-                <img src="/sto-site/files/white_logo.svg" loading="lazy" alt="STANDOX logo">
+                <img src="<?= $basePath ?>/files/white_logo.svg" loading="lazy" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>

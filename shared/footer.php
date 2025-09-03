@@ -1,14 +1,12 @@
 <?php
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
-$host = $_SERVER['HTTP_HOST'];
-$projectDir = dirname(dirname($_SERVER['SCRIPT_NAME']));
-$baseUrl = $protocol . $host . $projectDir . '/';
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <footer>
     <div class="all_footer_block">
         <div class="footer_column_1">
-            <img class="bottom_logo" src="<?= $baseUrl ?>../files/black_logo.svg" loading="lazy" alt="STANDOX logo">
+            <img class="bottom_logo" src="<?= $basePath ?>/files/black_logo.svg" loading="lazy" alt="STANDOX logo">
             <div class="contacts">
                 <p>
                     СТО "STANDOX" <br>

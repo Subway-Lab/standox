@@ -1,5 +1,8 @@
 <?php
     require_once __DIR__ . '/check.php';   // NOTE: Проверка авторизации пользователя
+
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <?php
@@ -48,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($stmt_insert->execute()) {
                 // NOTE: Перенаправление пользователя на страницу создания заказа
-                header("Location: login.php");
-                exit;
+                header('Location: ' . $basePath . '/features/auth/login.php');
+                exit();
             } else {
                 $error = "Ошибка регистрации: " . $stmt_insert->error;
             }

@@ -1,6 +1,9 @@
 <?php
     session_start();
 
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
+
     // NOTE: Удаление данных сессии
     $_SESSION = array();
     session_unset();
@@ -12,6 +15,6 @@
     }
 
     // NOTE: Перенаправление на страницу входа
-    header("Location: login.php");
+    header('Location: ' . $basePath . '/features/auth/login.php');
     exit();
 ?>
