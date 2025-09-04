@@ -67,101 +67,17 @@
                 <div class="title">
                     <h3> 2. Кузовные работы: </h3>
                 </div>
-
-                <?php
-                $services = require_once 'shared/works.php';
-                foreach ($services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-works" class="heavy"></div>
 
                 <div class="title">
                     <h3> 3. Покрасочные работы: </h3>
                 </div>
-
-                <?php
-                $services = require_once 'shared/painting.php';
-                foreach ($services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-painting" class="heavy"></div>
 
                 <div class="title">
                     <h3> 4. Запасные части и расходные материалы: </h3>
                 </div>
-
-                <?php
-                $services = require_once 'shared/parts.php';
-                foreach ($services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" data-section="'.$section['section'].'" data-service-id="'.$serviceNumber.'">
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" placeholder="0.00" disabled>
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-parts" class="heavy"></div>
 
                 <!-- NOTE: Итоговая сумма, на экране for user -->
                 <div class="title">
@@ -180,6 +96,7 @@
         <script src="index_1.js?v=<?php echo $version; ?>" defer></script>
         <script src="index_2.js?v=<?php echo $version; ?>" defer></script>
         <script src="index_3.js?v=<?php echo $version; ?>" defer></script>
+        <script src="index_services.js?v=<?php echo $version; ?>" defer></script>
 
     </body>
 </html>
