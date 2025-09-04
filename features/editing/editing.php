@@ -1,11 +1,15 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
+
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <?php
 // FIXME: Включение отладки (Убрать в продакшине)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
 
 // NOTE: Подключение к базе данных
 $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
@@ -84,8 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt_services->execute();
     }
         
-    header("Location: /features/database/database.php?id=$order_id");
-    exit;
+    header('Location: ' . $basePath . '/features/database/database.php?id=' . urlencode($order_id));
+    exit();
 }
 
 // NOTE: Загрузка данных заказа
@@ -124,8 +128,8 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="/sto-site/features/database/database.php" class="menu_link"> база данных </a></li>
-                    <li><a href="/sto-site/features/auth/logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="<?= $basePath ?>/features/database/database.php" class="menu_link"> база данных </a></li>
+                    <li><a href="<?= $basePath ?>/features/auth/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
@@ -343,7 +347,7 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
 
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-        <script src="/index_1.js?v=<?php echo $version; ?>" defer></script>
+        <script src="<?= $basePath ?>/index_1.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_1.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_2.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_3.js?v=<?php echo $version; ?>" defer></script>

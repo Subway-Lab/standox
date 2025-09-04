@@ -40,8 +40,8 @@
         <link rel="stylesheet" type="text/css" href="<?= $basePath ?>/features/print/print.css?v=<?= htmlspecialchars($printCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
-    <?php if (isset($editingCss)): ?>
-        <link rel="stylesheet" type="text/css" href="<?= $basePath ?>/features/editing/editing.css?v=<?= htmlspecialchars($editingCss) ?>&version=<?php echo $version; ?>">
+    <?php if (isset($ebitingCss)): ?>
+        <link rel="stylesheet" type="text/css" href="<?= $basePath ?>/features/editing/editing.css?v=<?= htmlspecialchars($ebitingCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
 
     <?php if (isset($loginCss)): ?>

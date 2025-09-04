@@ -2,6 +2,9 @@
     set_time_limit(600); // NOTE: Увиличение времени запроса до 10 минут
 
     require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка авторизации пользователя
+
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <!DOCTYPE HTML>
@@ -15,8 +18,8 @@
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="/sto-site/features/database/database.php" class="menu_link"> база данных </a></li>
-                    <li><a href="/sto-site/features/auth/logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="<?= $basePath ?>/features/database/database.php" class="menu_link"> база данных </a></li>
+                    <li><a href="<?= $basePath ?>/features/auth/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>

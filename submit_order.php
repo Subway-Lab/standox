@@ -3,6 +3,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+$basePath = $firstSegment ? '/' . $firstSegment : '';
+
 // Подключаемся к базе данных
 $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
 $username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
@@ -74,8 +77,8 @@ if (isset($_POST['services']) && is_array($_POST['services'])) {
     }
 }    
     // Перенаправляем на страницу подтверждения с ID заказа
-    header("Location: /features/print/print.php?id=" . $order_id);
-    exit;
+    header('Location: ' . $basePath . '/features/print/print.php?id=' . $order_id);
+    exit();
 }
 // Закрываем соединение с базой данных
 $conn->close();

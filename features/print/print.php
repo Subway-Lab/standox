@@ -83,7 +83,7 @@ $conn->close();
                 <p> 8 924 472-30-30 </p>
                 <p> www.standox.chita.ru </p>
                 <p> email: lider00@list.ru </p>
-                <img src="/sto-site/files/standox_logo.svg" loading="lazy" alt="Standox logo">
+                <img src="<?= $basePath ?>/files/standox_logo.svg" loading="lazy" alt="Standox logo">
             </div>
 
             <div class="customer_data">

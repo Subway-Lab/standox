@@ -86,7 +86,7 @@ form {
     border-radius: clamp(2px, 5px, 8px);
     outline: none;
 
-    background-image: url("/sto-site/files/gray_search.svg"); /* NOTE: Иконка поиска */
+    background-image: url("../../files/gray_search.svg"); /* NOTE: Иконка поиска */
     background-repeat: no-repeat;
     background-size: 2vw;
     background-position: 1vw center;
@@ -101,7 +101,7 @@ form {
     width: 3.7vw;
     height: 3.7vw;
 
-    background-image: url("sto-site/files/gray_close.svg");
+    background-image: url("../../files/gray_close.svg");
     background-repeat: no-repeat;
     background-size: contain;
 

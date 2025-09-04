@@ -1,5 +1,8 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
+
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <?php
@@ -23,8 +26,8 @@ if (isset($_GET['id'])) {
     $stmt = $conn->prepare("DELETE FROM orders WHERE id = ?");
     $stmt->bind_param("i", $id);
     if ($stmt->execute()) {
-        header("Location: database.php");
-        exit;
+        header('Location: '. $basePath .'/features/database/database.php');
+        exit();
     } else {
         echo "Ошибка удаления заказа: " . $stmt->error;
     }
