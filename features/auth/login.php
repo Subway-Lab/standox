@@ -1,8 +1,8 @@
 <?php
     session_start(); // NOTE: Стартуем сессию
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+        $loginCss = 'login.css';
+        include __DIR__ . '/../../shared/head.php';
 
     // NOTE: Если пользователь залогинен, перенаправляем его на главную
     if (isset($_SESSION['user_id'])) {
@@ -65,12 +65,6 @@
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    
-    <?php
-        $loginCss = 'login.css';
-        include __DIR__ . '/../../shared/head.php';
-    ?>
-
     <body>
 
         <div class="left_block">
@@ -104,6 +98,5 @@
         </script>
 
         <script src="login.js?v=<?php echo $version; ?>" defer></script>
-
     </body>
 </html>

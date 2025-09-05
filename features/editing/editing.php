@@ -1,8 +1,8 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    $ebitingCss = 'editing.css';
+    include __DIR__ . '/../../shared/head.php';
 ?>
 
 <?php
@@ -107,21 +107,10 @@ if ($order_id > 0) {
         $services_data[$row['service_id']] = $row;
     }
 }
-
-// NOTE: Подключаем файлы с услугами
-$works_services = require __DIR__ . '/../../shared/works.php';
-$painting_services = require __DIR__ . '/../../shared/painting.php';
-$parts_services = require __DIR__ . '/../../shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    
-    <?php
-        $ebitingCss = 'editing.css';
-        include __DIR__ . '/../../shared/head.php';
-    ?>
-
     <body>
 
         <header>
@@ -188,145 +177,19 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
                 <p class="asterisk"> * поля обязательные для заполнения </p>
 
                 <div class="title">
-                    <h4> 2. Кузовные работы: </h4>
+                    <h3> 2. Кузовные работы: </h3>
                 </div>
-
-                <?php
-                foreach ($works_services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        $is_checked = isset($services_data[$serviceNumber]);
-                        $price_value = $is_checked ? $services_data[$serviceNumber]['price'] : 0;
-                        
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" 
-                                        data-section="'.$section['section'].'" 
-                                        data-service-id="'.$serviceNumber.'"
-                                        '.($is_checked ? 'checked' : '').'>
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <!-- ИСПРАВЛЕНИЕ #2: Добавлен атрибут name для поля стоимости -->
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" 
-                                        name="service'.$serviceNumber.'_price"
-                                        placeholder="0.00" 
-                                        value="'.($is_checked ? $price_value : '').'" 
-                                        '.($is_checked ? '' : 'disabled').'>
-                                        
-                                    <input type="hidden" name="service'.$serviceNumber.'_name" 
-                                        id="service'.$serviceNumber.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="service'.$serviceNumber.'_section" value="'.$section['section'].'">
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-works" class="heavy"></div>
 
                 <div class="title">
-                    <h4> 3. Покрасочные работы: </h4>
+                    <h3> 3. Покрасочные работы: </h3>
                 </div>
-
-                <?php
-                foreach ($painting_services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        $is_checked = isset($services_data[$serviceNumber]);
-                        $price_value = $is_checked ? $services_data[$serviceNumber]['price'] : 0;
-                        
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" 
-                                        data-section="'.$section['section'].'" 
-                                        data-service-id="'.$serviceNumber.'"
-                                        '.($is_checked ? 'checked' : '').'>
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <!-- ИСПРАВЛЕНИЕ #2: Добавлен атрибут name для поля стоимости -->
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" 
-                                        name="service'.$serviceNumber.'_price"
-                                        placeholder="0.00" 
-                                        value="'.($is_checked ? $price_value : '').'" 
-                                        '.($is_checked ? '' : 'disabled').'>
-                                        
-                                    <input type="hidden" name="service'.$serviceNumber.'_name" 
-                                        id="service'.$serviceNumber.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="service'.$serviceNumber.'_section" value="'.$section['section'].'">
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-painting" class="heavy"></div>
 
                 <div class="title">
-                    <h4> 4. Запасные части и расходные материалы </h4>
+                    <h3> 4. Запасные части и расходные материалы: </h3>
                 </div>
-
-                <?php
-                foreach ($parts_services as $section) {
-                    echo '
-                    <div class="collapsible-container">
-                        <div class="collapsible-header">
-                            <label class="form-label">'.$section['title'].'</label>
-                            <span class="collapsible-arrow">↓</span>
-                        </div>
-                        <div class="collapsible-content">
-                            <div class="wrapper">';
-                    foreach ($section['items'] as $index => $item) {
-                        $serviceNumber = $section['base_id'] + ($index * $section['id_step']);
-                        $serviceId = 'service'.$serviceNumber;
-                        $is_checked = isset($services_data[$serviceNumber]);
-                        $price_value = $is_checked ? $services_data[$serviceNumber]['price'] : 0;
-                        
-                        echo '
-                                <div class="service-item">
-                                    <input type="checkbox" class="service-checkbox" id="'.$serviceId.'" 
-                                        data-service-name="'.$item['name'].'" 
-                                        data-section="'.$section['section'].'" 
-                                        data-service-id="'.$serviceNumber.'"
-                                        '.($is_checked ? 'checked' : '').'>
-                                    <label for="'.$serviceId.'" class="checkbox-btn">'.$item['label'].'</label>
-                                    <!-- ИСПРАВЛЕНИЕ #2: Добавлен атрибут name для поля стоимости -->
-                                    <input type="number" class="service-cost" id="'.$serviceId.'-cost" 
-                                        name="service'.$serviceNumber.'_price"
-                                        placeholder="0.00" 
-                                        value="'.($is_checked ? $price_value : '').'" 
-                                        '.($is_checked ? '' : 'disabled').'>
-                                        
-                                    <input type="hidden" name="service'.$serviceNumber.'_name" 
-                                        id="service'.$serviceNumber.'-name" value="'.$item['name'].'">
-                                    <input type="hidden" name="service'.$serviceNumber.'_section" value="'.$section['section'].'">
-                                </div>';
-                    }
-                    echo '
-                            </div>
-                        </div>
-                    </div>';
-                }
-                ?>
+                <div id="section-parts" class="heavy"></div>
 
                 <div class="title">
                     <h4> Итого: 
@@ -347,11 +210,11 @@ $parts_services = require __DIR__ . '/../../shared/parts.php';
 
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
+        <script src="<?= $basePath ?>/index_services.js?v=<?php echo $version; ?>" defer></script>
         <script src="<?= $basePath ?>/index_1.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_1.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_2.js?v=<?php echo $version; ?>" defer></script>
         <script src="editing_3.js?v=<?php echo $version; ?>" defer></script>
-
     </body>
 </html>
 <?php $conn->close(); ?>

@@ -1,8 +1,7 @@
 <?php
     require_once __DIR__ . '/check.php';   // NOTE: Проверка авторизации пользователя
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    include __DIR__ . '/../../shared/head.php';
 ?>
 
 <?php
@@ -67,9 +66,6 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="ru">
-
-    <?php include __DIR__ . '/../../shared/head.php'; ?>
-
     <body>
         <h1> Регистрация сотрудника СТО </h1>
         
@@ -90,7 +86,6 @@ $conn->close();
             <button type="submit"> ЗАРЕГИСТРИРОВАТЬСЯ </button>
         </form>
 
-        <?php include __DIR__ . '/../../shared/footer.php'; ?>
-        
+        <?php include __DIR__ . '/../../shared/footer.php'; ?>     
     </body>
 </html>
