@@ -1,13 +1,8 @@
-// editing.js - Объединенный функционал для страницы редактирования заказов
-// Объединяет: index_1.js, editing_1.js, editing_2.js, editing_3.js, index_services.js
-
+// NOTE: Объединенный функционал для страницы редактирования заказов
 (function () {
     'use strict';
 
-    // ============================================================================
-    // НАСТРОЙКИ И ПЕРЕМЕННЫЕ
-    // ============================================================================
-    
+    // NOTE: Настройки и переменные
     const base = (window.basePath) || (window.location.pathname.split('/')[1] ? '/' + window.location.pathname.split('/')[1] : '');
     const api = (type) => `${base}/api/services.php?type=${type}`;
 
@@ -17,17 +12,12 @@
         parts: document.getElementById('section-parts'),
     };
 
-    // ============================================================================
-    // ФУНКЦИИ ЗАГРУЗКИ И ОТОБРАЖЕНИЯ УСЛУГ (из index_services.js)
-    // ============================================================================
-
-    // Простой скелет для отображения во время загрузки
+    // NOTE: Функции загрузки и отображения услуг
     const skeleton = () => '<div class="collapsible-container"><div class="collapsible-header"><label class="form-label">Загрузка...</label></div></div>';
 
-    // Инициализация скелетов для всех секций
     Object.values(targets).forEach(t => { if (t) t.innerHTML = skeleton(); });
 
-    // Функция пересчета общей суммы (объединенная из index_1.js и index_services.js)
+    // NOTE: Функция пересчета общей суммы
     function recalcTotal() {
         const totalEl = document.getElementById('totalPrice');
         const hiddenEl = document.getElementById('total_price_hidden');
@@ -47,11 +37,11 @@
         hiddenEl.value = totalRounded;
     }
 
-    // Делегированные обработчики событий для динамически созданных элементов
+    // NOTE: Делегированные обработчики событий для динамически созданных элементов
     function attachDelegates(container) {
         if (!container) return;
 
-        // Делегирование: раскрытие/сворачивание блоков
+        // NOTE: Делегирование: раскрытие/сворачивание блоков
         container.addEventListener('click', (e) => {
             const header = e.target.closest('.collapsible-header');
             if (header && container.contains(header)) {
@@ -60,7 +50,7 @@
             }
         });
 
-        // Делегирование: изменение состояния чекбоксов
+        // NOTE: Делегирование: изменение состояния чекбоксов
         container.addEventListener('change', (e) => {
             const cb = e.target.closest('.service-checkbox');
             if (!cb) return;
@@ -81,17 +71,17 @@
             recalcTotal();
         });
 
-        // Делегирование: ввод стоимости с валидацией
+        // NOTE: Делегирование: ввод стоимости с валидацией
         container.addEventListener('input', (e) => {
             const inp = e.target.closest('.service-cost');
             if (!inp) return;
             
-            // Нормализация запятой в точку
+            // NOTE: Нормализация запятой в точку
             if (typeof inp.value === 'string' && inp.value.includes(',')) {
                 inp.value = inp.value.replace(',', '.');
             }
             
-            // Разрешаем только цифры и одну точку
+            // NOTE: Разрешаем только цифры и одну точку
             inp.value = inp.value.replace(/[^0-9.]/g, '');
             const firstDot = inp.value.indexOf('.');
             if (firstDot !== -1) {
@@ -101,7 +91,7 @@
             recalcTotal();
         });
 
-        // Блокировка изменения значения при прокрутке колесиком мыши
+        // NOTE: Блокировка изменения значения при прокрутке колесиком мыши
         container.addEventListener('wheel', (e) => {
             if (e.target.closest('.service-cost')) {
                 e.preventDefault();
@@ -109,7 +99,7 @@
         });
     }
 
-    // Рендеринг секции услуг
+    // NOTE: Рендеринг секции услуг
     function renderSection(container, sections) {
         if (!container) return;
         
@@ -142,7 +132,7 @@
 
         container.innerHTML = html;
         
-        // Инициализация состояний чекбоксов/инпутов
+        // NOTE: Инициализация состояний чекбоксов/инпутов
         container.querySelectorAll('.service-item').forEach(item => {
             const cb = item.querySelector('.service-checkbox');
             const input = item.querySelector('.service-cost');
@@ -155,7 +145,7 @@
         recalcTotal();
     }
 
-    // Загрузка данных секции из API
+    // NOTE: Загрузка данных секции из API
     async function load(type, target) {
         if (!target) return;
         target.innerHTML = skeleton();
@@ -170,11 +160,8 @@
         }
     }
 
-    // ============================================================================
-    // ФУНКЦИИ ВАЛИДАЦИИ ПОЛЕЙ (из editing_2.js)
-    // ============================================================================
-
-    // Обработка валидации полей ввода
+    // NOTE: Функции валидации полей ввода
+    // NOTE: Обработка валидации полей ввода
     function handleInputValidation(event) {
         const input = event.target;
         const errorMessage = input.closest('.customer').querySelector(`.error-message[data-for="${input.id}"]`);
@@ -192,11 +179,8 @@
         }
     }
 
-    // ============================================================================
-    // ФУНКЦИИ ВАЛИДАЦИИ СТОИМОСТИ (из index_1.js)
-    // ============================================================================
-
-    // Функция проверки заполненности поля стоимости
+    // NOTE: Функции валидации стоимости
+    // NOTE: Функция проверки заполненности поля стоимости
     function validateCostInput(costInput) {
         if (costInput.disabled) return true;
         const value = parseFloat(costInput.value);
@@ -209,7 +193,7 @@
         }
     }
 
-    // Функция проверки всех полей перед отправкой формы
+    // NOTE: Функция проверки всех полей перед отправкой формы
     function validateForm() {
         let isValid = true;
         let hasCheckedServices = false;
@@ -236,15 +220,12 @@
         return isValid;
     }
 
-    // ============================================================================
-    // ФУНКЦИИ ОБРАБОТКИ ФОРМЫ (из index_1.js)
-    // ============================================================================
-
-    // Подготовка данных формы для отправки
+    // NOTE: Функция подготовки данных формы для отправки
+    // NOTE: Подготовка данных формы для отправки
     function prepareFormData() {
         const orderForm = document.getElementById("orderForm");
         
-        // Удаляем старые скрытые поля
+        // NOTE: Удаляем старые скрытые поля
         document.querySelectorAll("input[name^='services']").forEach(input => input.remove());
 
         let serviceCount = 0;
@@ -258,7 +239,7 @@
                 const section = checkbox.getAttribute("data-section");
                 const serviceId = checkbox.getAttribute("data-service-id");
 
-                // Создаем скрытые поля для отправки
+                // NOTE: Создаем скрытые поля для отправки
                 const fields = [
                     { name: `services[${serviceCount}][service_id]`, value: serviceId },
                     { name: `services[${serviceCount}][name]`, value: serviceName },
@@ -279,7 +260,7 @@
             }
         });
 
-        // Добавляем счетчик услуг
+        // NOTE: Добавляем счетчик услуг
         const existingCount = document.querySelector("input[name='service_count']");
         if (existingCount) existingCount.remove();
         
@@ -290,11 +271,8 @@
         orderForm.appendChild(serviceCountInput);
     }
 
-    // ============================================================================
-    // ФУНКЦИИ ПОВЕДЕНИЯ КНОПОК (из editing_3.js)
-    // ============================================================================
-
-    // Инициализация эффектов кнопок
+    // NOTE: Фукционал кнопок
+    // NOTE: Инициализация эффектов кнопок
     function initializeButtons() {
         const resetButton = document.querySelector('.btn-reset');
         const saveButton = document.querySelector('.btn-save');
@@ -310,11 +288,8 @@
         }
     }
 
-    // ============================================================================
-    // ФУНКЦИИ АВТОМАТИЧЕСКОГО РАСКРЫТИЯ БЛОКОВ (из editing_1.js)
-    // ============================================================================
-
-    // Автоматическое раскрытие блоков с выбранными услугами
+    // NOTE: Функция автоматического раскрытия блоков с выбранными услугами
+    // NOTE: Автоматическое раскрытие блоков с выбранными услугами
     function initializeCollapsibles() {
         document.querySelectorAll('.collapsible-container').forEach(container => {
             const hasCheckedServices = container.querySelector('.service-checkbox:checked');
@@ -324,11 +299,8 @@
         });
     }
 
-    // ============================================================================
-    // ФУНКЦИИ ПРЕДЗАПОЛНЕНИЯ ДАННЫХ
-    // ============================================================================
-
-    // Предзаполнение данных о выбранных услугах
+    // NOTE: Функция предзаполнения данных о выбранных услугах
+    // NOTE: Предзаполнение данных о выбранных услугах
     function populateExistingServices() {
         console.log('Попытка предзаполнения данных:', window.orderServicesData);
         
@@ -358,10 +330,8 @@
         recalcTotal();
     }
 
-    // ============================================================================
-    // ИНИЦИАЛИЗАЦИЯ ВАЛИДАЦИИ ПОЛЕЙ ВВОДА (из editing_2.js)
-    // ============================================================================
-
+    // NOTE: Функция валидации полей ввода
+    // NOTE: Инициализация валидации полей ввода
     function initializeInputValidation() {
         const inputs = document.querySelectorAll('.user_input');
         inputs.forEach(input => {
@@ -370,34 +340,31 @@
         });
     }
 
-    // ============================================================================
-    // ОСНОВНАЯ ИНИЦИАЛИЗАЦИЯ
-    // ============================================================================
-
-    // Главная функция инициализации
+    // NOTE: Основная функция инициализации
+    // NOTE: Главная функция инициализации
     function initializeAll() {
-        // 1. Загружаем все секции услуг
+        // NOTE: 1. Загружаем все секции услуг
         Promise.all([
             load('works', targets.works),
             load('painting', targets.painting),
             load('parts', targets.parts)
         ]).then(() => {
-            // 2. Предзаполняем данные о выбранных услугах
+            // NOTE: 2. Предзаполняем данные о выбранных услугах
             populateExistingServices();
             
-            // 3. Инициализируем автоматическое раскрытие блоков
+            // NOTE: 3. Инициализируем автоматическое раскрытие блоков
             setTimeout(() => {
                 initializeCollapsibles();
             }, 100);
         });
 
-        // 4. Инициализируем валидацию полей ввода
+        // NOTE: 4. Инициализируем валидацию полей ввода
         initializeInputValidation();
 
-        // 5. Инициализируем поведение кнопок
+        // NOTE: 5. Инициализируем поведение кнопок
         initializeButtons();
 
-        // 6. Обработка отправки формы
+        // NOTE: 6. Обработка отправки формы
         const orderForm = document.getElementById("orderForm");
         if (orderForm) {
             orderForm.addEventListener("submit", function (event) {
@@ -412,7 +379,7 @@
         }
     }
 
-    // Запускаем инициализацию после загрузки DOM
+    // NOTE: Запускаем инициализацию после загрузки DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeAll);
     } else {

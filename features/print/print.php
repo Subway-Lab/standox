@@ -3,61 +3,61 @@
 ?>
 
 <?php
-// NOTE: Подключаемся к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль к базе данных
-$dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
+    // NOTE: Подключаемся к базе данных
+    $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
+    $username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
+    $password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль к базе данных
+    $dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
-}
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Ошибка подключения: " . $conn->connect_error);
+    }
 
-// NOTE: Получение данных order_id из GET-параметра
-$order_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if ($order_id <= 0) {
-    die("Неверный номер заказа.");
-}
+    // NOTE: Получение данных order_id из GET-параметра
+    $order_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    if ($order_id <= 0) {
+        die("Неверный номер заказа.");
+    }
 
-// NOTE: Запрос данных заказа
-$sql_order = "SELECT id, full_name, phone, created_at, car_model, car_number, services_total, total_work_price, total_parts_price FROM orders WHERE id = ?";
-$stmt = $conn->prepare($sql_order);
-$stmt->bind_param("i", $order_id);
-$stmt->execute();
-$result = $stmt->get_result();
-if ($result->num_rows === 0) {
-    die("Заказ не найден.");
-}
-$order = $result->fetch_assoc();
-$stmt->close();
+    // NOTE: Запрос данных заказа
+    $sql_order = "SELECT id, full_name, phone, created_at, car_model, car_number, services_total, total_work_price, total_parts_price FROM orders WHERE id = ?";
+    $stmt = $conn->prepare($sql_order);
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows === 0) {
+        die("Заказ не найден.");
+    }
+    $order = $result->fetch_assoc();
+    $stmt->close();
 
-// NOTE: Запрос данных работ, только для section = 'work'
-$sql_works = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'work'";
-$stmt_works = $conn->prepare($sql_works);
-$stmt_works->bind_param("i", $order_id);
-$stmt_works->execute();
-$result_works = $stmt_works->get_result();
-$works = [];
-while ($row = $result_works->fetch_assoc()) {
-    $works[] = $row;
-}
-$stmt_works->close();
+    // NOTE: Запрос данных работ, только для section = 'work'
+    $sql_works = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'work'";
+    $stmt_works = $conn->prepare($sql_works);
+    $stmt_works->bind_param("i", $order_id);
+    $stmt_works->execute();
+    $result_works = $stmt_works->get_result();
+    $works = [];
+    while ($row = $result_works->fetch_assoc()) {
+        $works[] = $row;
+    }
+    $stmt_works->close();
 
-// NOTE: Запрос данных запчастей, только для section = 'parts'
-$sql_parts = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'parts'";
-$stmt_parts = $conn->prepare($sql_parts);
-$stmt_parts->bind_param("i", $order_id);
-$stmt_parts->execute();
-$result_parts = $stmt_parts->get_result();
-$parts = [];
-while ($row = $result_parts->fetch_assoc()) {
-    $parts[] = $row;
-}
-$stmt_parts->close();
+    // NOTE: Запрос данных запчастей, только для section = 'parts'
+    $sql_parts = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'parts'";
+    $stmt_parts = $conn->prepare($sql_parts);
+    $stmt_parts->bind_param("i", $order_id);
+    $stmt_parts->execute();
+    $result_parts = $stmt_parts->get_result();
+    $parts = [];
+    while ($row = $result_parts->fetch_assoc()) {
+        $parts[] = $row;
+    }
+    $stmt_parts->close();
 
-$conn->close();
+    $conn->close();
 ?>
 
 <!DOCTYPE HTML>
@@ -70,7 +70,6 @@ $conn->close();
     ?>
 
     <body class="sheet">
-
         <header>
             <div class="work_order">
                 <p> ИП Фарафонов </p>
@@ -199,6 +198,5 @@ $conn->close();
         <div>
             <button class="print-btn" onclick="window.print();"> ПЕЧАТЬ ЗАКАЗА </button>
         </div>
-
    </body>
 </html>

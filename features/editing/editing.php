@@ -60,7 +60,7 @@
                 }
                 $service_id = isset($service['service_id']) ? intval($service['service_id']) : 0;
                 
-                // NOTE: Проверка максимального ID услуги (как в старом коде)
+                // NOTE: Проверка максимального ID услуги
                 if ($service_id > 10000) {
                     continue;
                 }

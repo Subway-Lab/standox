@@ -1,4 +1,3 @@
-// index_services.js
 (function () {
     const base = (window.basePath) || (window.location.pathname.split('/')[1] ? '/' + window.location.pathname.split('/')[1] : '');
     const api = (type) => `${base}/api/services.php?type=${type}`;
@@ -9,7 +8,7 @@
         parts: document.getElementById('section-parts'),
     };
 
-    // Простой скелет
+    // NOTE: Простой скелет
     const skeleton = () => '<div class="collapsible-container"><div class="collapsible-header"><label class="form-label">Загрузка...</label></div></div>';
 
     Object.values(targets).forEach(t => { if (t) t.innerHTML = skeleton(); });
@@ -34,7 +33,7 @@
     function attachDelegates(container) {
         if (!container) return;
 
-        // Делегирование: раскрытие/сворачивание
+        // NOTE: Делегирование: раскрытие/сворачивание
         container.addEventListener('click', (e) => {
             const header = e.target.closest('.collapsible-header');
             if (header && container.contains(header)) {
@@ -43,7 +42,7 @@
             }
         });
 
-        // Делегирование: изменение чекбокса
+        // NOTE: Делегирование: изменение чекбокса
         container.addEventListener('change', (e) => {
             const cb = e.target.closest('.service-checkbox');
             if (!cb) return;
@@ -62,15 +61,15 @@
             recalcTotal();
         });
 
-        // Делегирование: ввод стоимости
+        // NOTE: Делегирование: ввод стоимости
         container.addEventListener('input', (e) => {
             const inp = e.target.closest('.service-cost');
             if (!inp) return;
-            // Нормализация запятой в точку
+            // NOTE: Нормализация запятой в точку
             if (typeof inp.value === 'string' && inp.value.includes(',')) {
                 inp.value = inp.value.replace(',', '.');
             }
-            // Разрешаем только цифры и одну точку
+            // NOTE: Разрешаем только цифры и одну точку
             inp.value = inp.value.replace(/[^0-9.]/g, '');
             const firstDot = inp.value.indexOf('.');
             if (firstDot !== -1) {
@@ -79,7 +78,7 @@
             recalcTotal();
         });
 
-        // Не блокируем колесо мыши, чтобы сохранить прокрутку страницы
+        // NOTE: Не блокируем колесо мыши, чтобы сохранить прокрутку страницы
     }
 
     function renderSection(container, sections) {
@@ -111,7 +110,7 @@
         }).join('');
 
         container.innerHTML = html;
-        // Инициализация состояний чекбоксов/инпутов
+        // NOTE: Инициализация состояний чекбоксов/инпутов
         container.querySelectorAll('.service-item').forEach(item => {
             const cb = item.querySelector('.service-checkbox');
             const input = item.querySelector('.service-cost');
@@ -123,7 +122,7 @@
         recalcTotal();
     }
 
-    // Независимая загрузка секций
+    // NOTE: Независимая загрузка секций
     async function load(type, target) {
         if (!target) return;
         target.innerHTML = skeleton();
