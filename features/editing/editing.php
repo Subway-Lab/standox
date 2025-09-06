@@ -1,116 +1,122 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
 
-    $ebitingCss = 'editing.css';
-    include __DIR__ . '/../../shared/head.php';
+    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
+    $basePath = $firstSegment ? '/' . $firstSegment : '';
 ?>
 
 <?php
-// FIXME: Включение отладки (Убрать в продакшине)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    // FIXME: Включение отладки (Убрать в продакшине)
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
 
-// NOTE: Подключение к базе данных
-$servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
-$username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
-$password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
-$dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
+    // NOTE: Подключение к базе данных
+    $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
+    $username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
+    $password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
+    $dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
-$order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+    $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $order_id = intval($_POST['order_id']);
-    
-    // NOTE: Обновление основной информации
-    $stmt = $conn->prepare("UPDATE orders SET 
-        surname = ?,
-        name = ?,
-        patronymic = ?,
-        phone = ?,
-        car_model = ?,
-        car_number = ?,
-        services_total = ?
-        WHERE id = ?");
-    
-    $stmt->bind_param("ssssssii",
-        $_POST['surname'],
-        $_POST['name'],
-        $_POST['patronymic'],
-        $_POST['phone'],
-        $_POST['car_model'],
-        $_POST['car_number'],
-        $_POST['total_price'],
-        $order_id
-    );
-    $stmt->execute();
-    
-    $conn->query("DELETE FROM list_of_work WHERE order_id = $order_id");
-    
-    $services = [];
-    for ($i = 1; $i <= 10000; $i++) {
-        $price_key = 'service' . $i . '_price';
-        $name_key = 'service' . $i . '_name';
-        $section_key = 'service' . $i . '_section';
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $order_id = intval($_POST['order_id']);
+        
+        // NOTE: Обновление основной информации
+        $stmt = $conn->prepare("UPDATE orders SET 
+            surname = ?,
+            name = ?,
+            patronymic = ?,
+            phone = ?,
+            car_model = ?,
+            car_number = ?,
+            services_total = ?
+            WHERE id = ?");
+        
+        $stmt->bind_param("ssssssii",
+            $_POST['surname'],
+            $_POST['name'],
+            $_POST['patronymic'],
+            $_POST['phone'],
+            $_POST['car_model'],
+            $_POST['car_number'],
+            $_POST['total_price'],
+            $order_id
+        );
+        $stmt->execute();
+        
+        $conn->query("DELETE FROM list_of_work WHERE order_id = $order_id");
+        
+        // NOTE: Обработка и вставка данных для таблицы list_of_work (как в submit_order.php)
+        if (isset($_POST['services']) && is_array($_POST['services'])) {
+            foreach ($_POST['services'] as $service) {
+                // NOTE: Приводим к безопасным типам
+                $price = isset($service['price']) ? floatval($service['price']) : 0;
+                if ($price <= 0) {
+                    continue;
+                }
+                $service_id = isset($service['service_id']) ? intval($service['service_id']) : 0;
+                
+                // NOTE: Проверка максимального ID услуги (как в старом коде)
+                if ($service_id > 10000) {
+                    continue;
+                }
+                
+                $name = isset($service['name']) ? $conn->real_escape_string($service['name']) : '';
+                $section = isset($service['section']) ? $conn->real_escape_string($service['section']) : '';
+                $full_work = $name . " " . $price . " руб.";
 
-        // NOTE: Проверка наличия и стоимость услуги
-        if (isset($_POST[$price_key]) && floatval($_POST[$price_key]) > 0) {
-            $services[] = [
-                'service_id' => $i,
-                'price'      => (float)$_POST[$price_key],
-                'name'       => $_POST[$name_key] ?? '',
-                'section'    => $_POST[$section_key] ?? 'work'
-            ];
+                $sql_services = "INSERT INTO list_of_work (order_id, service_id, name_work, price, section, full_work) 
+                                VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt_services = $conn->prepare($sql_services);
+                if ($stmt_services === false) {
+                    die("Ошибка подготовки запроса для list_of_work: " . $conn->error);
+                }
+                $stmt_services->bind_param("iissss", $order_id, $service_id, $name, $price, $section, $full_work);
+                if (!$stmt_services->execute()) {
+                    die("Ошибка выполнения запроса для list_of_work: " . $stmt_services->error);
+                }
+                $stmt_services->close();
+            }
+        }
+            
+        header('Location: ' . $basePath . '/features/database/database.php?id=' . urlencode($order_id));
+        exit();
+    }
+
+    // NOTE: Загрузка данных заказа
+    $order_data = [];
+    $services_data = [];
+
+    if ($order_id > 0) {
+        // NOTE:Основные данные заказа
+        $result = $conn->query("SELECT * FROM orders WHERE id = $order_id");
+        $order_data = $result->fetch_assoc();
+        
+        // NOTE: Данные об услугах
+        $result = $conn->query("SELECT * FROM list_of_work WHERE order_id = $order_id");
+        while ($row = $result->fetch_assoc()) {
+            $services_data[$row['service_id']] = $row;
         }
     }
 
-    // NOTE: Добавление новых услуг
-    foreach ($services as $service) {
-        $sql_services = "INSERT INTO list_of_work 
-            (order_id, service_id, name_work, price, section, full_work) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-            
-        $stmt_services = $conn->prepare($sql_services);
-        $full_work = "{$service['name']} {$service['price']} руб."; 
-        
-        $stmt_services->bind_param("iissss",
-            $order_id,
-            $service['service_id'],
-            $service['name'],
-            $service['price'],
-            $service['section'],
-            $full_work
-        );
-        
-        $stmt_services->execute();
-    }
-        
-    header('Location: ' . $basePath . '/features/database/database.php?id=' . urlencode($order_id));
-    exit();
-}
-
-// NOTE: Загрузка данных заказа
-$order_data = [];
-$services_data = [];
-
-if ($order_id > 0) {
-    // NOTE:Основные данные заказа
-    $result = $conn->query("SELECT * FROM orders WHERE id = $order_id");
-    $order_data = $result->fetch_assoc();
-    
-    // NOTE: Данные об услугах
-    $result = $conn->query("SELECT * FROM list_of_work WHERE order_id = $order_id");
-    while ($row = $result->fetch_assoc()) {
-        $services_data[$row['service_id']] = $row;
-    }
-}
+    // NOTE: Подключаем файлы с услугами
+    $works_services = require __DIR__ . '/../../shared/works.php';
+    $painting_services = require __DIR__ . '/../../shared/painting.php';
+    $parts_services = require __DIR__ . '/../../shared/parts.php';
 ?>
 
 <!DOCTYPE HTML>
 <html lang="ru">
+    
+    <?php
+        $ebitingCss = 'editing.css';
+        include __DIR__ . '/../../shared/head.php';
+    ?>
+
     <body>
 
         <header>
@@ -210,11 +216,13 @@ if ($order_id > 0) {
 
         <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-        <script src="<?= $basePath ?>/index_services.js?v=<?php echo $version; ?>" defer></script>
-        <script src="<?= $basePath ?>/index_1.js?v=<?php echo $version; ?>" defer></script>
-        <script src="editing_1.js?v=<?php echo $version; ?>" defer></script>
-        <script src="editing_2.js?v=<?php echo $version; ?>" defer></script>
-        <script src="editing_3.js?v=<?php echo $version; ?>" defer></script>
+        <script>
+            // NOTE: Передача данных о выбранных услугах в JavaScript
+            window.orderServicesData = <?= json_encode($services_data) ?>;
+        </script>
+
+        <script src="editing.js?v=<?php echo $version; ?>" defer></script>
+
     </body>
 </html>
 <?php $conn->close(); ?>
