@@ -87,9 +87,6 @@
 
         <?php include 'shared/footer.php'; ?>
 
-        <script src="index_1.js?v=<?php echo $version; ?>" defer></script>
-        <script src="index_2.js?v=<?php echo $version; ?>" defer></script>
-        <script src="index_3.js?v=<?php echo $version; ?>" defer></script>
-        <script src="index_services.js?v=<?php echo $version; ?>" defer></script>
+        <script src="index.js?v=<?php echo $version; ?>" defer></script>
     </body>
 </html>
