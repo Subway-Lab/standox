@@ -1,8 +1,8 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    require_once __DIR__ . '/../../shared/path.php';
+    $basePath = getBasePath();
 ?>
 
 <?php

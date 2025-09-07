@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($stmt_insert->execute()) {
                 // NOTE: Перенаправление пользователя на страницу создания заказа
+                require_once __DIR__ . '/../../shared/path.php';
+                $basePath = getBasePath();
                 header('Location: ' . $basePath . '/features/auth/login.php');
                 exit();
             } else {

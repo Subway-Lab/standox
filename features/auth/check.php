@@ -2,8 +2,8 @@
 
     session_start(); // NOTE: Стартуем сессию
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    require_once __DIR__ . '/../../shared/path.php';
+    $basePath = getBasePath();
 
     // NOTE: Проверка времени, если наступила полночь (00:00), обнуляем cookie
     $current_time = time();

@@ -1,7 +1,7 @@
 <?php 
     $version = "1.0.0";
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    require_once __DIR__ . '/path.php';
+    $basePath = getBasePath();
 ?>
 
 <head>

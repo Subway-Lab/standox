@@ -1,6 +1,9 @@
 <?php
     session_start(); // NOTE: Стартуем сессию
 
+        require_once __DIR__ . '/../../shared/path.php';
+        $basePath = getBasePath();
+
         $loginCss = 'login.css';
         include __DIR__ . '/../../shared/head.php';
 

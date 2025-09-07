@@ -3,8 +3,8 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $firstSegment = explode('/', trim($_SERVER['SCRIPT_NAME'], '/'))[0] ?? '';
-    $basePath = $firstSegment ? '/' . $firstSegment : '';
+    require_once __DIR__ . '/shared/path.php';
+    $basePath = getBasePath();
 
     // NOTE: Подключаемся к базе данных
     $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
