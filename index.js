@@ -1,6 +1,3 @@
-// NOTE: Объединенный файл функционала формы заказ-наряда
-// Объединяет функционал из index_1.js, index_2.js, index_3.js, index_services.js
-
 (function () {
     // NOTE: Инициализация API и базовых переменных
     const base = (window.basePath) || (window.location.pathname.split('/')[1] ? '/' + window.location.pathname.split('/')[1] : '');
@@ -155,12 +152,19 @@
             updateTotal();
         });
 
-        // NOTE: Разрешение прокрутки страницы при попадании курсора на поля ввода стоимости
+        // NOTE: Блокировка изменения стоимости через прокрутку колесика мыши
         container.addEventListener('wheel', (e) => {
             const inp = e.target.closest('.service-cost');
             if (inp) {
-                // НЕ блокируем прокрутку страницы - позволяем ей работать
-                return;
+                // NOTE: Блокируем изменение значения поля, но разрешаем прокрутку страницы
+                e.preventDefault();
+                // NOTE: Прокручиваем страницу программно с сохранением скорости и направления
+                const scrollAmount = e.deltaY * (e.deltaMode === 1 ? 40 : 1); // Учитываем deltaMode для правильной скорости
+                window.scrollBy({
+                    top: scrollAmount,
+                    left: e.deltaX,
+                    behavior: 'auto' // NOTE: Мгновенная прокрутка без анимации
+                });
             }
         });
     }

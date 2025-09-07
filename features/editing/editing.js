@@ -1,4 +1,3 @@
-// NOTE: Объединенный функционал для страницы редактирования заказов
 (function () {
     'use strict';
 
@@ -41,7 +40,7 @@
     function attachDelegates(container) {
         if (!container) return;
 
-        // NOTE: Делегирование: раскрытие/сворачивание блоков
+        // NOTE: Делегирование: раскрытие / сворачивание блоков
         container.addEventListener('click', (e) => {
             const header = e.target.closest('.collapsible-header');
             if (header && container.contains(header)) {
@@ -91,10 +90,19 @@
             recalcTotal();
         });
 
-        // NOTE: Блокировка изменения значения при прокрутке колесиком мыши
+        // NOTE: Блокировка изменения стоимости через прокрутку колесика мыши
         container.addEventListener('wheel', (e) => {
-            if (e.target.closest('.service-cost')) {
+            const inp = e.target.closest('.service-cost');
+            if (inp) {
+                // NOTE: Блокируем изменение значения поля, но разрешаем прокрутку страницы
                 e.preventDefault();
+                // NOTE: Прокручиваем страницу программно с сохранением скорости и направления
+                const scrollAmount = e.deltaY * (e.deltaMode === 1 ? 40 : 1); // Учитываем deltaMode для правильной скорости
+                window.scrollBy({
+                    top: scrollAmount,
+                    left: e.deltaX,
+                    behavior: 'auto' // NOTE: Мгновенная прокрутка без анимации
+                });
             }
         });
     }
