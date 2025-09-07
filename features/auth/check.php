@@ -2,9 +2,6 @@
 
     session_start(); // NOTE: Стартуем сессию
 
-    require_once __DIR__ . '/../../shared/path.php';
-    $basePath = getBasePath();
-
     // NOTE: Проверка времени, если наступила полночь (00:00), обнуляем cookie
     $current_time = time();
     $midnight = strtotime('tomorrow'); // Время 00:00 следующего дня
@@ -22,14 +19,14 @@
         session_destroy();
 
         // NOTE: Перенаправляем на страницу логина
-        header('Location: ' . $basePath . '/features/auth/login.php');
+        header('Location: features/auth/login.php');
         exit();
     }
 
     // NOTE: Проверяем, залогинен ли пользователь
     if (!isset($_SESSION['user_id'])) {
         // NOTE: Если нет, перенаправляем на страницу логина
-        header('Location: ' . $basePath . '/features/auth/login.php');
+        header('Location: features/auth/login.php');
         exit();
     }
 ?>

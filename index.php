@@ -14,8 +14,8 @@
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="<?= $basePath ?>/features/database/database.php" class="menu_link"> база данных </a></li>
-                    <li><a href="<?= $basePath ?>/features/auth/logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="../../features/database/database.php" class="menu_link"> база данных </a></li>
+                    <li><a href="../../features/auth/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>

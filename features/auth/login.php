@@ -1,14 +1,8 @@
 <?php
     session_start(); // NOTE: Стартуем сессию
-
-        require_once __DIR__ . '/../../shared/path.php';
-        $basePath = getBasePath();
-
-        $loginCss = 'login.css';
-
     // NOTE: Если пользователь залогинен, перенаправляем его на главную
     if (isset($_SESSION['user_id'])) {
-        header("Location: " . $basePath . "/index.php");
+        header("Location: ../../index.php");
         exit();
     }
 
@@ -46,8 +40,7 @@
     if (password_verify($password, $hashed_password)) {
         // NOTE: Успешный вход, сохраняем user_id в сессию
         $_SESSION['user_id'] = $user_id;
-        header("Location: " . $basePath . "/index.php"); // NOTE: Перенаправляем на главную страницу
-        exit();
+        header("Location: ../../index.php");
         } else {
             // NOTE: В случае если неверный логин или пароль, выводим сообщение об ошибке
             $error_message = "Неверный логин или пароль!";
@@ -67,12 +60,15 @@
 
 <!DOCTYPE HTML>
 <html lang="ru">
-    <?php include __DIR__ . '/../../shared/head.php'; ?>
+    <?php
+        $loginCss = 'login.css';
+        include __DIR__ . '/../../shared/head.php';
+    ?>
     <body>
 
         <div class="left_block">
             <div class="logo">
-                <img src="<?= $basePath ?>/files/white_logo.svg" loading="lazy" alt="STANDOX logo">
+                <img src="../../files/white_logo.svg" loading="lazy" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>
