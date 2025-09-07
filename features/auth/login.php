@@ -5,7 +5,6 @@
         $basePath = getBasePath();
 
         $loginCss = 'login.css';
-        include __DIR__ . '/../../shared/head.php';
 
     // NOTE: Если пользователь залогинен, перенаправляем его на главную
     if (isset($_SESSION['user_id'])) {
@@ -68,6 +67,7 @@
 
 <!DOCTYPE HTML>
 <html lang="ru">
+    <?php include __DIR__ . '/../../shared/head.php'; ?>
     <body>
 
         <div class="left_block">
