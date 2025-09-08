@@ -50,4 +50,9 @@
     <?php if (isset($databaseCss)): ?>
         <link rel="stylesheet" type="text/css" href="<?= $basePath ?>/features/database/database.css?v=<?= htmlspecialchars($databaseCss) ?>&version=<?php echo $version; ?>">
     <?php endif; ?>
+    
+    <script>
+        // NOTE: Передача базового пути из PHP в JavaScript
+        window.basePath = '<?= $basePath ?>';
+    </script>
 </head>
