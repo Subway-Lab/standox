@@ -1,4 +1,5 @@
 <?php
+    require_once __DIR__ . '/../../shared/path.php';  // NOTE: Подключение базового пути
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
 ?>
 
@@ -71,7 +72,7 @@ if ($searchQuery) {
                 </div>
 
                 <div class="search_form">
-                    <form method="get" action="database.php">
+                    <form method="get" action="<?= $basePath ?>/features/database/database.php">
                         <div class="input-container">
                             <input class="search_input" type="text" name="search" placeholder="ПОИСК" 
                                 value="<?= htmlspecialchars($search) ?>">
@@ -133,8 +134,8 @@ if ($searchQuery) {
             
             <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
-            <script src="database.js?v=<?php echo $version; ?>" defer></script>
-            <script src="searchBar.js?v=<?php echo $version; ?>" defer></script>
+            <script src="<?= $basePath ?>/features/database/database.js?v=<?php echo $version; ?>" defer></script>
+            <script src="<?= $basePath ?>/features/database/searchBar.js?v=<?php echo $version; ?>" defer></script>
 
         </body>
     </html>

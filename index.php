@@ -1,6 +1,6 @@
 <?php
     set_time_limit(600); // NOTE: Увиличение времени запроса до 10 минут
-
+    require_once(__DIR__ . '/shared/path.php'); // NOTE: Подключение базового пути
     require_once(__DIR__ . '/features/auth/check.php'); // NOTE: Проверка авторизации пользователя
 ?>
 
@@ -14,14 +14,14 @@
             <h1> STANDOX </h1>
             <nav class="menu">
                 <ul>
-                    <li><a href="features/database/database.php" class="menu_link"> база данных </a></li>
-                    <li><a href="features/auth/logout.php" class="menu_link"> выйти </a></li>
+                    <li><a href="<?= $basePath ?>/features/database/database.php" class="menu_link"> база данных </a></li>
+                    <li><a href="<?= $basePath ?>/features/auth/logout.php" class="menu_link"> выйти </a></li>
                 </ul>
             </nav>
         </header>
 
         <div class="form heavy">
-            <form id="orderForm" action="submit_order.php" method="POST">
+            <form id="orderForm" action="<?= $basePath ?>/submit_order.php" method="POST">
                 <div class="title">
                     <h2> Создание нового заказ-наряда </h2>
                 </div>
@@ -87,6 +87,6 @@
 
         <?php include 'shared/footer.php'; ?>
 
-        <script src="index.js?v=<?php echo $version; ?>" defer></script>
+        <script src="<?= $basePath ?>/index.js?v=<?php echo $version; ?>" defer></script>
     </body>
 </html>

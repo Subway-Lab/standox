@@ -1,8 +1,10 @@
 <?php
     session_start(); // NOTE: Стартуем сессию
+    require_once __DIR__ . '/../../shared/path.php'; // NOTE: Подключение базового пути
+    
     // NOTE: Если пользователь залогинен, перенаправляем его на главную
     if (isset($_SESSION['user_id'])) {
-        header("Location: ../../index.php");
+        header("Location: " . $basePath . "/index.php");
         exit();
     }
 
@@ -40,7 +42,7 @@
     if (password_verify($password, $hashed_password)) {
         // NOTE: Успешный вход, сохраняем user_id в сессию
         $_SESSION['user_id'] = $user_id;
-        header("Location: ../../index.php");
+        header("Location: " . $basePath . "/index.php");
         } else {
             // NOTE: В случае если неверный логин или пароль, выводим сообщение об ошибке
             $error_message = "Неверный логин или пароль!";
@@ -68,7 +70,7 @@
 
         <div class="left_block">
             <div class="logo">
-                <img src="../../files/white_logo.svg" loading="lazy" alt="STANDOX logo">
+                <img src="<?= $basePath ?>/files/white_logo.svg" loading="lazy" alt="STANDOX logo">
             </div>
             <div class="address">
                 СТО "STANDOX" <br>
@@ -82,7 +84,7 @@
             <div class="form">
                 <h2> Добрый день! </h2>
                 <p> Пожалуйста, укажите свой логин и пароль чтобы войти в систему </p>
-                <form method="POST" action="login.php">
+                <form method="POST" action="<?= $basePath ?>/features/auth/login.php">
                     <label for="login" class="sr-only"> Логин </label>
                     <input class="user_input" id="login" type="text" name="login" placeholder="Login" title="Введите логин" required>
                     <label for="password" class="sr-only"> Пароль </label>
@@ -96,6 +98,6 @@
             var errorMessage = <?php echo json_encode($error_message); ?>;
         </script>
 
-        <script src="login.js?v=<?php echo $version; ?>" defer></script>
+        <script src="<?= $basePath ?>/features/auth/login.js?v=<?php echo $version; ?>" defer></script>
     </body>
 </html>

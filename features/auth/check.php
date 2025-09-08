@@ -1,5 +1,6 @@
 <?php // NOTE: Файл проверки авторизации пользователя
 
+    require_once __DIR__ . '/../../shared/path.php'; // NOTE: Подключение базового пути
     session_start(); // NOTE: Стартуем сессию
 
     // NOTE: Проверка времени, если наступила полночь (00:00), обнуляем cookie
@@ -19,14 +20,14 @@
         session_destroy();
 
         // NOTE: Перенаправляем на страницу логина
-        header('Location: features/auth/login.php');
+        header('Location: ' . $basePath . '/features/auth/login.php');
         exit();
     }
 
     // NOTE: Проверяем, залогинен ли пользователь
     if (!isset($_SESSION['user_id'])) {
         // NOTE: Если нет, перенаправляем на страницу логина
-        header('Location: features/auth/login.php');
+        header('Location: ' . $basePath . '/features/auth/login.php');
         exit();
     }
 ?>

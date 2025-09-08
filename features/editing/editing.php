@@ -130,7 +130,7 @@
         </header>
 
         <div class="form">
-            <form id="orderForm" action="editing.php" method="POST">
+            <form id="orderForm" action="<?= $basePath ?>/features/editing/editing.php" method="POST">
                 <input type="hidden" name="order_id" value="<?= $order_id ?>">
 
             <div class="title">
@@ -221,7 +221,7 @@
             window.orderServicesData = <?= json_encode($services_data) ?>;
         </script>
 
-        <script src="editing.js?v=<?php echo $version; ?>" defer></script>
+        <script src="<?= $basePath ?>/features/editing/editing.js?v=<?php echo $version; ?>" defer></script>
 
     </body>
 </html>

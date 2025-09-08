@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/../auth/check.php';  // NOTE: Проверка авторизации пользователя
+    require_once __DIR__ . '/../../shared/path.php';  // NOTE: Подключение базового пути
 ?>
 
 <?php
