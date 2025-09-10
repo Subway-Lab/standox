@@ -11,7 +11,7 @@ function getBasePath() {
         return $protocol . '://www.standox.pro';
     }
     
-    return '/sto-site';
+    return '/standox';
 }
 
 $basePath = getBasePath();

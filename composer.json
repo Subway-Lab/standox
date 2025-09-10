@@ -1,5 +1,5 @@
 {
-    "name": "subway-lab/sto-site",
+    "name": "subway-lab/standox",
     "description": "PHP web application",
     "require": {
         "php": ">=7.3"
