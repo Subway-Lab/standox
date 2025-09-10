@@ -309,8 +309,11 @@
 
     // NOTE: Функция предзаполнения данных о выбранных услугах
     // NOTE: Предзаполнение данных о выбранных услугах
-    function populateExistingServices() {
+    function populateExistingServices(retryCount = 0) {
         console.log('Попытка предзаполнения данных:', window.orderServicesData);
+
+        let foundElements = 0;
+        let totalElements = Object.keys(window.orderServicesData).length;
         
         if (!window.orderServicesData) {
             console.log('Нет данных для предзаполнения');
@@ -329,13 +332,26 @@
                 costInput.value = serviceData.price;
                 costInput.disabled = false;
                 costInput.removeAttribute('disabled');
+                foundElements++;
                 console.log(`Услуга ${serviceId} предзаполнена`);
             } else {
                 console.log(`Элементы для услуги ${serviceId} не найдены`);
             }
         });
+
+        // NOTE: Если не все элементы найдены и не превышен лимит попыток, повторяем через 100мс
+        if (foundElements < totalElements && retryCount < 10) {
+            console.log(`Найдено ${foundElements} из ${totalElements} элементов, повторяем через 100мс`);
+            setTimeout(() => populateExistingServices(retryCount + 1), 100);
+            return;
+        }
         
-        recalcTotal();
+        if (foundElements > 0) {
+            recalcTotal();
+            console.log(`Предзаполнение завершено: ${foundElements} из ${totalElements} элементов`);
+        } else if (retryCount >= 10) {
+            console.warn('Не удалось найти элементы для предзаполнения после 10 попыток');
+        }
     }
 
     // NOTE: Функция валидации полей ввода

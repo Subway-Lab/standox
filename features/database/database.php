@@ -33,16 +33,35 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     $searchTypes = "ssssss"; 
 }
 
-// NOTE: Запрос для получения заказов
-if ($searchQuery) {
-    $stmt = $conn->prepare("SELECT * FROM orders $searchQuery ORDER BY created_at DESC");
-    // NOTE: Привязываем параметры поиска
-    $stmt->bind_param($searchTypes, ...$searchParams);
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    $result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
-}
+   // NOTE: Настройки пагинации
+   $itemsPerPage = 50; // NOTE: Количество записей на странице
+   $currentPage = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+   $offset = ($currentPage - 1) * $itemsPerPage;
+
+    // NOTE: Получаем общее количество записей для пагинации
+    if ($searchQuery) {
+        $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM orders $searchQuery");
+        $countStmt->bind_param($searchTypes, ...$searchParams);
+        $countStmt->execute();
+        $totalRecords = $countStmt->get_result()->fetch_assoc()['total'];
+    } else {
+        $totalRecords = $conn->query("SELECT COUNT(*) as total FROM orders")->fetch_assoc()['total'];
+    }
+    
+    $totalPages = ceil($totalRecords / $itemsPerPage);
+
+    // NOTE: Запрос для получения заказов
+    if ($searchQuery) {
+        $stmt = $conn->prepare("SELECT * FROM orders $searchQuery ORDER BY created_at DESC LIMIT ? OFFSET ?");
+        $stmt->bind_param($searchTypes . "ii", $searchParams[0], $searchParams[1], $searchParams[2], $searchParams[3], $searchParams[4], $searchParams[5], $itemsPerPage, $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } else {
+        $stmt = $conn->prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?");
+        $stmt->bind_param("ii", $itemsPerPage, $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -81,6 +100,16 @@ if ($searchQuery) {
                         <?php if ($search): ?>
                             <p> Результаты поиска для: "<?= htmlspecialchars($search) ?>"</p>
                         <?php endif; ?>
+                        <!-- NOTE: Информация о пагинации -->
+                        <div class="pagination-info">
+                            <p>
+                                Показано <?= $offset + 1 ?>-<?= min($offset + $itemsPerPage, $totalRecords) ?> 
+                                из <?= $totalRecords ?> записей
+                                <?php if ($totalPages > 1): ?>
+                                    (страница <?= $currentPage ?> из <?= $totalPages ?>)
+                                <?php endif; ?>
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -131,6 +160,55 @@ if ($searchQuery) {
                     </tbody>
                 </table>
             </div>
+
+                <!-- NOTE: Навигация по страницам -->
+                <?php if ($totalPages > 1): ?>
+                <div class="pagination">
+                    <div class="pagination-nav">
+
+                        <?php
+                        // NOTE: Параметры для сохранения поиска при переходе между страницами
+                        $searchParam = $search ? "&search=" . urlencode($search) : "";
+                            
+                        // NOTE: Предыдущая страница
+                        if ($currentPage > 1): ?>
+                            <a href="?page=<?= $currentPage - 1 ?><?= $searchParam ?>" class="pagination-btn">← Предыдущая</a>
+                        <?php endif; ?>
+                            
+                        <!-- NOTE: Номера страниц -->
+                        <?php
+                            $startPage = max(1, $currentPage - 2);
+                            $endPage = min($totalPages, $currentPage + 2);
+                            
+                            if ($startPage > 1): ?>
+                                <a href="?page=1<?= $searchParam ?>" class="pagination-btn">1</a>
+                                <?php if ($startPage > 2): ?>
+                                    <span class="pagination-dots">...</span>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            
+                            <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                                <?php if ($i == $currentPage): ?>
+                                    <span class="pagination-btn current"><?= $i ?></span>
+                                <?php else: ?>
+                                    <a href="?page=<?= $i ?><?= $searchParam ?>" class="pagination-btn"><?= $i ?></a>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            
+                            <?php if ($endPage < $totalPages): ?>
+                                <?php if ($endPage < $totalPages - 1): ?>
+                                    <span class="pagination-dots">...</span>
+                                <?php endif; ?>
+                                <a href="?page=<?= $totalPages ?><?= $searchParam ?>" class="pagination-btn"><?= $totalPages ?></a>
+                            <?php endif; ?>
+                            
+                            <!-- NOTE: Следующая страница -->
+                            <?php if ($currentPage < $totalPages): ?>
+                                <a href="?page=<?= $currentPage + 1 ?><?= $searchParam ?>" class="pagination-btn">Следующая →</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
             
             <?php include __DIR__ . '/../../shared/footer.php'; ?>
 
