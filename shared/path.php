@@ -15,7 +15,7 @@ function getBasePath() {
             
             // Возвращаем URL с текущим доменом
             if (strpos($host, 'standox-chita.ru') !== false) {
-                return $protocol . '://www.standox-chita.ru';
+                return $protocol . '://standox-chita.ru';
             } else {
                 return $protocol . '://www.standox.pro';
             }
