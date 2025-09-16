@@ -10,10 +10,10 @@
     ini_set('display_errors', 1);
 
     // NOTE: Подключение к базе данных
-    $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // NOTE: Хост базы данных на Heroku
-    $username   = "q1i28z5zzuyro11l"; // NOTE: Имя пользователя базы данных
-    $password   = "kwdvun8ff1f8m6fs"; // NOTE: Пароль базы данных
-    $dbname     = "vtjb3fkssehwjx62"; // NOTE: Имя базы данных
+    $servername = "127.0.0.1"; // NOTE: Хост базы данных на Selectel
+    $username   = "standox_user"; // NOTE: Имя пользователя базы данных
+    $password   = "My_New_Strong_Password_946006A"; // NOTE: Пароль базы данных
+    $dbname     = "standox_db"; // NOTE: Имя базы данных
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {

@@ -7,10 +7,10 @@
     $basePath = getBasePath();
 
     // NOTE: Подключаемся к базе данных
-    $servername = "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"; // Хост базы данных на Heroku
-    $username   = "q1i28z5zzuyro11l"; // Имя пользователя базы данных
-    $password   = "kwdvun8ff1f8m6fs"; // Пароль к базе данных
-    $dbname     = "vtjb3fkssehwjx62"; // Имя базы данных
+    $servername = "127.0.0.1"; // Хост базы данных на Selectel
+    $username   = "standox_user"; // Имя пользователя базы данных
+    $password   = "My_New_Strong_Password_946006A"; // Пароль к базе данных
+    $dbname     = "standox_db"; // Имя базы данных
 
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
