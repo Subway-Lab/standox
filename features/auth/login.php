@@ -16,7 +16,7 @@
     // NOTE: Обработка формы логина
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // NOTE: Строки отвечающие за подключение к базе данных
-        $mysqli = new mysqli('127.0.0.1', 'standox_user', 'My_New_Strong_Password_946006A', 'standox_db');
+        $mysqli = new mysqli('127.0.0.1', 'standox_user', 'ZiNH7N987CR2', 'standox_db');
 
     // NOTE: Проверка на ошибки подключения
     if ($mysqli->connect_error) {

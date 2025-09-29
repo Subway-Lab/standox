@@ -9,9 +9,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // NOTE: Подключение к базе данных
-$servername = "127.0.0.1"; // NOTE: Хост базы данных на Selectel
+$servername = "127.0.0.1"; // NOTE: Хост локальной базы данных XAMPP
 $username   = "standox_user"; // NOTE: Имя пользователя базы данных
-$password   = "My_New_Strong_Password_946006A"; // NOTE: Пароль базы данных
+$password   = "ZiNH7N987CR2"; // NOTE: Пароль базы данных (обновленный)
 $dbname     = "standox_db"; // NOTE: Имя базы данных
 
 $conn = new mysqli($servername, $username, $password, $dbname);

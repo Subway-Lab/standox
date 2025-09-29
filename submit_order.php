@@ -9,7 +9,7 @@
     // NOTE: Подключаемся к базе данных
     $servername = "127.0.0.1"; // Хост базы данных на Selectel
     $username   = "standox_user"; // Имя пользователя базы данных
-    $password   = "My_New_Strong_Password_946006A"; // Пароль к базе данных
+    $password   = "ZiNH7N987CR2"; // Пароль к базе данных
     $dbname     = "standox_db"; // Имя базы данных
 
     $conn = new mysqli($servername, $username, $password, $dbname);
