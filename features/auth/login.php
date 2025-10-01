@@ -15,12 +15,11 @@
 
     // NOTE: Обработка формы логина
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // NOTE: Строки отвечающие за подключение к базе данных
-        $mysqli = new mysqli('127.0.0.1', 'standox_user', 'ZiNH7N987CR2', 'standox_db');
+    // NOTE: Подключаемся к базе данных
+    require_once __DIR__ . '/../../shared/db_settings.php';
 
-    // NOTE: Проверка на ошибки подключения
-    if ($mysqli->connect_error) {
-        die("Ошибка подключения: " . $mysqli->connect_error);
+    if ($db_connection->connect_error) {
+        die("Ошибка подключения: " . $db_connection->connect_error);
     }
 
     // NOTE: Полуение данные из формы
@@ -28,7 +27,7 @@
     $password = $_POST['password'];
 
     // NOTE: Подготовленный запрос для защиты от SQL инъекций
-    $stmt = $mysqli->prepare("SELECT id, password FROM users WHERE username = ?");
+    $stmt = $db_connection->prepare("SELECT id, password FROM users WHERE username = ?");
     $stmt->bind_param("s", $login); // NOTE: Привязываем параметр
     $stmt->execute();
     $stmt->store_result();
@@ -56,7 +55,7 @@
 
         // NOTE: Закрытие сесси
         $stmt->close();
-        $mysqli->close();
+        $db_connection->close();
 }
 ?>
 

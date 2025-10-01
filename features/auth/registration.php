@@ -9,15 +9,11 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    // NOTE: Подключение к базе данных
-    $servername = "127.0.0.1"; // NOTE: Хост базы данных на Selectel
-    $username   = "standox_user"; // NOTE: Имя пользователя базы данных
-    $password   = "ZiNH7N987CR2"; // NOTE: Пароль базы данных
-    $dbname     = "standox_db"; // NOTE: Имя базы данных
+    // NOTE: Подключаемся к базе данных
+    require_once __DIR__ . '/../../shared/db_settings.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Ошибка подключения: " . $conn->connect_error);
+    if ($db_connection->connect_error) {
+        die("Ошибка подключения: " . $db_connection->connect_error);
     }
 
     // NOTE: Обработка отправки формы
@@ -33,7 +29,7 @@
             $error = "Пароли не совпадают.";
         } else {
             // NOTE: Проверка наличия пользователь с таким именем
-            $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+            $stmt = $db_connection->prepare("SELECT id FROM users WHERE username = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
@@ -44,7 +40,7 @@
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                 
                 // NOTE: Сохранение нового пользователя в таблицу
-                $stmt_insert = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+                $stmt_insert = $db_connection->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
                 $stmt_insert->bind_param("ss", $username, $hashed_password);
                 
             if ($stmt_insert->execute()) {
@@ -60,7 +56,7 @@
         }
     }
 
-    $conn->close();
+    $db_connection->close();
 ?>
 
 <!DOCTYPE html>

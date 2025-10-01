@@ -4,16 +4,11 @@
 ?>
 
 <?php
-    // NOTE: Подключаемся к базе данных
-    $servername = "127.0.0.1"; // NOTE: Хост базы данных на Selectel
-    $username   = "standox_user"; // NOTE: Имя пользователя базы данных
-    $password   = "ZiNH7N987CR2"; // NOTE: Пароль к базе данных
-    $dbname     = "standox_db"; // NOTE: Имя базы данных
+   // NOTE: Подключаемся к базе данных
+    require_once __DIR__ . '/../../shared/db_settings.php';
 
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Ошибка подключения: " . $conn->connect_error);
+    if ($db_connection->connect_error) {
+        die("Ошибка подключения: " . $db_connection->connect_error);
     }
 
     // NOTE: Получение данных order_id из GET-параметра
@@ -24,7 +19,7 @@
 
     // NOTE: Запрос данных заказа
     $sql_order = "SELECT id, full_name, phone, created_at, car_model, car_number, services_total, total_work_price, total_parts_price FROM orders WHERE id = ?";
-    $stmt = $conn->prepare($sql_order);
+    $stmt = $db_connection->prepare($sql_order);
     $stmt->bind_param("i", $order_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -36,7 +31,7 @@
 
     // NOTE: Запрос данных работ, только для section = 'work'
     $sql_works = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'work'";
-    $stmt_works = $conn->prepare($sql_works);
+    $stmt_works = $db_connection->prepare($sql_works);
     $stmt_works->bind_param("i", $order_id);
     $stmt_works->execute();
     $result_works = $stmt_works->get_result();
@@ -48,7 +43,7 @@
 
     // NOTE: Запрос данных запчастей, только для section = 'parts'
     $sql_parts = "SELECT service_id, name_work, price FROM list_of_work WHERE order_id = ? AND section = 'parts'";
-    $stmt_parts = $conn->prepare($sql_parts);
+    $stmt_parts = $db_connection->prepare($sql_parts);
     $stmt_parts->bind_param("i", $order_id);
     $stmt_parts->execute();
     $result_parts = $stmt_parts->get_result();
@@ -58,7 +53,7 @@
     }
     $stmt_parts->close();
 
-    $conn->close();
+    $db_connection->close();
 ?>
 
 <!DOCTYPE HTML>

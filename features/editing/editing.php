@@ -11,14 +11,12 @@
     ini_set('display_errors', 1);
 
 
-    // NOTE: Подключение к базе данных
-    $servername = "127.0.0.1"; // NOTE: Хост базы данных на Selectel
-    $username   = "standox_user"; // NOTE: Имя пользователя базы данных
-    $password   = "ZiNH7N987CR2"; // NOTE: Пароль базы данных
-    $dbname     = "standox_db"; // NOTE: Имя базы данных
+    // NOTE: Подключаемся к базе данных
+    require_once __DIR__ . '/../../shared/db_settings.php';
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+    if ($db_connection->connect_error) {
+        die("Ошибка подключения: " . $db_connection->connect_error);
+    }
 
     $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -26,7 +24,7 @@
         $order_id = intval($_POST['order_id']);
         
         // NOTE: Обновление основной информации
-        $stmt = $conn->prepare("UPDATE orders SET 
+        $stmt = $db_connection->prepare("UPDATE orders SET 
             surname = ?,
             name = ?,
             patronymic = ?,
@@ -48,7 +46,7 @@
         );
         $stmt->execute();
         
-        $conn->query("DELETE FROM list_of_work WHERE order_id = $order_id");
+        $db_connection->query("DELETE FROM list_of_work WHERE order_id = $order_id");
         
         // NOTE: Обработка и вставка данных для таблицы list_of_work (как в submit_order.php)
         if (isset($_POST['services']) && is_array($_POST['services'])) {
@@ -65,15 +63,15 @@
                     continue;
                 }
                 
-                $name = isset($service['name']) ? $conn->real_escape_string($service['name']) : '';
-                $section = isset($service['section']) ? $conn->real_escape_string($service['section']) : '';
+                $name = isset($service['name']) ? $db_connection->real_escape_string($service['name']) : '';
+                $section = isset($service['section']) ? $db_connection->real_escape_string($service['section']) : '';
                 $full_work = $name . " " . $price . " руб.";
 
                 $sql_services = "INSERT INTO list_of_work (order_id, service_id, name_work, price, section, full_work) 
                                 VALUES (?, ?, ?, ?, ?, ?)";
-                $stmt_services = $conn->prepare($sql_services);
+                $stmt_services = $db_connection->prepare($sql_services);
                 if ($stmt_services === false) {
-                    die("Ошибка подготовки запроса для list_of_work: " . $conn->error);
+                    die("Ошибка подготовки запроса для list_of_work: " . $db_connection->error);
                 }
                 $stmt_services->bind_param("iissss", $order_id, $service_id, $name, $price, $section, $full_work);
                 if (!$stmt_services->execute()) {
@@ -93,11 +91,11 @@
 
     if ($order_id > 0) {
         // NOTE:Основные данные заказа
-        $result = $conn->query("SELECT * FROM orders WHERE id = $order_id");
+        $result = $db_connection->query("SELECT * FROM orders WHERE id = $order_id");
         $order_data = $result->fetch_assoc();
         
         // NOTE: Данные об услугах
-        $result = $conn->query("SELECT * FROM list_of_work WHERE order_id = $order_id");
+        $result = $db_connection->query("SELECT * FROM list_of_work WHERE order_id = $order_id");
         while ($row = $result->fetch_assoc()) {
             $services_data[$row['service_id']] = $row;
         }
@@ -225,4 +223,4 @@
 
     </body>
 </html>
-<?php $conn->close(); ?>
+<?php $db_connection->close(); ?>

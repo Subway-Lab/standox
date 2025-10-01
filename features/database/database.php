@@ -8,15 +8,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// NOTE: Подключение к базе данных
-$servername = "127.0.0.1"; // NOTE: Хост локальной базы данных XAMPP
-$username   = "standox_user"; // NOTE: Имя пользователя базы данных
-$password   = "ZiNH7N987CR2"; // NOTE: Пароль базы данных (обновленный)
-$dbname     = "standox_db"; // NOTE: Имя базы данных
+// NOTE: Подключаемся к базе данных
+require_once __DIR__ . '/../../shared/db_settings.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
+if ($db_connection->connect_error) {
+    die("Ошибка подключения: " . $db_connection->connect_error);
 }
 
 // NOTE: Обработка поискового запроса (по модели, ФИО или телефону)
@@ -40,24 +36,24 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
 
     // NOTE: Получаем общее количество записей для пагинации
     if ($searchQuery) {
-        $countStmt = $conn->prepare("SELECT COUNT(*) as total FROM orders $searchQuery");
+        $countStmt = $db_connection->prepare("SELECT COUNT(*) as total FROM orders $searchQuery");
         $countStmt->bind_param($searchTypes, ...$searchParams);
         $countStmt->execute();
         $totalRecords = $countStmt->get_result()->fetch_assoc()['total'];
     } else {
-        $totalRecords = $conn->query("SELECT COUNT(*) as total FROM orders")->fetch_assoc()['total'];
+        $totalRecords = $db_connection->query("SELECT COUNT(*) as total FROM orders")->fetch_assoc()['total'];
     }
     
     $totalPages = ceil($totalRecords / $itemsPerPage);
 
     // NOTE: Запрос для получения заказов
     if ($searchQuery) {
-        $stmt = $conn->prepare("SELECT * FROM orders $searchQuery ORDER BY created_at DESC LIMIT ? OFFSET ?");
+        $stmt = $db_connection->prepare("SELECT * FROM orders $searchQuery ORDER BY created_at DESC LIMIT ? OFFSET ?");
         $stmt->bind_param($searchTypes . "ii", $searchParams[0], $searchParams[1], $searchParams[2], $searchParams[3], $searchParams[4], $searchParams[5], $itemsPerPage, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
     } else {
-        $stmt = $conn->prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?");
+        $stmt = $db_connection->prepare("SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?");
         $stmt->bind_param("ii", $itemsPerPage, $offset);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -221,5 +217,5 @@ if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     <?php
 
     // NOTE: Закрываем подключение к БД
-    $conn->close();
+    $db_connection->close();
     ?>
